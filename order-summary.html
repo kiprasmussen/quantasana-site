@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Summary — Quantasana</title>
+  <meta name="description" content="Review your Quantasana Pod configuration before checkout.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;600;700;800&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    .order-nav {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 200;
+    }
+    .order-back {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(10, 10, 10, 0.08);
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      color: #2C2C2A;
+      transition: background 0.3s;
+    }
+    .order-back:hover {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .summary-page {
+      background: #F5F0E8;
+      min-height: 100vh;
+      padding: 80px 24px 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .summary-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .summary-logo {
+      width: 36px;
+      height: 36px;
+      margin-bottom: 16px;
+    }
+    .summary-title {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      color: #2C2C2A;
+    }
+    .summary-card {
+      width: 100%;
+      max-width: 560px;
+      background: rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(10, 10, 10, 0.06);
+      border-radius: 16px;
+      padding: 40px 32px;
+    }
+    .summary-total {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .summary-total-label {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: #2C2C2A;
+    }
+    .summary-total-price {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #2C2C2A;
+    }
+    .summary-meta {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .summary-meta span {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      color: rgba(10, 10, 10, 0.4);
+    }
+    .summary-divider {
+      height: 1px;
+      background: rgba(10, 10, 10, 0.08);
+      margin-bottom: 24px;
+    }
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(10, 10, 10, 0.05);
+    }
+    .summary-line:last-child {
+      border-bottom: none;
+    }
+    .summary-line-name {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.88rem;
+      color: #2C2C2A;
+    }
+    .summary-line-price {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.88rem;
+      color: rgba(10, 10, 10, 0.5);
+    }
+
+    /* Sticky footer bar */
+    .order-footer-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: #F5F0E8;
+      border-top: 1px solid rgba(10, 10, 10, 0.08);
+      display: flex;
+      align-items: center;
+      padding: 0 48px;
+      gap: 24px;
+      z-index: 100;
+    }
+    .order-footer-info { flex: 1; }
+    .order-footer-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      color: rgba(10, 10, 10, 0.35);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer-info-icon { font-size: 0.75rem; opacity: 0.5; }
+    .order-footer-due {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #2C2C2A;
+    }
+    .order-footer-price {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      color: #2C2C2A;
+    }
+    .order-footer-btn {
+      padding: 16px 40px;
+      background: #8B8578;
+      border: none;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #F5F0E8;
+      cursor: pointer;
+      transition: background 0.3s;
+      white-space: nowrap;
+    }
+    .order-footer-btn:hover { background: #706B61; }
+
+    @media (max-width: 768px) {
+      .order-footer-bar {
+        padding: 0 20px;
+        gap: 12px;
+      }
+      .order-footer-price { font-size: 1.5rem; }
+      .order-footer-btn {
+        padding: 14px 24px;
+        font-size: 0.58rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="order-nav">
+    <a href="order.html" class="order-back">
+      <span class="back-arrow">←</span>
+    </a>
+  </nav>
+
+  <div class="summary-page">
+
+    <div class="summary-header">
+      <img src="logo.svg" class="summary-logo" alt="Quantasana">
+      <h1 class="summary-title">Summary</h1>
+    </div>
+
+    <div class="summary-card">
+      <div class="summary-total">
+        <span class="summary-total-label">Total Price · </span>
+        <span class="summary-total-price" id="summary-total">$4,500</span>
+      </div>
+
+      <div class="summary-meta">
+        <span>Est. Build Time: 6-8 weeks</span>
+      </div>
+
+      <div class="summary-divider"></div>
+
+      <div class="summary-lines" id="summary-lines"></div>
+    </div>
+
+  </div>
+
+  <div class="order-footer-bar">
+    <div class="order-footer-info">
+      <div class="order-footer-label">
+        <span class="footer-info-icon">ⓘ</span>
+        <span>Non-refundable</span>
+      </div>
+      <div class="order-footer-due">Amount due today</div>
+    </div>
+    <div class="order-footer-price">$500</div>
+    <button class="order-footer-btn" id="checkout-btn">CONTINUE TO CHECKOUT</button>
+  </div>
+
+  <script>
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var linesContainer = document.getElementById('summary-lines');
+    var totalDisplay = document.getElementById('summary-total');
+    var total = 0;
+
+    function addLine(name, price) {
+      var div = document.createElement('div');
+      div.className = 'summary-line';
+      div.innerHTML = '<span class="summary-line-name">' + name + '</span>' +
+                      '<span class="summary-line-price">' + price + '</span>';
+      linesContainer.appendChild(div);
+    }
+
+    // Trim
+    var trimName = params.get('trimName') || 'Founders Edition';
+    var trimPrice = parseInt(params.get('trimPrice') || '4500');
+    total += trimPrice;
+    addLine(trimName, '$' + trimPrice.toLocaleString());
+
+    // Fabric
+    var fabricName = params.get('fabricName');
+    var fabricAdd = parseInt(params.get('fabricAdd') || '0');
+    if (fabricName) {
+      total += fabricAdd;
+      addLine('Fabric: ' + fabricName, fabricAdd > 0 ? '+$' + fabricAdd : 'Included');
+    }
+
+    // Upgrades
+    var upgradesStr = params.get('upgrades');
+    if (upgradesStr) {
+      upgradesStr.split(',').forEach(function(item) {
+        var parts = item.split('|');
+        var name = parts[0];
+        var price = parseInt(parts[1] || '0');
+        total += price;
+        addLine(name, '+$' + price);
+      });
+    }
+
+    // Add-ons
+    var addonsStr = params.get('addons');
+    if (addonsStr) {
+      addonsStr.split(',').forEach(function(item) {
+        var parts = item.split('|');
+        var name = parts[0];
+        var price = parseInt(parts[1] || '0');
+        total += price;
+        addLine(name, '+$' + price);
+      });
+    }
+
+    totalDisplay.textContent = '$' + total.toLocaleString();
+
+    // Checkout button
+    document.getElementById('checkout-btn').addEventListener('click', function() {
+      var checkoutParams = new URLSearchParams(window.location.search);
+      checkoutParams.set('total', total);
+      window.location.href = 'order-checkout.html?' + checkoutParams.toString();
+    });
+  })();
+  </script>
+</body>
+</html>

@@ -211,6 +211,31 @@
     .option-desc a:hover {
       text-decoration: underline;
     }
+    /* ── Back nav ── */
+    .order-nav {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 200;
+    }
+    .order-back {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(10, 10, 10, 0.08);
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      color: #2C2C2A;
+      transition: background 0.3s;
+    }
+    .order-back:hover {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
     .option-badge {
       display: inline-block;
       font-family: 'JetBrains Mono', monospace;
@@ -323,38 +348,10 @@
 </head>
 <body>
 
-  <nav class="nav" id="nav">
-    <div class="nav__inner">
-      <a href="index.html" class="nav__logo" aria-label="QUANTASANA home">
-        <img src="logo.svg" class="nav__logo-svg" alt="QUANTASANA" aria-hidden="true">
-      </a>
-      <div class="nav__right">
-        <div class="nav__flyout" id="navFlyout" aria-hidden="true">
-          <a href="index.html#science" class="nav__flyout-link" style="--i:0"><span>Science</span></a>
-          <a href="index.html#system" class="nav__flyout-link" style="--i:1"><span>Experience</span></a>
-          <a href="index.html#community" class="nav__flyout-link" style="--i:2"><span>Community</span></a>
-          <a href="order.html" class="nav__flyout-link" style="--i:3"><span>Order</span></a>
-        </div>
-        <div class="nav__pill" id="navPill">
-          <div class="nav__actions">
-            <button class="nav__hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
-              <span class="nav__hamburger-line nav__hamburger-line--top"></span>
-              <span class="nav__hamburger-line nav__hamburger-line--mid"></span>
-              <span class="nav__hamburger-line nav__hamburger-line--bot"></span>
-              <span class="nav__x-line nav__x-line--1"></span>
-              <span class="nav__x-line nav__x-line--2"></span>
-            </button>
-            <a href="order.html" class="nav__order-btn">Order</a>
-          </div>
-          <div class="nav__dropdown" id="navDropdown">
-            <a href="index.html#science" class="nav__dropdown-link" style="--i:0">Science</a>
-            <a href="index.html#system" class="nav__dropdown-link" style="--i:1">Experience</a>
-            <a href="index.html#community" class="nav__dropdown-link" style="--i:2">Community</a>
-            <a href="order.html" class="nav__dropdown-link" style="--i:3">Order</a>
-          </div>
-        </div>
-      </div>
-    </div>
+  <nav class="order-nav">
+    <a href="index.html" class="order-back">
+      <span class="back-arrow">←</span>
+    </a>
   </nav>
 
   <div class="order-page">
@@ -593,55 +590,7 @@
 
   </div><!-- end order-page -->
 
-  <!-- FOOTER -->
-  <div class="footer-wrapper">
-    <footer id="footer" class="site-footer">
-      <div class="footer-content">
-        <div class="footer-top">
-          <div class="footer-tagline">
-            <p class="footer-tagline-text">Built to resonate.</p>
-          </div>
-          <nav class="footer-nav">
-            <a href="index.html#science" class="footer-link">science</a>
-            <a href="index.html#system" class="footer-link">experience</a>
-            <a href="index.html#community" class="footer-link">community</a>
-            <a href="order.html" class="footer-link">order</a>
-            <a href="in-person.html" class="footer-link">in person</a>
-            <a href="app.html" class="footer-link">app</a>
-            <a href="contact.html" class="footer-link">contact</a>
-            <a href="press.html" class="footer-link">press</a>
-            <a href="faq.html" class="footer-link">faq</a>
-          </nav>
-          <div class="footer-subscribe">
-            <p class="footer-subscribe-text">Subscribe for the latest<br>Quantasana updates.</p>
-            <a href="index.html#community" class="footer-join">
-              <span class="footer-join-arrow">→</span>
-              JOIN US
-            </a>
-          </div>
-        </div>
-        <div class="footer-divider"><span>+</span></div>
-        <div class="footer-bottom">
-          <div class="footer-logo">quantasana</div>
-          <div class="footer-legal">
-            <a href="privacy.html" class="footer-legal-link">PRIVACY POLICY</a>
-            <span class="footer-legal-dot">·</span>
-            <a href="terms.html" class="footer-legal-link">TERMS OF SERVICE</a>
-          </div>
-          <div class="footer-copyright">© 2026 NOVUS BROKER TECHNOLOGY, INC. ALL RIGHTS RESERVED.</div>
-          <div class="footer-socials">
-            <a href="https://instagram.com/quantasana" class="footer-social-link" target="_blank">INSTAGRAM</a>
-            <span class="footer-legal-dot">·</span>
-            <a href="https://x.com/quantasana" class="footer-social-link" target="_blank">X</a>
-            <span class="footer-legal-dot">·</span>
-            <a href="https://youtube.com/@quantasana" class="footer-social-link" target="_blank">YOUTUBE</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
 
-  <script src="main.js?v=16"></script>
   <script>
   (function() {
     var basePrice = 4500;
@@ -670,7 +619,7 @@
 
     // Auto-advance carousel every 4 seconds
     var carouselIndex = 0;
-    var carouselTimer = setInterval(function() {
+    setInterval(function() {
       if (!slides.length) return;
       carouselIndex = (carouselIndex + 1) % slides.length;
       slides.forEach(function(s) { s.classList.remove('active'); });
@@ -710,7 +659,6 @@
     function recalculate() {
       totalPrice = basePrice;
 
-      // Fabric add
       var fabricChecked = document.querySelector('input[name="fabric"]:checked');
       if (fabricChecked) {
         var fabricOption = fabricChecked.closest('.config-option');
@@ -718,13 +666,11 @@
         totalPrice += fabricAdd;
       }
 
-      // Upgrades
       document.querySelectorAll('input[name="upgrade"]:checked').forEach(function(input) {
         var add = parseInt(input.closest('.config-option').getAttribute('data-add') || '0');
         totalPrice += add;
       });
 
-      // Add-ons
       document.querySelectorAll('input[name="addon"]:checked').forEach(function(input) {
         var add = parseInt(input.closest('.config-option').getAttribute('data-add') || '0');
         totalPrice += add;
@@ -733,32 +679,40 @@
       if (depositDisplay) depositDisplay.textContent = '$' + deposit.toLocaleString();
     }
 
-    // Continue button
+    // Continue to summary
     if (continueBtn) {
       continueBtn.addEventListener('click', function() {
-        var selections = [];
+        var params = new URLSearchParams();
 
         var trim = document.querySelector('input[name="trim"]:checked');
-        if (trim) selections.push(trim.closest('.config-option').getAttribute('data-name'));
+        if (trim) {
+          params.set('trim', trim.value);
+          params.set('trimName', trim.closest('.config-option').getAttribute('data-name'));
+          params.set('trimPrice', trim.closest('.config-option').getAttribute('data-price'));
+        }
 
         var fabric = document.querySelector('input[name="fabric"]:checked');
-        if (fabric) selections.push('Fabric: ' + fabric.closest('.config-option').getAttribute('data-name'));
+        if (fabric) {
+          params.set('fabric', fabric.value);
+          params.set('fabricName', fabric.closest('.config-option').getAttribute('data-name'));
+          params.set('fabricAdd', fabric.closest('.config-option').getAttribute('data-add'));
+        }
 
+        var upgrades = [];
         document.querySelectorAll('input[name="upgrade"]:checked').forEach(function(input) {
-          selections.push(input.closest('.config-option').getAttribute('data-name'));
+          var opt = input.closest('.config-option');
+          upgrades.push(opt.getAttribute('data-name') + '|' + opt.getAttribute('data-add'));
         });
+        if (upgrades.length) params.set('upgrades', upgrades.join(','));
 
+        var addons = [];
         document.querySelectorAll('input[name="addon"]:checked').forEach(function(input) {
-          selections.push(input.closest('.config-option').getAttribute('data-name'));
+          var opt = input.closest('.config-option');
+          addons.push(opt.getAttribute('data-name') + '|' + opt.getAttribute('data-add'));
         });
+        if (addons.length) params.set('addons', addons.join(','));
 
-        var summary = 'Your Quantasana Configuration:\n\n' +
-          selections.join('\n') + '\n\n' +
-          'Total: $' + totalPrice.toLocaleString() + '\n' +
-          'Deposit due today: $' + deposit;
-
-        alert(summary);
-        console.log('Order:', { selections: selections, total: totalPrice, deposit: deposit });
+        window.location.href = 'order-summary.html?' + params.toString();
       });
     }
 
