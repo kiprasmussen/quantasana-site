@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QUANTASANA — Breathe Beyond</title>
+  <meta name="description" content="A premium breathwork and wellness system. Walnut. Boucle. Sound. Vibration. Breath.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="QUANTASANA — Breathe Beyond">
+  <meta property="og:description" content="A premium breathwork and wellness system. Walnut. Boucle. Sound. Vibration. Breath.">
+  <meta property="og:image" content="og-image.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css?v=16">
+</head>
+<body>
+
+  <!-- ============================================
+       NAVIGATION
+       ============================================ -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <!-- Logo Mark -->
+      <a href="#" class="nav__logo" aria-label="QUANTASANA home">
+        <img src="logo.svg" class="nav__logo-svg" alt="QUANTASANA" aria-hidden="true">
+      </a>
+
+      <!-- Right side: flyout + hamburger + ORDER -->
+      <div class="nav__right">
+        <!-- Desktop flyout (slides left from hamburger) -->
+        <div class="nav__flyout" id="navFlyout" aria-hidden="true">
+          <a href="#science" class="nav__flyout-link" style="--i:0"><span>Science</span></a>
+          <a href="#system" class="nav__flyout-link" style="--i:1"><span>Experience</span></a>
+          <a href="#community" class="nav__flyout-link" style="--i:2"><span>Community</span></a>
+          <a href="#order" class="nav__flyout-link" style="--i:3"><span>Order</span></a>
+        </div>
+
+        <!-- Pill toggle: hamburger + ORDER + mobile dropdown -->
+        <div class="nav__pill" id="navPill">
+          <div class="nav__actions">
+            <button class="nav__hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
+              <span class="nav__hamburger-line nav__hamburger-line--top"></span>
+              <span class="nav__hamburger-line nav__hamburger-line--mid"></span>
+              <span class="nav__hamburger-line nav__hamburger-line--bot"></span>
+              <span class="nav__x-line nav__x-line--1"></span>
+              <span class="nav__x-line nav__x-line--2"></span>
+            </button>
+            <a href="#order" class="nav__order-btn">Order</a>
+          </div>
+          <!-- Mobile accordion dropdown (unfolds below pill) -->
+          <div class="nav__dropdown" id="navDropdown">
+            <a href="#science" class="nav__dropdown-link" style="--i:0">Science</a>
+            <a href="#system" class="nav__dropdown-link" style="--i:1">Experience</a>
+            <a href="#community" class="nav__dropdown-link" style="--i:2">Community</a>
+            <a href="#order" class="nav__dropdown-link" style="--i:3">Order</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Menu overlay (dark blur behind menu card) -->
+  <div class="nav__overlay" id="navOverlay"></div>
+
+  <!-- ============================================
+       SECTION 1: HERO — "The Portal"
+       ============================================ -->
+  <section class="section hero" id="hero">
+    <!-- Background video: single autoplay, freezes on last frame -->
+    <div class="hero__bg">
+      <video id="heroVideo" autoplay muted playsinline poster="images/hero.jpg" class="hero__video">
+      </video>
+    </div>
+
+    <!-- Gradient overlays -->
+    <div class="hero__overlay"></div>
+
+    <!-- Content -->
+    <div class="hero__content">
+      <span class="hero__eyebrow anim-fade-up" style="--delay:0.3s">introducing the</span>
+      <h1 class="hero__headline anim-fade-up" style="--delay:0.5s">QUANTASANA POD</h1>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       TRANSITION 1: Recalibration
+       ============================================ -->
+  <div class="transition-wrapper" id="transition-1">
+    <div class="transition-section">
+      <div class="transition-text" data-line="0">
+        Your nervous system wasn't designed for the pace of the modern world.
+      </div>
+      <div class="transition-text" data-line="1">
+        But it can be recalibrated.
+      </div>
+      <div class="transition-text" data-line="2">
+        Quantasana helps restore your body's natural frequency through three intentional, science-backed modalities.
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================
+       SECTION 3: SCIENCE — Scroll-Driven Three Panels
+       ============================================ -->
+  <div class="science-wrapper">
+    <section id="science">
+      <div class="science-panels">
+
+        <!-- BREATH -->
+        <div class="science-panel active" data-pillar="breath">
+          <div class="panel-content">
+            <h2 class="panel-title">BREATH</h2>
+            <p class="panel-desc">Guided respiratory protocols that reset your autonomic nervous system.</p>
+            <div class="stat-cards">
+              <div class="stat-card">
+                <div class="stat-number">68%</div>
+                <div class="stat-label">HRV IMPROVEMENT</div>
+                <p class="stat-body">Controlled breathwork protocols show significant heart rate variability improvement within 8 weeks of consistent practice.</p>
+                <div class="stat-source">Peer-reviewed, n=142</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">3.2x</div>
+                <div class="stat-label">ALPHA WAVE INCREASE</div>
+                <p class="stat-body">Guided breathing patterns produce measurable alpha wave amplification, associated with calm focus and creative flow states.</p>
+                <div class="stat-source">EEG clinical study</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">41%</div>
+                <div class="stat-label">CORTISOL REDUCTION</div>
+                <p class="stat-body">Extended exhale protocols demonstrate clinically significant cortisol reduction after single 12-minute sessions.</p>
+                <div class="stat-source">Endocrine research, 2023</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SOUND -->
+        <div class="science-panel" data-pillar="sound">
+          <div class="panel-content">
+            <h2 class="panel-title">SOUND</h2>
+            <p class="panel-desc">Precision-tuned frequencies that synchronize brainwave activity.</p>
+            <div class="stat-cards">
+              <div class="stat-card">
+                <div class="stat-number">65%</div>
+                <div class="stat-label">ANXIETY REDUCTION</div>
+                <p class="stat-body">Precision-tuned sound frequencies reduced anxiety levels by 65% in controlled trials, outperforming every other stimulus tested.</p>
+                <div class="stat-source">Mindlab International, n=40</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">21%</div>
+                <div class="stat-label">COGNITIVE ANXIETY DROP</div>
+                <p class="stat-body">AI-personalized sound therapy reduced cognitive anxiety by 21% in a single 24-minute session — four times more effective than standard mindfulness.</p>
+                <div class="stat-source">PLOS ONE, RCT, n=318</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">3 Weeks</div>
+                <div class="stat-label">BRAINWAVE REMODELING</div>
+                <p class="stat-body">Daily 20-minute acoustic stimulation sessions produced measurable alpha brainwave entrainment and reduced depression and stress scores within 21 days.</p>
+                <div class="stat-source">Acoustic neurostimulation trial, 2023</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIBRATION -->
+        <div class="science-panel" data-pillar="vibration">
+          <div class="panel-content">
+            <h2 class="panel-title">VIBRATION</h2>
+            <p class="panel-desc">Haptic resonance that releases stored tension at the cellular level.</p>
+            <div class="stat-cards">
+              <div class="stat-card">
+                <div class="stat-number">73%</div>
+                <div class="stat-label">PAIN THRESHOLD INCREASE</div>
+                <p class="stat-body">Low-frequency vibration applied to trigger points produced a 73% increase in pressure pain threshold over 10 sessions. The tissue releases what it's been holding.</p>
+                <div class="stat-source">Randomized controlled trial, n=28</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">3x</div>
+                <div class="stat-label">RECOVERY SPEED</div>
+                <p class="stat-body">Vibration massage accelerated muscular strength recovery three times faster than passive rest. The body rebuilds when you give it the right signal.</p>
+                <div class="stat-source">Vibration recovery study, isometric protocol</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">50%</div>
+                <div class="stat-label">MYALGIA REDUCTION</div>
+                <p class="stat-body">Vibration-assisted massage reduced muscle pain symptoms by up to 50%. Stored tension doesn't resolve on its own — it needs resonance.</p>
+                <div class="stat-source">Frey Law et al., clinical review</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div><!-- /.science-wrapper -->
+
+
+  <!-- ============================================
+       TRANSITION 2: The Signal
+       ============================================ -->
+  <div class="transition-wrapper" id="transition-2">
+    <div class="transition-section">
+      <div class="transition-text" data-line="0">
+        Your body already knows how to heal. It just needs the right signal.
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================
+       SECTION 4: "The System" (Pebble-Style Product Showcase)
+       ============================================ -->
+  <div class="system-wrapper">
+    <section id="system" class="system-section">
+      <div class="system-layout">
+
+        <!-- Left column -->
+        <div class="system-left">
+
+          <!-- Tab content panels (stacked, only active one visible) -->
+          <div class="system-tab-content active" data-tab="0">
+            <div class="system-content-center">
+              <div class="system-divider"><span>+</span></div>
+              <h2 class="system-title">QUANTUM</h2>
+              <div class="system-divider"><span>+</span></div>
+              <p class="system-desc">Your nervous system has operating modes you've never consciously accessed. Clinical neuroscience confirms that specific meditative states produce measurable changes in brainwave coherence — shifting the brain from scattered beta into synchronized alpha and theta patterns associated with heightened clarity, deep focus, and accelerated recovery.</p>
+              <p class="system-subtext">The first step isn't doing. It's arriving.</p>
+              <div class="system-divider"><span>+</span></div>
+            </div>
+            <img src="images/system-quantum.jpg" class="system-mobile-img" alt="Quantum">
+          </div>
+
+          <div class="system-tab-content" data-tab="1">
+            <div class="system-content-center">
+              <div class="system-divider"><span>+</span></div>
+              <h2 class="system-title">ASANA</h2>
+              <div class="system-divider"><span>+</span></div>
+              <p class="system-desc">In Sanskrit, asana means "seat" — the foundational posture where effort dissolves and the body can fully surrender. The QUANTASANA chair is engineered to that principle. A 130° recline positions your spine at the precise angle where muscular tension releases, diaphragmatic breathing deepens naturally, and the nervous system shifts from sympathetic activation to parasympathetic recovery.</p>
+              <p class="system-subtext">Zero-gravity walnut and boucle. No two are identical.</p>
+              <div class="system-divider"><span>+</span></div>
+            </div>
+            <img src="images/system-asana.jpg" class="system-mobile-img" alt="Asana">
+          </div>
+
+          <div class="system-tab-content" data-tab="2">
+            <div class="system-content-center">
+              <div class="system-divider"><span>+</span></div>
+              <h2 class="system-title">SOUND</h2>
+              <div class="system-divider"><span>+</span></div>
+              <p class="system-desc">Every session is built on a precisely engineered audio layer. Binaural frequency pairs calibrated to specific brainwave targets — 4Hz theta for deep meditation, 10Hz alpha for creative focus, 40Hz gamma for cognitive sharpening. The spatial audio field wraps around you, creating an immersive sound environment that your brain can't ignore. This isn't background music. It's acoustic architecture.</p>
+              <p class="system-subtext">Frequencies your brain was built to follow.</p>
+              <div class="system-divider"><span>+</span></div>
+            </div>
+            <img src="images/system-sound.jpg" class="system-mobile-img" alt="Sound">
+          </div>
+
+          <div class="system-tab-content" data-tab="3">
+            <div class="system-content-center">
+              <div class="system-divider"><span>+</span></div>
+              <h2 class="system-title">VIBE</h2>
+              <div class="system-divider"><span>+</span></div>
+              <p class="system-desc">Embedded beneath each cushion zone, tactile transducers convert the session's sound frequencies into physical vibration you feel through your entire body. The vibration is frequency-matched to the audio — when a 40Hz tone plays, you feel 40Hz in your chest. Four independent zones deliver targeted resonance so the right frequency reaches the right tissue at the right intensity.</p>
+              <p class="system-subtext">You don't just hear the session. You feel it.</p>
+              <div class="system-divider"><span>+</span></div>
+            </div>
+            <img src="images/system-vibe.jpg" class="system-mobile-img" alt="Vibe">
+          </div>
+
+          <div class="system-tab-content" data-tab="4">
+            <div class="system-content-center">
+              <div class="system-divider"><span>+</span></div>
+              <h2 class="system-title">PROTOCOL</h2>
+              <div class="system-divider"><span>+</span></div>
+              <p class="system-desc">A QUANTASANA session isn't random relaxation — it's a sequenced protocol. Each session moves through distinct phases: arrival (breath regulation, nervous system downshift), immersion (frequency entrainment, deep vibration), integration (gradual return, cognitive reset). The timing of each phase is calibrated to your body's neurological response curve. Twenty minutes, precisely structured.</p>
+              <p class="system-subtext">Not a playlist. A prescription.</p>
+              <div class="system-divider"><span>+</span></div>
+            </div>
+            <img src="images/system-protocol.jpg" class="system-mobile-img" alt="Protocol">
+          </div>
+
+          <div class="system-tab-content" data-tab="5">
+            <div class="system-content-center">
+              <div class="system-divider"><span>+</span></div>
+              <h2 class="system-title">APP</h2>
+              <div class="system-divider"><span>+</span></div>
+              <p class="system-desc">A standalone app orchestrates every session — guiding your breath timing, adjusting sound frequencies in real time, and calibrating vibration intensity across all four body zones. Choose from guided protocols designed for focus, recovery, sleep, or deep release. Track your sessions, monitor your progress, and build a practice that adapts to your nervous system over time.</p>
+              <p class="system-subtext">The conductor behind the experience.</p>
+              <div class="system-divider"><span>+</span></div>
+            </div>
+            <img src="images/system-app.jpg" class="system-mobile-img" alt="App">
+          </div>
+
+          <!-- Tab navigation -->
+          <nav class="system-tabs">
+            <button class="system-tab active" data-index="0">1. QUANTUM</button>
+            <button class="system-tab" data-index="1">2. ASANA</button>
+            <button class="system-tab" data-index="2">3. SOUND</button>
+            <button class="system-tab" data-index="3">4. VIBE</button>
+            <button class="system-tab" data-index="4">5. PROTOCOL</button>
+            <button class="system-tab" data-index="5">6. APP</button>
+          </nav>
+
+          <a href="#order" class="system-cta">ORDER YOUR SYSTEM →</a>
+        </div>
+
+        <!-- Right column — images -->
+        <div class="system-right">
+          <div class="system-images">
+            <img src="images/system-quantum.jpg" class="system-img active" data-tab="0" alt="Quantum">
+            <img src="images/system-asana.jpg" class="system-img" data-tab="1" alt="Asana">
+            <img src="images/system-sound.jpg" class="system-img" data-tab="2" alt="Sound">
+            <img src="images/system-vibe.jpg" class="system-img" data-tab="3" alt="Vibe">
+            <img src="images/system-protocol.jpg" class="system-img" data-tab="4" alt="Protocol">
+            <img src="images/system-app.jpg" class="system-img" data-tab="5" alt="App">
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+
+  <!-- ============================================
+       SECTION 5: "The Community" — Scroll-Driven Three Beats
+       ============================================ -->
+  <div class="community-wrapper">
+    <section id="community" class="community-section">
+      <div class="community-overlay"></div>
+      <div class="community-content">
+
+        <!-- Beat 1: Headline -->
+        <div class="community-beat" data-beat="0">
+          <span class="community-label">THE COMMUNITY</span>
+          <h2 class="community-headline">
+            We're not building a product.<br>
+            We're building a practice.
+          </h2>
+        </div>
+
+        <!-- Beat 2: Story -->
+        <div class="community-beat" data-beat="1">
+          <div class="community-body">
+            <p>Quantasana exists because we believe the body already has everything it needs to heal. It just needs the right environment — the right frequency, the right posture, the right signal at the right time.</p>
+            <p>This system was designed for the person who takes their recovery as seriously as their performance. Whether that means a private room or your own living room, the practice adapts to where you are.</p>
+            <p>We're two builders — one who writes the software, one who builds the furniture — and we built this for ourselves first. Then we realized it was bigger than us.</p>
+          </div>
+        </div>
+
+        <!-- Beat 3: Vision + CTA -->
+        <div class="community-beat" data-beat="2">
+          <div class="community-vision">
+            <div class="vision-item">
+              <span class="vision-number">01</span>
+              <p>A connected practice — track your sessions, follow other practitioners, and watch your nervous system data evolve over weeks and months.</p>
+            </div>
+            <div class="vision-item">
+              <span class="vision-number">02</span>
+              <p>Purpose-built spaces — intimate rooms designed for 20-minute protocols. A new category of environment, built around the chair.</p>
+            </div>
+            <div class="vision-item">
+              <span class="vision-number">03</span>
+              <p>A growing protocol — every session generates data. Every data point refines the system. The practice gets smarter the more people use it.</p>
+            </div>
+          </div>
+
+          <div class="community-cta">
+            <p class="cta-text">We're opening access slowly and intentionally. Join the first wave.</p>
+            <form class="email-capture" action="#" method="post">
+              <input type="email" placeholder="your@email.com" class="email-input" required>
+              <button type="submit" class="email-submit">JOIN THE PRACTICE</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+
+  <!-- ============================================
+  <!-- ============================================
+       FINAL CTA — the curtain
+       ============================================ -->
+  <section id="order" class="final-cta">
+    <div class="final-cta-overlay"></div>
+    <div class="final-cta-content">
+      <p class="final-cta-label">THE SYSTEM IS READY</p>
+      <h2 class="final-cta-headline">Find your frequency.</h2>
+      <div class="final-cta-buttons">
+        <a href="#science" class="final-btn final-btn-light">EXPLORE</a>
+        <a href="#order-form" class="final-btn final-btn-accent">ORDER</a>
+      </div>
+      <p class="final-cta-edition">FOUNDERS EDITION — NOW ACCEPTING RESERVATIONS</p>
+    </div>
+  </section>
+
+  <!-- Footer wrapper — creates scroll room for the reveal -->
+  <div class="footer-wrapper">
+    <footer id="footer" class="site-footer">
+      <div class="footer-content">
+
+        <!-- Top section: tagline + nav + subscribe -->
+        <div class="footer-top">
+
+          <!-- Left: tagline -->
+          <div class="footer-tagline">
+            <p class="footer-tagline-text">Built to resonate.</p>
+          </div>
+
+          <!-- Center: nav links -->
+          <nav class="footer-nav">
+            <a href="#science" class="footer-link">science</a>
+            <a href="#system" class="footer-link">experience</a>
+            <a href="#community" class="footer-link">community</a>
+            <a href="#order" class="footer-link">order</a>
+            <a href="#" class="footer-link">app</a>
+            <a href="#" class="footer-link">contact</a>
+            <a href="#" class="footer-link">press</a>
+            <a href="#" class="footer-link">faq</a>
+          </nav>
+
+          <!-- Right: subscribe -->
+          <div class="footer-subscribe">
+            <p class="footer-subscribe-text">Subscribe for the latest<br>Quantasana updates.</p>
+            <a href="#community" class="footer-join">
+              <span class="footer-join-arrow">→</span>
+              JOIN US
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Divider with + -->
+        <div class="footer-divider"><span>+</span></div>
+
+        <!-- Bottom section: logo + legal + socials -->
+        <div class="footer-bottom">
+
+          <!-- Left: logo wordmark -->
+          <div class="footer-logo">quantasana</div>
+
+          <!-- Center: legal -->
+          <div class="footer-legal">
+            <a href="/privacy" class="footer-legal-link">PRIVACY POLICY</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="/terms" class="footer-legal-link">TERMS OF SERVICE</a>
+          </div>
+
+          <!-- Center: copyright -->
+          <div class="footer-copyright">
+            © 2026 NOVUS BROKER TECHNOLOGY, INC. ALL RIGHTS RESERVED.
+          </div>
+
+          <!-- Right: socials -->
+          <div class="footer-socials">
+            <a href="https://instagram.com/quantasana" class="footer-social-link" target="_blank">INSTAGRAM</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="https://x.com/quantasana" class="footer-social-link" target="_blank">X</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="https://youtube.com/@quantasana" class="footer-social-link" target="_blank">YOUTUBE</a>
+          </div>
+
+        </div>
+
+      </div>
+    </footer>
+  </div>
+
+
+
+  <script src="main.js?v=16"></script>
+</body>
+</html>

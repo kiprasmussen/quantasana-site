@@ -1,0 +1,9 @@
+<svg viewBox="0 0 140 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- QUANTASANA wave mark: two smooth intertwined flowing curves -->
+  <!-- Bottom wave: sweeps down-left, curves up through center, extends right -->
+  <path d="M6 14 C12 14, 18 38, 32 38 C42 38, 42 20, 56 14 C70 8, 78 20, 92 20 C106 20, 110 8, 120 8 C128 8, 134 14, 138 16"
+        stroke="currentColor" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <!-- Top wave: starts lower-left, rises through center, sweeps right-up -->
+  <path d="M2 36 C8 36, 18 12, 32 12 C42 12, 44 32, 56 38 C68 44, 78 28, 92 28 C106 28, 112 18, 120 18 C128 18, 134 24, 138 26"
+        stroke="currentColor" stroke-width="6" stroke-linecap="round" fill="none"/>
+</svg>
