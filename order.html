@@ -3,30 +3,766 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QUANTASANA — Order</title>
-  <meta name="description" content="Order the Quantasana Pod — Founders Edition.">
+  <title>Order — Quantasana</title>
+  <meta name="description" content="Build and order your Quantasana Pod — Founders Edition. Choose your trim, fabric, upgrades, and add-ons.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;700;800&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;600;700;800&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=16">
   <style>
-    .placeholder-body { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#D6D0C4; text-align:center; padding:40px 24px; }
-    .placeholder-title { font-family:'Josefin Sans',sans-serif; font-weight:300; font-size:2.5rem; text-transform:uppercase; letter-spacing:0.15em; color:#2C2C2A; margin-bottom:16px; }
-    .placeholder-subtitle { font-family:'JetBrains Mono',monospace; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; color:rgba(10,10,10,0.35); }
+    /* ============================================
+       ORDER PAGE — LAYOUT
+       ============================================ */
+    .order-page {
+      background: #F5F0E8;
+      min-height: 100vh;
+      padding-bottom: 80px;
+    }
+    .order-layout {
+      display: flex;
+      min-height: calc(100vh - 80px);
+    }
+
+    /* ── Left: Image carousel ── */
+    .order-images {
+      width: 60%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #EDEAE2;
+    }
+    .order-carousel {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    .carousel-slides {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    .carousel-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .carousel-slide.active {
+      opacity: 1;
+    }
+    .carousel-dots {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 2;
+    }
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: background 0.3s;
+      padding: 0;
+    }
+    .carousel-dot.active {
+      background: #fff;
+    }
+
+    /* ── Right: Configurator ── */
+    .order-config {
+      width: 40%;
+      padding: 60px 48px 120px;
+      overflow-y: auto;
+      background: #F5F0E8;
+    }
+    .order-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .order-logo {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 16px;
+    }
+    .order-title {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: #2C2C2A;
+      margin-bottom: 12px;
+    }
+    .order-subtitle {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: rgba(10, 10, 10, 0.45);
+      max-width: 380px;
+      margin: 0 auto;
+    }
+
+    /* ── Config sections ── */
+    .config-section {
+      margin-bottom: 40px;
+    }
+    .config-heading {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #2C2C2A;
+      margin-bottom: 16px;
+    }
+
+    /* ── Option cards ── */
+    .config-option {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 20px;
+      border: 1px solid rgba(10, 10, 10, 0.08);
+      border-radius: 12px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+      background: rgba(255, 255, 255, 0.3);
+    }
+    .config-option:hover:not(.disabled) {
+      background: rgba(255, 255, 255, 0.5);
+      border-color: rgba(10, 10, 10, 0.15);
+    }
+    .config-option.selected {
+      border-color: #5A5549;
+      background: rgba(255, 255, 255, 0.5);
+    }
+    .config-option.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .config-option input {
+      display: none;
+    }
+
+    /* Custom checkbox/radio */
+    .option-check {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      border: 1.5px solid rgba(10, 10, 10, 0.2);
+      border-radius: 4px;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .config-option.selected .option-check {
+      background: #5A5549;
+      border-color: #5A5549;
+    }
+    .config-option.selected .option-check::after {
+      content: '✓';
+      color: #F5F0E8;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .option-info {
+      flex: 1;
+    }
+    .option-name {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #2C2C2A;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .option-price {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.85rem;
+      color: rgba(10, 10, 10, 0.5);
+      float: right;
+    }
+    .option-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: rgba(10, 10, 10, 0.45);
+      margin-top: 8px;
+      clear: both;
+    }
+    .option-desc a {
+      color: #D4874D;
+      text-decoration: none;
+    }
+    .option-desc a:hover {
+      text-decoration: underline;
+    }
+    .option-badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.5rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(10, 10, 10, 0.06);
+      color: rgba(10, 10, 10, 0.4);
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-top: 8px;
+    }
+
+    /* ============================================
+       STICKY FOOTER BAR
+       ============================================ */
+    .order-footer-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: #F5F0E8;
+      border-top: 1px solid rgba(10, 10, 10, 0.08);
+      display: flex;
+      align-items: center;
+      padding: 0 48px;
+      gap: 24px;
+      z-index: 100;
+    }
+    .order-footer-info {
+      flex: 1;
+    }
+    .order-footer-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      color: rgba(10, 10, 10, 0.35);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer-info-icon {
+      font-size: 0.75rem;
+      opacity: 0.5;
+    }
+    .order-footer-due {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #2C2C2A;
+    }
+    .order-footer-price {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      color: #2C2C2A;
+    }
+    .order-footer-btn {
+      padding: 16px 40px;
+      background: #8B8578;
+      border: none;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #F5F0E8;
+      cursor: pointer;
+      transition: background 0.3s;
+      white-space: nowrap;
+    }
+    .order-footer-btn:hover {
+      background: #706B61;
+    }
+
+    /* ============================================
+       MOBILE
+       ============================================ */
+    @media (max-width: 768px) {
+      .order-layout {
+        flex-direction: column;
+      }
+      .order-images {
+        width: 100%;
+        height: 50vh;
+        position: relative;
+      }
+      .order-config {
+        width: 100%;
+        padding: 40px 24px 120px;
+      }
+      .order-footer-bar {
+        padding: 0 20px;
+        gap: 12px;
+      }
+      .order-footer-price {
+        font-size: 1.5rem;
+      }
+      .order-footer-btn {
+        padding: 14px 24px;
+        font-size: 0.58rem;
+      }
+      .option-price {
+        float: none;
+        display: block;
+        margin-top: 4px;
+      }
+    }
   </style>
 </head>
 <body>
-  <nav class="nav" id="nav"><div class="nav__inner"><a href="index.html" class="nav__logo" aria-label="QUANTASANA home"><img src="logo.svg" class="nav__logo-svg" alt="QUANTASANA" aria-hidden="true"></a><div class="nav__right"><div class="nav__flyout" id="navFlyout" aria-hidden="true"><a href="index.html#science" class="nav__flyout-link" style="--i:0"><span>Science</span></a><a href="index.html#system" class="nav__flyout-link" style="--i:1"><span>Experience</span></a><a href="index.html#community" class="nav__flyout-link" style="--i:2"><span>Community</span></a><a href="order.html" class="nav__flyout-link" style="--i:3"><span>Order</span></a></div><div class="nav__pill" id="navPill"><div class="nav__actions"><button class="nav__hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false"><span class="nav__hamburger-line nav__hamburger-line--top"></span><span class="nav__hamburger-line nav__hamburger-line--mid"></span><span class="nav__hamburger-line nav__hamburger-line--bot"></span><span class="nav__x-line nav__x-line--1"></span><span class="nav__x-line nav__x-line--2"></span></button><a href="order.html" class="nav__order-btn">Order</a></div><div class="nav__dropdown" id="navDropdown"><a href="index.html#science" class="nav__dropdown-link" style="--i:0">Science</a><a href="index.html#system" class="nav__dropdown-link" style="--i:1">Experience</a><a href="index.html#community" class="nav__dropdown-link" style="--i:2">Community</a><a href="order.html" class="nav__dropdown-link" style="--i:3">Order</a></div></div></div></div></nav>
 
-  <div class="placeholder-body">
-    <h1 class="placeholder-title">Order</h1>
-    <p class="placeholder-subtitle">Founders Edition — reservations opening soon.</p>
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="QUANTASANA home">
+        <img src="logo.svg" class="nav__logo-svg" alt="QUANTASANA" aria-hidden="true">
+      </a>
+      <div class="nav__right">
+        <div class="nav__flyout" id="navFlyout" aria-hidden="true">
+          <a href="index.html#science" class="nav__flyout-link" style="--i:0"><span>Science</span></a>
+          <a href="index.html#system" class="nav__flyout-link" style="--i:1"><span>Experience</span></a>
+          <a href="index.html#community" class="nav__flyout-link" style="--i:2"><span>Community</span></a>
+          <a href="order.html" class="nav__flyout-link" style="--i:3"><span>Order</span></a>
+        </div>
+        <div class="nav__pill" id="navPill">
+          <div class="nav__actions">
+            <button class="nav__hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
+              <span class="nav__hamburger-line nav__hamburger-line--top"></span>
+              <span class="nav__hamburger-line nav__hamburger-line--mid"></span>
+              <span class="nav__hamburger-line nav__hamburger-line--bot"></span>
+              <span class="nav__x-line nav__x-line--1"></span>
+              <span class="nav__x-line nav__x-line--2"></span>
+            </button>
+            <a href="order.html" class="nav__order-btn">Order</a>
+          </div>
+          <div class="nav__dropdown" id="navDropdown">
+            <a href="index.html#science" class="nav__dropdown-link" style="--i:0">Science</a>
+            <a href="index.html#system" class="nav__dropdown-link" style="--i:1">Experience</a>
+            <a href="index.html#community" class="nav__dropdown-link" style="--i:2">Community</a>
+            <a href="order.html" class="nav__dropdown-link" style="--i:3">Order</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="order-page">
+
+    <!-- SPLIT LAYOUT -->
+    <div class="order-layout">
+
+      <!-- LEFT: Image carousel -->
+      <div class="order-images">
+        <div class="order-carousel">
+          <div class="carousel-slides">
+            <img src="images/quantasana_user.jpeg" class="carousel-slide active" alt="Quantasana Pod">
+            <img src="images/system-asana.jpg" class="carousel-slide" alt="Walnut detail">
+            <img src="images/system-vibe.jpg" class="carousel-slide" alt="Transducer detail">
+            <img src="images/system-quantum.jpg" class="carousel-slide" alt="Session environment">
+            <img src="images/science-vibration.jpg" class="carousel-slide" alt="Cymatics pattern">
+          </div>
+          <div class="carousel-dots">
+            <button class="carousel-dot active" data-slide="0"></button>
+            <button class="carousel-dot" data-slide="1"></button>
+            <button class="carousel-dot" data-slide="2"></button>
+            <button class="carousel-dot" data-slide="3"></button>
+            <button class="carousel-dot" data-slide="4"></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Configurator -->
+      <div class="order-config">
+
+        <!-- Header -->
+        <div class="order-header">
+          <img src="logo.svg" class="order-logo" alt="Quantasana">
+          <h1 class="order-title">Build your Quantasana</h1>
+          <p class="order-subtitle">We're prioritizing Founders Edition builds. Reservation holders will receive build updates and shipping estimates via email.</p>
+        </div>
+
+        <!-- SECTION 1: TRIM -->
+        <div class="config-section">
+          <h2 class="config-heading">Trim</h2>
+
+          <label class="config-option selected" data-price="4500" data-name="Founders Edition">
+            <input type="radio" name="trim" value="founders" checked>
+            <div class="option-check"></div>
+            <div class="option-info">
+              <span class="option-name">Quantasana Founders Edition</span>
+              <span class="option-price">$4,500</span>
+              <p class="option-desc">Walnut europly frame with angular geometry. Handcrafted. Four independent vibration zones. The original.</p>
+            </div>
+          </label>
+
+          <label class="config-option disabled" data-price="6500" data-name="Signature">
+            <input type="radio" name="trim" value="signature" disabled>
+            <div class="option-check"></div>
+            <div class="option-info">
+              <span class="option-name">Quantasana Signature</span>
+              <span class="option-price">$6,500</span>
+              <p class="option-desc">Premium hardwood with refined curves. Enhanced resonance chamber. Coming 2027.</p>
+              <span class="option-badge">COMING SOON</span>
+            </div>
+          </label>
+
+          <label class="config-option disabled" data-price="5500" data-name="Studio">
+            <input type="radio" name="trim" value="studio" disabled>
+            <div class="option-check"></div>
+            <div class="option-info">
+              <span class="option-name">Quantasana Studio</span>
+              <span class="option-price">$5,500</span>
+              <p class="option-desc">Commercial-grade construction for multi-chair spaces. Optimized for practitioner environments. Coming 2027.</p>
+              <span class="option-badge">COMING SOON</span>
+            </div>
+          </label>
+        </div>
+
+        <!-- SECTION 2: FABRIC -->
+        <div class="config-section">
+          <h2 class="config-heading">Fabric</h2>
+
+          <label class="config-option selected" data-add="0" data-name="Oatmeal Boucle">
+            <input type="radio" name="fabric" value="oatmeal" checked>
+            <div class="option-check"></div>
+            <div class="option-info">
+              <span class="option-name">Oatmeal Boucle</span>
+              <span class="option-price">Included</span>
+              <p class="option-desc">Warm neutral tone. Soft texture with natural variation. Standard.</p>
+            </div>
+          </label>
+
+          <label class="config-option" data-add="200" data-name="Charcoal Boucle">
+            <input type="radio" name="fabric" value="charcoal">
+            <div class="option-check"></div>
+            <div class="option-info">
+              <span class="option-name">Charcoal Boucle</span>
+              <span class="option-price">+$200</span>
+              <p class="option-desc">Deep charcoal with warm undertones. Pairs with the walnut grain.</p>
+            </div>
+          </label>
+
+          <label class="config-option" data-add="400" data-name="Ivory Performance Leather">
+            <input type="radio" name="fabric" value="ivory-leather">
+            <div class="option-check"></div>
+            <div class="option-info">
+              <span class="option-name">Ivory Performance Leather</span>
+              <span class="option-price">+$400</span>
+              <p class="option-desc">Durable, easy to clean. Clinical aesthetic. Ideal for practitioner environments.</p>
+            </div>
+          </label>
+
+          <label class="config-option" data-add="400" data-name="Cognac Performance Leather">
+            <input type="radio" name="fabric" value="cognac-leather">
+            <div class="option-check"></div>
+            <div class="option-info">
+              <span class="option-name">Cognac Performance Leather</span>
+              <span class="option-price">+$400</span>
+              <p class="option-desc">Rich warm brown. Ages beautifully with use. Premium residential feel.</p>
+            </div>
+          </label>
+        </div>
+
+        <!-- SECTION 3: UPGRADES -->
+        <div class="config-section">
+          <h2 class="config-heading">Upgrades</h2>
+
+          <label class="config-option" data-add="350" data-name="Premium Transducer Pack">
+            <input type="checkbox" name="upgrade" value="transducers">
+            <div class="option-check"></div>
+            <div class="option-info">
+              <span class="option-name">Premium Transducer Pack</span>
+              <span class="option-price">+$350</span>
+              <p class="option-desc">6x Dayton DAEX32QMB-4 exciters replace the standard BST-1 shakers. Higher fidelity vibration with wider frequency response (20-300Hz vs 20-80Hz).</p>
+            </div>
+          </label>
+
+          <label class="config-option" data-add="250" data-name="Dual-Zone Amplifier">
+            <input type="checkbox" name="upgrade" value="dual-amp">
+            <div class="option-check"></div>
+            <div class="option-info">
+              <span class="option-name">Dual-Zone Amplifier</span>
+              <span class="option-price">+$250</span>
+              <p class="option-desc">Separate amplification for upper and lower body zones. Enables independent intensity control per body region.</p>
+            </div>
+          </label>
+
+          <label class="config-option" data-add="300" data-name="Heated Cushion Zones">
+            <input type="checkbox" name="upgrade" value="heated">
+            <div class="option-check"></div>
+            <div class="option-info">
+              <span class="option-name">Heated Cushion Zones</span>
+              <span class="option-price">+$300</span>
+              <p class="option-desc">Low-voltage infrared heating elements in the back and seat cushions. Three temperature settings. Enhances muscle relaxation during sessions.</p>
+            </div>
+          </label>
+
+          <label class="config-option" data-add="200" data-name="Premium Finish">
+            <input type="checkbox" name="upgrade" value="finish">
+            <div class="option-check"></div>
+            <div class="option-info">
+              <span class="option-name">Premium Walnut Finish</span>
+              <span class="option-price">+$200</span>
+              <p class="option-desc">Hand-rubbed tung oil base coat with satin polyurethane top coat. Brings out the full depth of the walnut grain.</p>
+            </div>
+          </label>
+        </div>
+
+        <!-- SECTION 4: ADD-ONS -->
+        <div class="config-section">
+          <h2 class="config-heading">Add-ons</h2>
+
+          <label class="config-option" data-add="1495" data-name="Atom Stroboscopic Light">
+            <input type="checkbox" name="addon" value="atom-light">
+            <div class="option-check"></div>
+            <div class="option-info">
+              <span class="option-name">Sage Space Atom Stroboscopic Light</span>
+              <span class="option-price">+$1,495</span>
+              <p class="option-desc">White light and color light programming for brainwave entrainment. Syncs with session frequencies. Mounts above the headrest. <a href="https://sagespacetechnologies.com/products/atom-stroboscopic-light" target="_blank">Learn more</a></p>
+            </div>
+          </label>
+
+          <label class="config-option" data-add="549" data-name="AirPods Max">
+            <input type="checkbox" name="addon" value="airpods">
+            <div class="option-check"></div>
+            <div class="option-info">
+              <span class="option-name">Apple AirPods Max</span>
+              <span class="option-price">+$549</span>
+              <p class="option-desc">Spatial audio headphones with active noise cancellation. The recommended audio companion for the Quantasana protocol.</p>
+            </div>
+          </label>
+
+          <label class="config-option" data-add="349" data-name="Sony WH-1000XM5">
+            <input type="checkbox" name="addon" value="sony">
+            <div class="option-check"></div>
+            <div class="option-info">
+              <span class="option-name">Sony WH-1000XM5 Headphones</span>
+              <span class="option-price">+$349</span>
+              <p class="option-desc">Industry-leading noise cancellation with exceptional comfort for extended sessions.</p>
+            </div>
+          </label>
+
+          <label class="config-option" data-add="150" data-name="Weighted Blanket">
+            <input type="checkbox" name="addon" value="blanket">
+            <div class="option-check"></div>
+            <div class="option-info">
+              <span class="option-name">Organic Weighted Blanket (15 lb)</span>
+              <span class="option-price">+$150</span>
+              <p class="option-desc">GOTS-certified organic cotton. Deep pressure stimulation enhances the parasympathetic response during sessions.</p>
+            </div>
+          </label>
+
+          <label class="config-option" data-add="95" data-name="Aroma Diffuser Kit">
+            <input type="checkbox" name="addon" value="diffuser">
+            <div class="option-check"></div>
+            <div class="option-info">
+              <span class="option-name">Ultrasonic Aroma Diffuser + Essential Oils Kit</span>
+              <span class="option-price">+$95</span>
+              <p class="option-desc">Whisper-quiet diffuser with a curated set of session-paired essential oils: eucalyptus (focus), lavender (release), frankincense (integration).</p>
+            </div>
+          </label>
+        </div>
+
+      </div><!-- end order-config -->
+    </div><!-- end order-layout -->
+
+    <!-- STICKY FOOTER BAR -->
+    <div class="order-footer-bar">
+      <div class="order-footer-info">
+        <div class="order-footer-label">
+          <span class="footer-info-icon">ⓘ</span>
+          <span>Non-refundable</span>
+        </div>
+        <div class="order-footer-due">Amount due today</div>
+      </div>
+      <div class="order-footer-price" id="deposit-display">$500</div>
+      <button class="order-footer-btn" id="continue-btn">CONTINUE TO SUMMARY</button>
+    </div>
+
+  </div><!-- end order-page -->
+
+  <!-- FOOTER -->
+  <div class="footer-wrapper">
+    <footer id="footer" class="site-footer">
+      <div class="footer-content">
+        <div class="footer-top">
+          <div class="footer-tagline">
+            <p class="footer-tagline-text">Built to resonate.</p>
+          </div>
+          <nav class="footer-nav">
+            <a href="index.html#science" class="footer-link">science</a>
+            <a href="index.html#system" class="footer-link">experience</a>
+            <a href="index.html#community" class="footer-link">community</a>
+            <a href="order.html" class="footer-link">order</a>
+            <a href="in-person.html" class="footer-link">in person</a>
+            <a href="app.html" class="footer-link">app</a>
+            <a href="contact.html" class="footer-link">contact</a>
+            <a href="press.html" class="footer-link">press</a>
+            <a href="faq.html" class="footer-link">faq</a>
+          </nav>
+          <div class="footer-subscribe">
+            <p class="footer-subscribe-text">Subscribe for the latest<br>Quantasana updates.</p>
+            <a href="index.html#community" class="footer-join">
+              <span class="footer-join-arrow">→</span>
+              JOIN US
+            </a>
+          </div>
+        </div>
+        <div class="footer-divider"><span>+</span></div>
+        <div class="footer-bottom">
+          <div class="footer-logo">quantasana</div>
+          <div class="footer-legal">
+            <a href="privacy.html" class="footer-legal-link">PRIVACY POLICY</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="terms.html" class="footer-legal-link">TERMS OF SERVICE</a>
+          </div>
+          <div class="footer-copyright">© 2026 NOVUS BROKER TECHNOLOGY, INC. ALL RIGHTS RESERVED.</div>
+          <div class="footer-socials">
+            <a href="https://instagram.com/quantasana" class="footer-social-link" target="_blank">INSTAGRAM</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="https://x.com/quantasana" class="footer-social-link" target="_blank">X</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="https://youtube.com/@quantasana" class="footer-social-link" target="_blank">YOUTUBE</a>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
 
-  <div class="footer-wrapper"><footer id="footer" class="site-footer"><div class="footer-content"><div class="footer-top"><div class="footer-tagline"><p class="footer-tagline-text">Built to resonate.</p></div><nav class="footer-nav"><a href="index.html#science" class="footer-link">science</a><a href="index.html#system" class="footer-link">experience</a><a href="index.html#community" class="footer-link">community</a><a href="order.html" class="footer-link">order</a>
-            <a href="in-person.html" class="footer-link">in person</a><a href="app.html" class="footer-link">app</a><a href="contact.html" class="footer-link">contact</a><a href="press.html" class="footer-link">press</a><a href="faq.html" class="footer-link">faq</a></nav><div class="footer-subscribe"><p class="footer-subscribe-text">Subscribe for the latest<br>Quantasana updates.</p><a href="index.html#community" class="footer-join"><span class="footer-join-arrow">→</span> JOIN US</a></div></div><div class="footer-divider"><span>+</span></div><div class="footer-bottom"><div class="footer-logo">quantasana</div><div class="footer-legal"><a href="privacy.html" class="footer-legal-link">PRIVACY POLICY</a><span class="footer-legal-dot">·</span><a href="terms.html" class="footer-legal-link">TERMS OF SERVICE</a></div><div class="footer-copyright">© 2026 NOVUS BROKER TECHNOLOGY, INC. ALL RIGHTS RESERVED.</div><div class="footer-socials"><a href="https://instagram.com/quantasana" class="footer-social-link" target="_blank">INSTAGRAM</a><span class="footer-legal-dot">·</span><a href="https://x.com/quantasana" class="footer-social-link" target="_blank">X</a><span class="footer-legal-dot">·</span><a href="https://youtube.com/@quantasana" class="footer-social-link" target="_blank">YOUTUBE</a></div></div></div></footer></div>
-
   <script src="main.js?v=16"></script>
+  <script>
+  (function() {
+    var basePrice = 4500;
+    var deposit = 500;
+    var totalPrice = basePrice;
+
+    var options = document.querySelectorAll('.config-option');
+    var depositDisplay = document.getElementById('deposit-display');
+    var continueBtn = document.getElementById('continue-btn');
+
+    // Carousel
+    var slides = document.querySelectorAll('.carousel-slide');
+    var dots = document.querySelectorAll('.carousel-dot');
+
+    if (dots.length) {
+      dots.forEach(function(dot, i) {
+        dot.addEventListener('click', function() {
+          slides.forEach(function(s) { s.classList.remove('active'); });
+          dots.forEach(function(d) { d.classList.remove('active'); });
+          slides[i].classList.add('active');
+          dots[i].classList.add('active');
+          carouselIndex = i;
+        });
+      });
+    }
+
+    // Auto-advance carousel every 4 seconds
+    var carouselIndex = 0;
+    var carouselTimer = setInterval(function() {
+      if (!slides.length) return;
+      carouselIndex = (carouselIndex + 1) % slides.length;
+      slides.forEach(function(s) { s.classList.remove('active'); });
+      dots.forEach(function(d) { d.classList.remove('active'); });
+      slides[carouselIndex].classList.add('active');
+      if (dots[carouselIndex]) dots[carouselIndex].classList.add('active');
+    }, 4000);
+
+    // Option selection
+    options.forEach(function(option) {
+      option.addEventListener('click', function(e) {
+        if (option.classList.contains('disabled')) {
+          e.preventDefault();
+          return;
+        }
+
+        var input = option.querySelector('input');
+        if (!input) return;
+
+        if (input.type === 'radio') {
+          var name = input.name;
+          var siblings = document.querySelectorAll('input[name="' + name + '"]');
+          siblings.forEach(function(sib) {
+            sib.closest('.config-option').classList.remove('selected');
+          });
+          input.checked = true;
+          option.classList.add('selected');
+        } else {
+          input.checked = !input.checked;
+          option.classList.toggle('selected', input.checked);
+        }
+
+        recalculate();
+      });
+    });
+
+    function recalculate() {
+      totalPrice = basePrice;
+
+      // Fabric add
+      var fabricChecked = document.querySelector('input[name="fabric"]:checked');
+      if (fabricChecked) {
+        var fabricOption = fabricChecked.closest('.config-option');
+        var fabricAdd = parseInt(fabricOption.getAttribute('data-add') || '0');
+        totalPrice += fabricAdd;
+      }
+
+      // Upgrades
+      document.querySelectorAll('input[name="upgrade"]:checked').forEach(function(input) {
+        var add = parseInt(input.closest('.config-option').getAttribute('data-add') || '0');
+        totalPrice += add;
+      });
+
+      // Add-ons
+      document.querySelectorAll('input[name="addon"]:checked').forEach(function(input) {
+        var add = parseInt(input.closest('.config-option').getAttribute('data-add') || '0');
+        totalPrice += add;
+      });
+
+      if (depositDisplay) depositDisplay.textContent = '$' + deposit.toLocaleString();
+    }
+
+    // Continue button
+    if (continueBtn) {
+      continueBtn.addEventListener('click', function() {
+        var selections = [];
+
+        var trim = document.querySelector('input[name="trim"]:checked');
+        if (trim) selections.push(trim.closest('.config-option').getAttribute('data-name'));
+
+        var fabric = document.querySelector('input[name="fabric"]:checked');
+        if (fabric) selections.push('Fabric: ' + fabric.closest('.config-option').getAttribute('data-name'));
+
+        document.querySelectorAll('input[name="upgrade"]:checked').forEach(function(input) {
+          selections.push(input.closest('.config-option').getAttribute('data-name'));
+        });
+
+        document.querySelectorAll('input[name="addon"]:checked').forEach(function(input) {
+          selections.push(input.closest('.config-option').getAttribute('data-name'));
+        });
+
+        var summary = 'Your Quantasana Configuration:\n\n' +
+          selections.join('\n') + '\n\n' +
+          'Total: $' + totalPrice.toLocaleString() + '\n' +
+          'Deposit due today: $' + deposit;
+
+        alert(summary);
+        console.log('Order:', { selections: selections, total: totalPrice, deposit: deposit });
+      });
+    }
+
+    recalculate();
+  })();
+  </script>
 </body>
 </html>
