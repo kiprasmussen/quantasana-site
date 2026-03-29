@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QUANTASANA — In Person</title>
+  <meta name="description" content="Experience the Quantasana practice in person. Book a session at our Plano, TX location.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;700;800&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=16">
+  <style>
+    /* ── Hero ── */
+    .inperson-hero {
+      position: relative;
+      height: 50vh;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url('images/quantasana_user.jpeg');
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+    .inperson-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+    .inperson-hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+    .inperson-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(245, 240, 232, 0.4);
+      display: block;
+      margin-bottom: 16px;
+    }
+    .inperson-headline {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 300;
+      font-size: 3rem;
+      letter-spacing: 0.08em;
+      color: #F5F0E8;
+      margin-bottom: 16px;
+    }
+    .inperson-location {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 0.9rem;
+      color: rgba(245, 240, 232, 0.5);
+    }
+
+    /* ── Session cards ── */
+    .inperson-sessions {
+      background: #D6D0C4;
+      padding: 80px 40px;
+      text-align: center;
+    }
+    .sessions-title {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 300;
+      font-size: 1.4rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #2C2C2A;
+      margin-bottom: 48px;
+    }
+    .session-cards {
+      display: flex;
+      gap: 20px;
+      max-width: 960px;
+      margin: 0 auto;
+      justify-content: center;
+    }
+    .session-card {
+      flex: 1;
+      max-width: 300px;
+      background: rgba(255, 255, 255, 0.35);
+      border: 1px solid rgba(10, 10, 10, 0.08);
+      border-radius: 16px;
+      padding: 40px 28px;
+      text-align: center;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .session-card:hover {
+      background: rgba(255, 255, 255, 0.5);
+      transform: translateY(-4px);
+    }
+    .session-card.selected {
+      border-color: #D4874D;
+      border-width: 2px;
+      background: rgba(255, 255, 255, 0.5);
+    }
+    .session-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #D4874D;
+      color: #F5F0E8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.5rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 16px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .session-duration {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 300;
+      font-size: 3.5rem;
+      color: #2C2C2A;
+      line-height: 1;
+    }
+    .session-unit {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(10, 10, 10, 0.35);
+      margin-bottom: 16px;
+    }
+    .session-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .session-divider::before,
+    .session-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(10, 10, 10, 0.1);
+    }
+    .session-divider span {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 0.75rem;
+      color: rgba(10, 10, 10, 0.2);
+    }
+    .session-price {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 300;
+      font-size: 1.6rem;
+      color: #D4874D;
+      margin-bottom: 16px;
+    }
+    .session-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: rgba(10, 10, 10, 0.5);
+      margin-bottom: 24px;
+    }
+    .session-select-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 10px 32px;
+      border: 1px solid rgba(10, 10, 10, 0.2);
+      border-radius: 6px;
+      background: transparent;
+      color: #2C2C2A;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .session-select-btn:hover {
+      background: rgba(10, 10, 10, 0.05);
+    }
+    .session-card.selected .session-select-btn {
+      background: #D4874D;
+      border-color: #D4874D;
+      color: #F5F0E8;
+    }
+
+    /* ── Booking form ── */
+    .inperson-booking {
+      background: #D6D0C4;
+      padding: 60px 40px 80px;
+    }
+    .booking-container {
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .booking-title {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 300;
+      font-size: 1.4rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #2C2C2A;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .booking-selected-session {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      color: #D4874D;
+      text-align: center;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+    }
+    .booking-label {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(10, 10, 10, 0.4);
+      margin-bottom: 12px;
+    }
+    .booking-date { margin-bottom: 32px; }
+    .booking-date-input {
+      width: 100%;
+      padding: 14px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      border: 1px solid rgba(10, 10, 10, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.3);
+      color: #2C2C2A;
+      outline: none;
+      transition: border-color 0.3s;
+      box-sizing: border-box;
+    }
+    .booking-date-input:focus { border-color: rgba(212, 135, 77, 0.5); }
+    .booking-times { margin-bottom: 32px; }
+    .time-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .time-slot {
+      padding: 12px 8px;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.04em;
+      color: #2C2C2A;
+      background: rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(10, 10, 10, 0.08);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .time-slot:hover {
+      background: rgba(255, 255, 255, 0.5);
+      border-color: rgba(10, 10, 10, 0.15);
+    }
+    .time-slot.selected {
+      background: #D4874D;
+      border-color: #D4874D;
+      color: #F5F0E8;
+    }
+    .booking-contact { margin-bottom: 32px; }
+    .contact-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .booking-input {
+      width: 100%;
+      padding: 14px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      border: 1px solid rgba(10, 10, 10, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.3);
+      color: #2C2C2A;
+      outline: none;
+      transition: border-color 0.3s;
+      box-sizing: border-box;
+    }
+    .booking-input:focus { border-color: rgba(212, 135, 77, 0.5); }
+    .booking-input::placeholder { color: rgba(10, 10, 10, 0.3); }
+    .booking-notes { margin-bottom: 32px; }
+    .booking-textarea {
+      width: 100%;
+      padding: 14px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      border: 1px solid rgba(10, 10, 10, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.3);
+      color: #2C2C2A;
+      outline: none;
+      resize: vertical;
+      transition: border-color 0.3s;
+      box-sizing: border-box;
+    }
+    .booking-textarea:focus { border-color: rgba(212, 135, 77, 0.5); }
+    .booking-textarea::placeholder { color: rgba(10, 10, 10, 0.3); }
+    .booking-submit {
+      width: 100%;
+      padding: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: #D4874D;
+      border: none;
+      border-radius: 8px;
+      color: #F5F0E8;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .booking-submit:hover:not(:disabled) { background: #C07842; }
+    .booking-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+    .booking-disclaimer {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 0.72rem;
+      color: rgba(10, 10, 10, 0.3);
+      text-align: center;
+      margin-top: 16px;
+      line-height: 1.5;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 768px) {
+      .inperson-headline { font-size: 2rem; }
+      .session-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+      .session-card {
+        max-width: 100%;
+        width: 100%;
+      }
+      .time-grid { grid-template-columns: repeat(3, 1fr); }
+      .inperson-booking { padding: 40px 24px 60px; }
+      .inperson-sessions { padding: 60px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="QUANTASANA home">
+        <img src="logo.svg" class="nav__logo-svg" alt="QUANTASANA" aria-hidden="true">
+      </a>
+      <div class="nav__right">
+        <div class="nav__flyout" id="navFlyout" aria-hidden="true">
+          <a href="index.html#science" class="nav__flyout-link" style="--i:0"><span>Science</span></a>
+          <a href="index.html#system" class="nav__flyout-link" style="--i:1"><span>Experience</span></a>
+          <a href="index.html#community" class="nav__flyout-link" style="--i:2"><span>Community</span></a>
+          <a href="order.html" class="nav__flyout-link" style="--i:3"><span>Order</span></a>
+        </div>
+        <div class="nav__pill" id="navPill">
+          <div class="nav__actions">
+            <button class="nav__hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
+              <span class="nav__hamburger-line nav__hamburger-line--top"></span>
+              <span class="nav__hamburger-line nav__hamburger-line--mid"></span>
+              <span class="nav__hamburger-line nav__hamburger-line--bot"></span>
+              <span class="nav__x-line nav__x-line--1"></span>
+              <span class="nav__x-line nav__x-line--2"></span>
+            </button>
+            <a href="order.html" class="nav__order-btn">Order</a>
+          </div>
+          <div class="nav__dropdown" id="navDropdown">
+            <a href="index.html#science" class="nav__dropdown-link" style="--i:0">Science</a>
+            <a href="index.html#system" class="nav__dropdown-link" style="--i:1">Experience</a>
+            <a href="index.html#community" class="nav__dropdown-link" style="--i:2">Community</a>
+            <a href="order.html" class="nav__dropdown-link" style="--i:3">Order</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="inperson-hero">
+    <div class="inperson-hero-overlay"></div>
+    <div class="inperson-hero-content">
+      <span class="inperson-label">IN PERSON</span>
+      <h1 class="inperson-headline">Experience the practice.</h1>
+      <p class="inperson-location">Plano, TX · By appointment only</p>
+    </div>
+  </section>
+
+  <!-- SESSION TYPES -->
+  <section class="inperson-sessions">
+    <h2 class="sessions-title">Choose your session</h2>
+    <div class="session-cards">
+
+      <div class="session-card" data-session="30" data-price="75">
+        <div class="session-duration">30</div>
+        <div class="session-unit">minutes</div>
+        <div class="session-divider"><span>+</span></div>
+        <div class="session-price">$75</div>
+        <p class="session-desc">A focused protocol. Arrival, immersion, integration — compressed into a single powerful reset.</p>
+        <button class="session-select-btn">Select</button>
+      </div>
+
+      <div class="session-card featured" data-session="60" data-price="150">
+        <div class="session-badge">MOST POPULAR</div>
+        <div class="session-duration">60</div>
+        <div class="session-unit">minutes</div>
+        <div class="session-divider"><span>+</span></div>
+        <div class="session-price">$150</div>
+        <p class="session-desc">The full experience. Extended immersion with deeper frequency work and a complete nervous system recalibration.</p>
+        <button class="session-select-btn">Select</button>
+      </div>
+
+      <div class="session-card" data-session="90" data-price="250">
+        <div class="session-duration">90</div>
+        <div class="session-unit">minutes</div>
+        <div class="session-divider"><span>+</span></div>
+        <div class="session-price">$250</div>
+        <p class="session-desc">The deepest protocol. Multi-phase journey with extended integration. For experienced practitioners or first-time deep dives.</p>
+        <button class="session-select-btn">Select</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BOOKING FORM -->
+  <section class="inperson-booking" id="booking-form" style="display:none;">
+    <div class="booking-container">
+
+      <h2 class="booking-title">Pick your time</h2>
+      <p class="booking-selected-session" id="selected-session-label"></p>
+
+      <div class="booking-date">
+        <label class="booking-label">Date</label>
+        <input type="date" class="booking-date-input" id="booking-date" min="">
+      </div>
+
+      <div class="booking-times" id="time-slots">
+        <label class="booking-label">Available times</label>
+        <div class="time-grid" id="time-grid"></div>
+      </div>
+
+      <div class="booking-contact">
+        <label class="booking-label">Your information</label>
+        <div class="contact-fields">
+          <input type="text" placeholder="Full name" class="booking-input" id="booking-name" required>
+          <input type="email" placeholder="Email" class="booking-input" id="booking-email" required>
+          <input type="tel" placeholder="Phone (optional)" class="booking-input" id="booking-phone">
+        </div>
+      </div>
+
+      <div class="booking-notes">
+        <label class="booking-label">Anything we should know?</label>
+        <textarea class="booking-textarea" id="booking-notes" placeholder="First time? Any health considerations? Just say hi." rows="3"></textarea>
+      </div>
+
+      <button class="booking-submit" id="booking-submit" disabled>REQUEST RESERVATION</button>
+      <p class="booking-disclaimer">We'll confirm your session within 24 hours via email. A $25 deposit will be required to hold your slot (coming soon).</p>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer-wrapper">
+    <footer id="footer" class="site-footer">
+      <div class="footer-content">
+        <div class="footer-top">
+          <div class="footer-tagline">
+            <p class="footer-tagline-text">Built to resonate.</p>
+          </div>
+          <nav class="footer-nav">
+            <a href="index.html#science" class="footer-link">science</a>
+            <a href="index.html#system" class="footer-link">experience</a>
+            <a href="index.html#community" class="footer-link">community</a>
+            <a href="order.html" class="footer-link">order</a>
+            <a href="in-person.html" class="footer-link">in person</a>
+            <a href="app.html" class="footer-link">app</a>
+            <a href="contact.html" class="footer-link">contact</a>
+            <a href="press.html" class="footer-link">press</a>
+            <a href="faq.html" class="footer-link">faq</a>
+          </nav>
+          <div class="footer-subscribe">
+            <p class="footer-subscribe-text">Subscribe for the latest<br>Quantasana updates.</p>
+            <a href="index.html#community" class="footer-join">
+              <span class="footer-join-arrow">→</span>
+              JOIN US
+            </a>
+          </div>
+        </div>
+        <div class="footer-divider"><span>+</span></div>
+        <div class="footer-bottom">
+          <div class="footer-logo">quantasana</div>
+          <div class="footer-legal">
+            <a href="privacy.html" class="footer-legal-link">PRIVACY POLICY</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="terms.html" class="footer-legal-link">TERMS OF SERVICE</a>
+          </div>
+          <div class="footer-copyright">© 2026 NOVUS BROKER TECHNOLOGY, INC. ALL RIGHTS RESERVED.</div>
+          <div class="footer-socials">
+            <a href="https://instagram.com/quantasana" class="footer-social-link" target="_blank">INSTAGRAM</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="https://x.com/quantasana" class="footer-social-link" target="_blank">X</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="https://youtube.com/@quantasana" class="footer-social-link" target="_blank">YOUTUBE</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="main.js?v=16"></script>
+  <script>
+  (function() {
+    var selectedSession = null;
+    var selectedTime = null;
+    var cards = document.querySelectorAll('.session-card');
+    var bookingForm = document.getElementById('booking-form');
+    var sessionLabel = document.getElementById('selected-session-label');
+    var timeGrid = document.getElementById('time-grid');
+    var dateInput = document.getElementById('booking-date');
+    var submitBtn = document.getElementById('booking-submit');
+
+    if (!cards.length || !bookingForm) return;
+
+    var today = new Date().toISOString().split('T')[0];
+    if (dateInput) dateInput.setAttribute('min', today);
+
+    cards.forEach(function(card) {
+      card.addEventListener('click', function() {
+        cards.forEach(function(c) { c.classList.remove('selected'); });
+        card.classList.add('selected');
+
+        var duration = card.getAttribute('data-session');
+        var price = card.getAttribute('data-price');
+        selectedSession = { duration: duration, price: price };
+
+        sessionLabel.textContent = duration + ' MINUTE SESSION · $' + price;
+        bookingForm.style.display = 'block';
+
+        setTimeout(function() {
+          bookingForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+
+        generateTimeSlots(parseInt(duration));
+        validateForm();
+      });
+    });
+
+    function generateTimeSlots(duration) {
+      timeGrid.innerHTML = '';
+      selectedTime = null;
+      var startHour = 9;
+      var endHour = 20;
+
+      for (var h = startHour; h < endHour; h++) {
+        var sessionEndHour = h + (duration / 60);
+        if (sessionEndHour > endHour) break;
+
+        var slot = createSlot(formatTime(h, 0));
+        timeGrid.appendChild(slot);
+
+        if (duration <= 30 && (h + 0.5 + duration / 60) <= endHour) {
+          var halfSlot = createSlot(formatTime(h, 30));
+          timeGrid.appendChild(halfSlot);
+        }
+      }
+    }
+
+    function createSlot(timeStr) {
+      var div = document.createElement('div');
+      div.className = 'time-slot';
+      div.textContent = timeStr;
+      div.addEventListener('click', function() {
+        document.querySelectorAll('.time-slot').forEach(function(s) {
+          s.classList.remove('selected');
+        });
+        div.classList.add('selected');
+        selectedTime = timeStr;
+        validateForm();
+      });
+      return div;
+    }
+
+    function formatTime(hour, minutes) {
+      var period = hour >= 12 ? 'PM' : 'AM';
+      var displayHour = hour > 12 ? hour - 12 : hour;
+      var displayMin = minutes === 0 ? '00' : '30';
+      return displayHour + ':' + displayMin + ' ' + period;
+    }
+
+    function validateForm() {
+      var name = document.getElementById('booking-name');
+      var email = document.getElementById('booking-email');
+      var date = document.getElementById('booking-date');
+
+      var isValid = selectedSession &&
+                    selectedTime &&
+                    name && name.value.trim() !== '' &&
+                    email && email.value.trim() !== '' &&
+                    date && date.value !== '';
+
+      if (submitBtn) submitBtn.disabled = !isValid;
+    }
+
+    ['booking-name', 'booking-email', 'booking-date'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('input', validateForm);
+        el.addEventListener('change', validateForm);
+      }
+    });
+
+    if (submitBtn) {
+      submitBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        var name = document.getElementById('booking-name').value;
+        var email = document.getElementById('booking-email').value;
+        var phone = document.getElementById('booking-phone').value;
+        var date = document.getElementById('booking-date').value;
+        var notes = document.getElementById('booking-notes').value;
+
+        submitBtn.textContent = 'RESERVATION REQUESTED ✓';
+        submitBtn.disabled = true;
+        submitBtn.style.background = '#5A5549';
+
+        console.log('Booking request:', {
+          session: selectedSession,
+          date: date,
+          time: selectedTime,
+          name: name,
+          email: email,
+          phone: phone,
+          notes: notes
+        });
+      });
+    }
+  })();
+  </script>
+</body>
+</html>
