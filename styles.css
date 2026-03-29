@@ -2005,11 +2005,12 @@ button {
     margin-top: 20px;
   }
 
-  /* Bottom section stacked with dividers */
+  /* Bottom section stacked */
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0;
+    gap: 16px;
+    padding-top: 0;
   }
 
   /* Hide the logo in bottom row on mobile */
@@ -2017,30 +2018,33 @@ button {
     display: none;
   }
 
-  /* Legal links horizontal */
-  .footer-legal {
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding-top: 20px;
-    border-top: 1px solid rgba(10, 10, 10, 0.1);
+  /* Remove individual border-tops — the + divider is the only separator */
+  .footer-socials,
+  .footer-legal,
+  .footer-copyright {
+    border-top: none;
+    padding-top: 0;
   }
 
-  /* Copyright centered */
+  /* Order: socials first, then legal, then copyright */
+  .footer-socials { order: 1; }
+  .footer-legal { order: 2; }
   .footer-copyright {
+    order: 3;
     text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid rgba(10, 10, 10, 0.1);
     width: 100%;
   }
 
-  /* Social links horizontal with dots */
+  .footer-legal {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
   .footer-socials {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 8px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(10, 10, 10, 0.1);
   }
 }
 
