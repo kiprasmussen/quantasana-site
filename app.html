@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QUANTASANA — App</title>
+  <meta name="description" content="The Quantasana app — coming soon.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;700;800&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=16">
+  <style>
+    .placeholder-body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #D6D0C4;
+      text-align: center;
+      padding: 40px 24px;
+    }
+    .placeholder-title {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 300;
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #2C2C2A;
+      margin-bottom: 16px;
+    }
+    .placeholder-subtitle {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(10, 10, 10, 0.35);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="QUANTASANA home">
+        <img src="logo.svg" class="nav__logo-svg" alt="QUANTASANA" aria-hidden="true">
+      </a>
+      <div class="nav__right">
+        <div class="nav__flyout" id="navFlyout" aria-hidden="true">
+          <a href="index.html#science" class="nav__flyout-link" style="--i:0"><span>Science</span></a>
+          <a href="index.html#system" class="nav__flyout-link" style="--i:1"><span>Experience</span></a>
+          <a href="index.html#community" class="nav__flyout-link" style="--i:2"><span>Community</span></a>
+          <a href="order.html" class="nav__flyout-link" style="--i:3"><span>Order</span></a>
+        </div>
+        <div class="nav__pill" id="navPill">
+          <div class="nav__actions">
+            <button class="nav__hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
+              <span class="nav__hamburger-line nav__hamburger-line--top"></span>
+              <span class="nav__hamburger-line nav__hamburger-line--mid"></span>
+              <span class="nav__hamburger-line nav__hamburger-line--bot"></span>
+              <span class="nav__x-line nav__x-line--1"></span>
+              <span class="nav__x-line nav__x-line--2"></span>
+            </button>
+            <a href="order.html" class="nav__order-btn">Order</a>
+          </div>
+          <div class="nav__dropdown" id="navDropdown">
+            <a href="index.html#science" class="nav__dropdown-link" style="--i:0">Science</a>
+            <a href="index.html#system" class="nav__dropdown-link" style="--i:1">Experience</a>
+            <a href="index.html#community" class="nav__dropdown-link" style="--i:2">Community</a>
+            <a href="order.html" class="nav__dropdown-link" style="--i:3">Order</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="placeholder-body">
+    <h1 class="placeholder-title">The App</h1>
+    <p class="placeholder-subtitle">Coming soon.</p>
+  </div>
+
+  <div class="footer-wrapper">
+    <footer id="footer" class="site-footer">
+      <div class="footer-content">
+        <div class="footer-top">
+          <div class="footer-tagline">
+            <p class="footer-tagline-text">Built to resonate.</p>
+          </div>
+          <nav class="footer-nav">
+            <a href="index.html#science" class="footer-link">science</a>
+            <a href="index.html#system" class="footer-link">experience</a>
+            <a href="index.html#community" class="footer-link">community</a>
+            <a href="order.html" class="footer-link">order</a>
+            <a href="app.html" class="footer-link">app</a>
+            <a href="contact.html" class="footer-link">contact</a>
+            <a href="press.html" class="footer-link">press</a>
+            <a href="faq.html" class="footer-link">faq</a>
+          </nav>
+          <div class="footer-subscribe">
+            <p class="footer-subscribe-text">Subscribe for the latest<br>Quantasana updates.</p>
+            <a href="index.html#community" class="footer-join">
+              <span class="footer-join-arrow">→</span>
+              JOIN US
+            </a>
+          </div>
+        </div>
+        <div class="footer-divider"><span>+</span></div>
+        <div class="footer-bottom">
+          <div class="footer-logo">quantasana</div>
+          <div class="footer-legal">
+            <a href="privacy.html" class="footer-legal-link">PRIVACY POLICY</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="terms.html" class="footer-legal-link">TERMS OF SERVICE</a>
+          </div>
+          <div class="footer-copyright">© 2026 NOVUS BROKER TECHNOLOGY, INC. ALL RIGHTS RESERVED.</div>
+          <div class="footer-socials">
+            <a href="https://instagram.com/quantasana" class="footer-social-link" target="_blank">INSTAGRAM</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="https://x.com/quantasana" class="footer-social-link" target="_blank">X</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="https://youtube.com/@quantasana" class="footer-social-link" target="_blank">YOUTUBE</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="main.js?v=16"></script>
+</body>
+</html>
