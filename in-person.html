@@ -3,244 +3,351 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QUANTASANA — In Person</title>
-  <meta name="description" content="Experience the Quantasana practice in person. Book a session at our Plano, TX location.">
+  <title>In Person — Quantasana</title>
+  <meta name="description" content="Book an in-person Quantasana demo session in Plano, TX. Full protocol: breath regulation, frequency immersion, vibroacoustic integration.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;700;800&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=16">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;600;700;800&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
   <style>
-    /* ── Hero ── */
-    .inperson-hero {
-      position: relative;
-      height: 50vh;
-      min-height: 400px;
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* ── Back nav ── */
+    .order-nav {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 200;
+    }
+    .order-back {
       display: flex;
       align-items: center;
       justify-content: center;
-      background-image: url('images/quantasana_user.jpeg');
-      background-size: cover;
-      background-position: center;
-      overflow: hidden;
+      width: 48px;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(10, 10, 10, 0.08);
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      color: #2C2C2A;
+      transition: background 0.3s;
     }
-    .inperson-hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 1;
-    }
-    .inperson-hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-    }
-    .inperson-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(245, 240, 232, 0.4);
-      display: block;
-      margin-bottom: 16px;
-    }
-    .inperson-headline {
-      font-family: 'Josefin Sans', sans-serif;
-      font-weight: 300;
-      font-size: 3rem;
-      letter-spacing: 0.08em;
-      color: #F5F0E8;
-      margin-bottom: 16px;
-    }
-    .inperson-location {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      font-size: 0.9rem;
-      color: rgba(245, 240, 232, 0.5);
+    .order-back:hover {
+      background: rgba(255, 255, 255, 0.9);
     }
 
-    /* ── Session cards ── */
-    .inperson-sessions {
-      background: #D6D0C4;
-      padding: 80px 40px;
-      text-align: center;
+    /* ── Page layout ── */
+    .order-page {
+      background: #F5F0E8;
+      min-height: 100vh;
+      padding-bottom: 80px;
     }
-    .sessions-title {
-      font-family: 'Josefin Sans', sans-serif;
-      font-weight: 300;
-      font-size: 1.4rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #2C2C2A;
+    .order-layout {
+      display: flex;
+      min-height: calc(100vh - 80px);
+    }
+
+    /* ── Left: Image ── */
+    .order-images {
+      width: 60%;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #EDEAE2;
+    }
+    .order-carousel {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    .carousel-slides {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    .carousel-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .carousel-slide.active {
+      opacity: 1;
+    }
+
+    /* ── Right: Configurator ── */
+    .order-config {
+      width: 40%;
+      padding: 60px 48px 120px;
+      overflow-y: auto;
+      background: #F5F0E8;
+    }
+    .order-header {
+      text-align: center;
       margin-bottom: 48px;
     }
-    .session-cards {
-      display: flex;
-      gap: 20px;
-      max-width: 960px;
-      margin: 0 auto;
-      justify-content: center;
-    }
-    .session-card {
-      flex: 1;
-      max-width: 300px;
-      background: rgba(255, 255, 255, 0.35);
-      border: 1px solid rgba(10, 10, 10, 0.08);
-      border-radius: 16px;
-      padding: 40px 28px;
-      text-align: center;
-      position: relative;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .session-card:hover {
-      background: rgba(255, 255, 255, 0.5);
-      transform: translateY(-4px);
-    }
-    .session-card.selected {
-      border-color: #D4874D;
-      border-width: 2px;
-      background: rgba(255, 255, 255, 0.5);
-    }
-    .session-badge {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #D4874D;
-      color: #F5F0E8;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.5rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 4px 16px;
-      border-radius: 20px;
-      white-space: nowrap;
-    }
-    .session-duration {
-      font-family: 'Josefin Sans', sans-serif;
-      font-weight: 300;
-      font-size: 3.5rem;
-      color: #2C2C2A;
-      line-height: 1;
-    }
-    .session-unit {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(10, 10, 10, 0.35);
+    .order-logo {
+      width: 40px;
+      height: 40px;
       margin-bottom: 16px;
     }
-    .session-divider {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 16px 0;
-    }
-    .session-divider::before,
-    .session-divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: rgba(10, 10, 10, 0.1);
-    }
-    .session-divider span {
+    .order-title {
       font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      font-size: 0.75rem;
-      color: rgba(10, 10, 10, 0.2);
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: #2C2C2A;
+      margin-bottom: 8px;
     }
-    .session-price {
-      font-family: 'Josefin Sans', sans-serif;
-      font-weight: 300;
-      font-size: 1.6rem;
-      color: #D4874D;
-      margin-bottom: 16px;
-    }
-    .session-desc {
+    .order-subtitle {
       font-family: 'DM Sans', sans-serif;
       font-weight: 300;
       font-size: 0.8rem;
       line-height: 1.6;
-      color: rgba(10, 10, 10, 0.5);
-      margin-bottom: 24px;
-    }
-    .session-select-btn {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 10px 32px;
-      border: 1px solid rgba(10, 10, 10, 0.2);
-      border-radius: 6px;
-      background: transparent;
-      color: #2C2C2A;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .session-select-btn:hover {
-      background: rgba(10, 10, 10, 0.05);
-    }
-    .session-card.selected .session-select-btn {
-      background: #D4874D;
-      border-color: #D4874D;
-      color: #F5F0E8;
+      color: rgba(10, 10, 10, 0.45);
     }
 
-    /* ── Booking form ── */
-    .inperson-booking {
-      background: #D6D0C4;
-      padding: 60px 40px 80px;
-    }
-    .booking-container {
-      max-width: 560px;
-      margin: 0 auto;
-    }
-    .booking-title {
-      font-family: 'Josefin Sans', sans-serif;
-      font-weight: 300;
-      font-size: 1.4rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #2C2C2A;
-      margin-bottom: 8px;
-      text-align: center;
-    }
-    .booking-selected-session {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.08em;
-      color: #D4874D;
-      text-align: center;
+    /* ── Config sections ── */
+    .config-section {
       margin-bottom: 40px;
-      text-transform: uppercase;
     }
-    .booking-label {
+    .config-heading {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #2C2C2A;
+      margin-bottom: 16px;
+    }
+
+    /* ── Option cards ── */
+    .config-option {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 20px;
+      border: 1px solid rgba(10, 10, 10, 0.08);
+      border-radius: 12px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+      background: rgba(255, 255, 255, 0.3);
+    }
+    .config-option:hover:not(.disabled):not(.base-experience) {
+      background: rgba(255, 255, 255, 0.5);
+      border-color: rgba(10, 10, 10, 0.15);
+    }
+    .config-option.selected {
+      border-color: #5A5549;
+      background: rgba(255, 255, 255, 0.5);
+    }
+    .config-option input { display: none; }
+
+    /* ── Base experience (non-clickable) ── */
+    .base-experience {
+      cursor: default;
+      border-color: #5A5549;
+      background: rgba(255, 255, 255, 0.5);
+    }
+    .base-experience .option-check {
+      background: #5A5549;
+      border-color: #5A5549;
+    }
+    .base-experience .option-check::after {
+      content: '✓';
+      color: #F5F0E8;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .included-badge {
+      background: rgba(90, 85, 73, 0.1) !important;
+      color: #5A5549 !important;
+    }
+
+    /* ── Custom check ── */
+    .option-check {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      border: 1.5px solid rgba(10, 10, 10, 0.2);
+      border-radius: 4px;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .config-option.selected .option-check {
+      background: #5A5549;
+      border-color: #5A5549;
+    }
+    .config-option.selected .option-check::after {
+      content: '✓';
+      color: #F5F0E8;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .option-info { flex: 1; }
+    .option-name {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #2C2C2A;
       display: block;
+      margin-bottom: 2px;
+    }
+    .option-price {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.85rem;
+      color: rgba(10, 10, 10, 0.5);
+      float: right;
+    }
+    .option-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: rgba(10, 10, 10, 0.45);
+      margin-top: 8px;
+      clear: both;
+    }
+    .option-badge {
+      display: inline-block;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem;
+      font-size: 0.5rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
+      background: rgba(10, 10, 10, 0.06);
       color: rgba(10, 10, 10, 0.4);
-      margin-bottom: 12px;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-top: 8px;
     }
-    .booking-date { margin-bottom: 32px; }
-    .booking-date-input {
-      width: 100%;
-      padding: 14px 16px;
+
+    /* ── Duration badge ── */
+    .option-duration-badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.5rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(212, 135, 77, 0.1);
+      color: #D4874D;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-top: 8px;
+      margin-left: 8px;
+    }
+
+    /* ── Config sub-label ── */
+    .config-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      color: #D4874D;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    /* ============================================
+       INLINE CALENDAR
+       ============================================ */
+    .booking-calendar {
+      background: rgba(255, 255, 255, 0.35);
+      border: 1px solid rgba(10, 10, 10, 0.06);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .calendar-month {
       font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      border: 1px solid rgba(10, 10, 10, 0.12);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.3);
+      font-weight: 600;
+      font-size: 1rem;
       color: #2C2C2A;
-      outline: none;
-      transition: border-color 0.3s;
-      box-sizing: border-box;
     }
-    .booking-date-input:focus { border-color: rgba(212, 135, 77, 0.5); }
-    .booking-times { margin-bottom: 32px; }
+    .calendar-nav {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(10, 10, 10, 0.1);
+      border-radius: 8px;
+      background: transparent;
+      font-size: 1rem;
+      color: #2C2C2A;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .calendar-nav:hover {
+      background: rgba(10, 10, 10, 0.04);
+    }
+    .calendar-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+    .calendar-weekdays span {
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(10, 10, 10, 0.3);
+      padding: 8px 0;
+    }
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+    }
+    .cal-day {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      color: #2C2C2A;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      background: transparent;
+      padding: 0;
+    }
+    .cal-day:hover:not(.cal-disabled):not(.cal-empty) {
+      background: rgba(10, 10, 10, 0.06);
+    }
+    .cal-day.cal-selected {
+      background: #5A5549;
+      color: #F5F0E8;
+    }
+    .cal-day.cal-today {
+      font-weight: 600;
+      border: 1px solid rgba(10, 10, 10, 0.15);
+    }
+    .cal-day.cal-disabled {
+      color: rgba(10, 10, 10, 0.15);
+      cursor: not-allowed;
+    }
+    .cal-day.cal-empty {
+      cursor: default;
+    }
+
+    /* ── Time grid ── */
     .time-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -268,381 +375,541 @@
       border-color: #D4874D;
       color: #F5F0E8;
     }
-    .booking-contact { margin-bottom: 32px; }
-    .contact-fields {
+
+    /* ── Form fields ── */
+    .checkout-fields {
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
-    .booking-input {
-      width: 100%;
-      padding: 14px 16px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      border: 1px solid rgba(10, 10, 10, 0.12);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.3);
-      color: #2C2C2A;
-      outline: none;
-      transition: border-color 0.3s;
-      box-sizing: border-box;
+    .checkout-row {
+      display: flex;
+      gap: 12px;
     }
-    .booking-input:focus { border-color: rgba(212, 135, 77, 0.5); }
-    .booking-input::placeholder { color: rgba(10, 10, 10, 0.3); }
-    .booking-notes { margin-bottom: 32px; }
-    .booking-textarea {
-      width: 100%;
-      padding: 14px 16px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      border: 1px solid rgba(10, 10, 10, 0.12);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.3);
-      color: #2C2C2A;
-      outline: none;
-      resize: vertical;
-      transition: border-color 0.3s;
-      box-sizing: border-box;
-    }
-    .booking-textarea:focus { border-color: rgba(212, 135, 77, 0.5); }
-    .booking-textarea::placeholder { color: rgba(10, 10, 10, 0.3); }
-    .booking-submit {
-      width: 100%;
+    .checkout-row .checkout-input { flex: 1; }
+    .checkout-input {
       padding: 16px;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      border: 1px solid rgba(10, 10, 10, 0.1);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.5);
+      color: #2C2C2A;
+      outline: none;
+      transition: border-color 0.3s;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .checkout-input:focus { border-color: rgba(10, 10, 10, 0.25); }
+    .checkout-input::placeholder { color: rgba(10, 10, 10, 0.3); }
+    .booking-textarea {
+      padding: 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      border: 1px solid rgba(10, 10, 10, 0.1);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.5);
+      color: #2C2C2A;
+      outline: none;
+      transition: border-color 0.3s;
+      box-sizing: border-box;
+      width: 100%;
+      resize: vertical;
+    }
+    .booking-textarea:focus { border-color: rgba(10, 10, 10, 0.25); }
+    .booking-textarea::placeholder { color: rgba(10, 10, 10, 0.3); }
+
+    /* ── Sticky footer bar ── */
+    .order-footer-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: #F5F0E8;
+      border-top: 1px solid rgba(10, 10, 10, 0.08);
+      display: flex;
+      align-items: center;
+      padding: 0 48px;
+      gap: 24px;
+      z-index: 100;
+    }
+    .order-footer-info { flex: 1; }
+    .order-footer-label {
+      font-family: 'DM Sans', sans-serif;
       font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      background: #D4874D;
+      color: rgba(10, 10, 10, 0.35);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer-info-icon { font-size: 0.75rem; opacity: 0.5; }
+    .order-footer-due {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #2C2C2A;
+    }
+    .order-footer-price {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      color: #2C2C2A;
+    }
+    .order-footer-btn {
+      padding: 16px 40px;
+      background: #8B8578;
       border: none;
       border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       color: #F5F0E8;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: background 0.3s;
+      white-space: nowrap;
     }
-    .booking-submit:hover:not(:disabled) { background: #C07842; }
-    .booking-submit:disabled { opacity: 0.4; cursor: not-allowed; }
-    .booking-disclaimer {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      font-size: 0.72rem;
-      color: rgba(10, 10, 10, 0.3);
-      text-align: center;
-      margin-top: 16px;
-      line-height: 1.5;
-    }
+    .order-footer-btn:hover:not(:disabled) { background: #706B61; }
+    .order-footer-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
     /* ── Mobile ── */
     @media (max-width: 768px) {
-      .inperson-headline { font-size: 2rem; }
-      .session-cards {
+      .order-layout {
         flex-direction: column;
-        align-items: center;
       }
-      .session-card {
-        max-width: 100%;
+      .order-images {
         width: 100%;
+        height: 50vh;
+        position: relative;
       }
-      .time-grid { grid-template-columns: repeat(3, 1fr); }
-      .inperson-booking { padding: 40px 24px 60px; }
-      .inperson-sessions { padding: 60px 24px; }
+      .order-config {
+        width: 100%;
+        padding: 40px 24px 120px;
+      }
+      .order-footer-bar {
+        padding: 0 20px;
+        gap: 12px;
+      }
+      .order-footer-price { font-size: 1.5rem; }
+      .order-footer-btn {
+        padding: 14px 24px;
+        font-size: 0.58rem;
+      }
+      .option-price {
+        float: none;
+        display: block;
+        margin-top: 4px;
+      }
+      .time-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .calendar-grid { gap: 2px; }
+      .cal-day { font-size: 0.78rem; }
+      .checkout-row {
+        flex-direction: column;
+        gap: 12px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <nav class="nav" id="nav">
-    <div class="nav__inner">
-      <a href="index.html" class="nav__logo" aria-label="QUANTASANA home">
-        <img src="logo.svg" class="nav__logo-svg" alt="QUANTASANA" aria-hidden="true">
-      </a>
-      <div class="nav__right">
-        <div class="nav__flyout" id="navFlyout" aria-hidden="true">
-          <a href="index.html#science" class="nav__flyout-link" style="--i:0"><span>Science</span></a>
-          <a href="index.html#system" class="nav__flyout-link" style="--i:1"><span>Experience</span></a>
-          <a href="index.html#community" class="nav__flyout-link" style="--i:2"><span>Community</span></a>
-          <a href="order.html" class="nav__flyout-link" style="--i:3"><span>Order</span></a>
-        </div>
-        <div class="nav__pill" id="navPill">
-          <div class="nav__actions">
-            <button class="nav__hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
-              <span class="nav__hamburger-line nav__hamburger-line--top"></span>
-              <span class="nav__hamburger-line nav__hamburger-line--mid"></span>
-              <span class="nav__hamburger-line nav__hamburger-line--bot"></span>
-              <span class="nav__x-line nav__x-line--1"></span>
-              <span class="nav__x-line nav__x-line--2"></span>
-            </button>
-            <a href="order.html" class="nav__order-btn">Order</a>
-          </div>
-          <div class="nav__dropdown" id="navDropdown">
-            <a href="index.html#science" class="nav__dropdown-link" style="--i:0">Science</a>
-            <a href="index.html#system" class="nav__dropdown-link" style="--i:1">Experience</a>
-            <a href="index.html#community" class="nav__dropdown-link" style="--i:2">Community</a>
-            <a href="order.html" class="nav__dropdown-link" style="--i:3">Order</a>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- Back button -->
+  <nav class="order-nav">
+    <a href="index.html" class="order-back">
+      <span class="back-arrow">←</span>
+    </a>
   </nav>
 
-  <!-- HERO -->
-  <section class="inperson-hero">
-    <div class="inperson-hero-overlay"></div>
-    <div class="inperson-hero-content">
-      <span class="inperson-label">IN PERSON</span>
-      <h1 class="inperson-headline">Experience the practice.</h1>
-      <p class="inperson-location">Plano, TX · By appointment only</p>
-    </div>
-  </section>
+  <div class="order-page">
+    <div class="order-layout">
 
-  <!-- SESSION TYPES -->
-  <section class="inperson-sessions">
-    <h2 class="sessions-title">Choose your session</h2>
-    <div class="session-cards">
-
-      <div class="session-card" data-session="30" data-price="75">
-        <div class="session-duration">30</div>
-        <div class="session-unit">minutes</div>
-        <div class="session-divider"><span>+</span></div>
-        <div class="session-price">$75</div>
-        <p class="session-desc">A focused protocol. Arrival, immersion, integration — compressed into a single powerful reset.</p>
-        <button class="session-select-btn">Select</button>
-      </div>
-
-      <div class="session-card featured" data-session="60" data-price="150">
-        <div class="session-badge">MOST POPULAR</div>
-        <div class="session-duration">60</div>
-        <div class="session-unit">minutes</div>
-        <div class="session-divider"><span>+</span></div>
-        <div class="session-price">$150</div>
-        <p class="session-desc">The full experience. Extended immersion with deeper frequency work and a complete nervous system recalibration.</p>
-        <button class="session-select-btn">Select</button>
-      </div>
-
-      <div class="session-card" data-session="90" data-price="250">
-        <div class="session-duration">90</div>
-        <div class="session-unit">minutes</div>
-        <div class="session-divider"><span>+</span></div>
-        <div class="session-price">$250</div>
-        <p class="session-desc">The deepest protocol. Multi-phase journey with extended integration. For experienced practitioners or first-time deep dives.</p>
-        <button class="session-select-btn">Select</button>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- BOOKING FORM -->
-  <section class="inperson-booking" id="booking-form" style="display:none;">
-    <div class="booking-container">
-
-      <h2 class="booking-title">Pick your time</h2>
-      <p class="booking-selected-session" id="selected-session-label"></p>
-
-      <div class="booking-date">
-        <label class="booking-label">Date</label>
-        <input type="date" class="booking-date-input" id="booking-date" min="">
-      </div>
-
-      <div class="booking-times" id="time-slots">
-        <label class="booking-label">Available times</label>
-        <div class="time-grid" id="time-grid"></div>
-      </div>
-
-      <div class="booking-contact">
-        <label class="booking-label">Your information</label>
-        <div class="contact-fields">
-          <input type="text" placeholder="Full name" class="booking-input" id="booking-name" required>
-          <input type="email" placeholder="Email" class="booking-input" id="booking-email" required>
-          <input type="tel" placeholder="Phone (optional)" class="booking-input" id="booking-phone">
-        </div>
-      </div>
-
-      <div class="booking-notes">
-        <label class="booking-label">Anything we should know?</label>
-        <textarea class="booking-textarea" id="booking-notes" placeholder="First time? Any health considerations? Just say hi." rows="3"></textarea>
-      </div>
-
-      <button class="booking-submit" id="booking-submit" disabled>REQUEST RESERVATION</button>
-      <p class="booking-disclaimer">We'll confirm your session within 24 hours via email. A $25 deposit will be required to hold your slot (coming soon).</p>
-
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <div class="footer-wrapper">
-    <footer id="footer" class="site-footer">
-      <div class="footer-content">
-        <div class="footer-top">
-          <div class="footer-tagline">
-            <p class="footer-tagline-text">Built to resonate.</p>
-          </div>
-          <nav class="footer-nav">
-            <a href="index.html#science" class="footer-link">science</a>
-            <a href="index.html#system" class="footer-link">experience</a>
-            <a href="index.html#community" class="footer-link">community</a>
-            <a href="order.html" class="footer-link">order</a>
-            <a href="in-person.html" class="footer-link">in person</a>
-            <a href="app.html" class="footer-link">app</a>
-            <a href="contact.html" class="footer-link">contact</a>
-            <a href="press.html" class="footer-link">press</a>
-            <a href="faq.html" class="footer-link">faq</a>
-          </nav>
-          <div class="footer-subscribe">
-            <p class="footer-subscribe-text">Subscribe for the latest<br>Quantasana updates.</p>
-            <a href="index.html#community" class="footer-join">
-              <span class="footer-join-arrow">→</span>
-              JOIN US
-            </a>
-          </div>
-        </div>
-        <div class="footer-divider"><span>+</span></div>
-        <div class="footer-bottom">
-          <div class="footer-logo">quantasana</div>
-          <div class="footer-legal">
-            <a href="privacy.html" class="footer-legal-link">PRIVACY POLICY</a>
-            <span class="footer-legal-dot">·</span>
-            <a href="terms.html" class="footer-legal-link">TERMS OF SERVICE</a>
-          </div>
-          <div class="footer-copyright">© 2026 NOVUS BROKER TECHNOLOGY, INC. ALL RIGHTS RESERVED.</div>
-          <div class="footer-socials">
-            <a href="https://instagram.com/quantasana" class="footer-social-link" target="_blank">INSTAGRAM</a>
-            <span class="footer-legal-dot">·</span>
-            <a href="https://x.com/quantasana" class="footer-social-link" target="_blank">X</a>
-            <span class="footer-legal-dot">·</span>
-            <a href="https://youtube.com/@quantasana" class="footer-social-link" target="_blank">YOUTUBE</a>
+      <!-- LEFT: Image -->
+      <div class="order-images">
+        <div class="order-carousel">
+          <div class="carousel-slides">
+            <img src="images/quantasana_user.jpeg" class="carousel-slide active" alt="Quantasana experience">
           </div>
         </div>
       </div>
-    </footer>
+
+      <!-- RIGHT: Booking configurator -->
+      <div class="order-config">
+
+        <!-- Header -->
+        <div class="order-header">
+          <img src="logo.svg" class="order-logo" alt="Quantasana">
+          <h1 class="order-title">Book your experience</h1>
+          <p class="order-subtitle">Plano, TX · By appointment only</p>
+        </div>
+
+        <!-- SECTION 1: THE EXPERIENCE (always included) -->
+        <div class="config-section">
+          <h2 class="config-heading">The Experience</h2>
+
+          <div class="config-option selected base-experience" data-price="50">
+            <div class="option-check"></div>
+            <div class="option-info">
+              <span class="option-name">Quantasana Demo Session</span>
+              <span class="option-price">$50</span>
+              <p class="option-desc">30 minutes in the Quantasana pod. Full protocol: breath regulation, frequency immersion, vibroacoustic integration. Your $50 is applied as credit toward a system order.</p>
+              <span class="option-badge included-badge">ALWAYS INCLUDED</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: ADD-ONS -->
+        <div class="config-section">
+          <h2 class="config-heading">Enhance your visit</h2>
+
+          <label class="config-option" data-add="75" data-duration="30" data-name="Deep Tissue Massage">
+            <input type="checkbox" name="inperson-addon" value="massage">
+            <div class="option-check"></div>
+            <div class="option-info">
+              <span class="option-name">Deep Tissue Massage</span>
+              <span class="option-price">+$75</span>
+              <p class="option-desc">30 minutes. Targeted bodywork to complement the vibroacoustic session. Releases what the vibration loosened.</p>
+              <span class="option-duration-badge">+30 min</span>
+            </div>
+          </label>
+
+          <label class="config-option" data-add="50" data-duration="30" data-name="Hot Tub Soak">
+            <input type="checkbox" name="inperson-addon" value="hottub">
+            <div class="option-check"></div>
+            <div class="option-info">
+              <span class="option-name">Hot Tub Soak</span>
+              <span class="option-price">+$50</span>
+              <p class="option-desc">30 minutes. Private outdoor hot tub. The heat amplifies the parasympathetic response from your session.</p>
+              <span class="option-duration-badge">+30 min</span>
+            </div>
+          </label>
+
+          <label class="config-option" data-add="95" data-duration="45" data-name="Facial Treatment">
+            <input type="checkbox" name="inperson-addon" value="facial">
+            <div class="option-check"></div>
+            <div class="option-info">
+              <span class="option-name">Facial Treatment</span>
+              <span class="option-price">+$95</span>
+              <p class="option-desc">45 minutes. Deep cleanse, exfoliation, and hydration. Complete the reset from the inside out.</p>
+              <span class="option-duration-badge">+45 min</span>
+            </div>
+          </label>
+
+          <label class="config-option" data-add="40" data-duration="20" data-name="Guided Breathwork">
+            <input type="checkbox" name="inperson-addon" value="breathwork">
+            <div class="option-check"></div>
+            <div class="option-info">
+              <span class="option-name">Guided Breathwork Session</span>
+              <span class="option-price">+$40</span>
+              <p class="option-desc">20 minutes. One-on-one guided breathing protocol before your pod session. Primes your nervous system for deeper immersion.</p>
+              <span class="option-duration-badge">+20 min</span>
+            </div>
+          </label>
+        </div>
+
+        <!-- SECTION 3: DATE (inline calendar) -->
+        <div class="config-section">
+          <h2 class="config-heading">Pick your date</h2>
+
+          <div class="booking-calendar">
+            <div class="calendar-header">
+              <button class="calendar-nav" id="cal-prev">←</button>
+              <span class="calendar-month" id="cal-month-label"></span>
+              <button class="calendar-nav" id="cal-next">→</button>
+            </div>
+            <div class="calendar-weekdays">
+              <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+            </div>
+            <div class="calendar-grid" id="cal-grid"></div>
+          </div>
+        </div>
+
+        <!-- SECTION 4: TIME SLOTS -->
+        <div class="config-section" id="time-section" style="display:none;">
+          <h2 class="config-heading">Pick your time</h2>
+          <p class="config-sub" id="duration-label">Total session: 30 min</p>
+          <div class="time-grid" id="inperson-time-grid"></div>
+        </div>
+
+        <!-- SECTION 5: CONTACT INFO -->
+        <div class="config-section" id="contact-section" style="display:none;">
+          <h2 class="config-heading">Your information</h2>
+          <div class="checkout-fields">
+            <div class="checkout-row">
+              <input type="text" placeholder="First name" class="checkout-input" id="ip-first" required>
+              <input type="text" placeholder="Last name" class="checkout-input" id="ip-last" required>
+            </div>
+            <input type="email" placeholder="Email" class="checkout-input" id="ip-email" required>
+            <input type="tel" placeholder="Phone" class="checkout-input" id="ip-phone" required>
+            <textarea class="booking-textarea" id="ip-notes" placeholder="First time? Any health considerations? Just say hi." rows="3"></textarea>
+          </div>
+        </div>
+
+      </div><!-- end order-config -->
+    </div><!-- end order-layout -->
+
+    <!-- STICKY FOOTER BAR -->
+    <div class="order-footer-bar">
+      <div class="order-footer-info">
+        <div class="order-footer-label">
+          <span class="footer-info-icon">ⓘ</span>
+          <span id="ip-credit-note">Applied to your system order</span>
+        </div>
+        <div class="order-footer-due">Amount due today</div>
+      </div>
+      <div class="order-footer-price" id="ip-total-display">$50</div>
+      <button class="order-footer-btn" id="ip-book-btn" disabled>BOOK NOW</button>
+    </div>
+
   </div>
 
-  <script src="main.js?v=16"></script>
   <script>
   (function() {
-    var selectedSession = null;
+    var basePrice = 50;
+    var baseDuration = 30;
+    var totalPrice = basePrice;
+    var totalDuration = baseDuration;
+    var selectedDate = null;
     var selectedTime = null;
-    var cards = document.querySelectorAll('.session-card');
-    var bookingForm = document.getElementById('booking-form');
-    var sessionLabel = document.getElementById('selected-session-label');
-    var timeGrid = document.getElementById('time-grid');
-    var dateInput = document.getElementById('booking-date');
-    var submitBtn = document.getElementById('booking-submit');
 
-    if (!cards.length || !bookingForm) return;
+    var totalDisplay = document.getElementById('ip-total-display');
+    var bookBtn = document.getElementById('ip-book-btn');
+    var durationLabel = document.getElementById('duration-label');
+    var timeSection = document.getElementById('time-section');
+    var contactSection = document.getElementById('contact-section');
+    var timeGrid = document.getElementById('inperson-time-grid');
 
-    var today = new Date().toISOString().split('T')[0];
-    if (dateInput) dateInput.setAttribute('min', today);
-
-    cards.forEach(function(card) {
-      card.addEventListener('click', function() {
-        cards.forEach(function(c) { c.classList.remove('selected'); });
-        card.classList.add('selected');
-
-        var duration = card.getAttribute('data-session');
-        var price = card.getAttribute('data-price');
-        selectedSession = { duration: duration, price: price };
-
-        sessionLabel.textContent = duration + ' MINUTE SESSION · $' + price;
-        bookingForm.style.display = 'block';
-
-        setTimeout(function() {
-          bookingForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
-
-        generateTimeSlots(parseInt(duration));
-        validateForm();
+    // ── ADD-ON SELECTION ──
+    var addonOptions = document.querySelectorAll('input[name="inperson-addon"]');
+    addonOptions.forEach(function(input) {
+      var option = input.closest('.config-option');
+      option.addEventListener('click', function(e) {
+        e.preventDefault();
+        input.checked = !input.checked;
+        option.classList.toggle('selected', input.checked);
+        recalculate();
       });
     });
 
-    function generateTimeSlots(duration) {
+    function recalculate() {
+      totalPrice = basePrice;
+      totalDuration = baseDuration;
+
+      document.querySelectorAll('input[name="inperson-addon"]:checked').forEach(function(input) {
+        var opt = input.closest('.config-option');
+        totalPrice += parseInt(opt.getAttribute('data-add') || '0');
+        totalDuration += parseInt(opt.getAttribute('data-duration') || '0');
+      });
+
+      totalDisplay.textContent = '$' + totalPrice;
+      durationLabel.textContent = 'Total session: ' + totalDuration + ' min';
+
+      if (selectedDate) {
+        generateTimeSlots();
+      }
+
+      validateForm();
+    }
+
+    // ── CALENDAR ──
+    var currentMonth = new Date().getMonth();
+    var currentYear = new Date().getFullYear();
+    var calGrid = document.getElementById('cal-grid');
+    var calLabel = document.getElementById('cal-month-label');
+
+    var months = ['January', 'February', 'March', 'April', 'May', 'June',
+                  'July', 'August', 'September', 'October', 'November', 'December'];
+
+    function renderCalendar() {
+      calGrid.innerHTML = '';
+      calLabel.textContent = months[currentMonth] + ' ' + currentYear;
+
+      var firstDay = new Date(currentYear, currentMonth, 1).getDay();
+      var daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+      var today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      for (var e = 0; e < firstDay; e++) {
+        var empty = document.createElement('button');
+        empty.className = 'cal-day cal-empty';
+        calGrid.appendChild(empty);
+      }
+
+      for (var d = 1; d <= daysInMonth; d++) {
+        var dayBtn = document.createElement('button');
+        dayBtn.className = 'cal-day';
+        dayBtn.textContent = d;
+
+        var thisDate = new Date(currentYear, currentMonth, d);
+        thisDate.setHours(0, 0, 0, 0);
+
+        if (thisDate < today) {
+          dayBtn.classList.add('cal-disabled');
+        } else {
+          if (thisDate.getTime() === today.getTime()) {
+            dayBtn.classList.add('cal-today');
+          }
+
+          // Re-highlight if this date was previously selected
+          if (selectedDate && thisDate.getTime() === selectedDate.getTime()) {
+            dayBtn.classList.add('cal-selected');
+          }
+
+          (function(date, btn) {
+            btn.addEventListener('click', function() {
+              var prev = calGrid.querySelector('.cal-selected');
+              if (prev) prev.classList.remove('cal-selected');
+
+              btn.classList.add('cal-selected');
+              selectedDate = date;
+
+              timeSection.style.display = 'block';
+              generateTimeSlots();
+
+              contactSection.style.display = 'block';
+
+              setTimeout(function() {
+                timeSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }, 100);
+
+              validateForm();
+            });
+          })(thisDate, dayBtn);
+        }
+
+        calGrid.appendChild(dayBtn);
+      }
+    }
+
+    document.getElementById('cal-prev').addEventListener('click', function() {
+      var today = new Date();
+      if (currentYear === today.getFullYear() && currentMonth === today.getMonth()) return;
+      currentMonth--;
+      if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+      renderCalendar();
+    });
+
+    document.getElementById('cal-next').addEventListener('click', function() {
+      currentMonth++;
+      if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+      renderCalendar();
+    });
+
+    // ── TIME SLOTS ──
+    function generateTimeSlots() {
       timeGrid.innerHTML = '';
       selectedTime = null;
+
       var startHour = 9;
       var endHour = 20;
 
       for (var h = startHour; h < endHour; h++) {
-        var sessionEndHour = h + (duration / 60);
-        if (sessionEndHour > endHour) break;
+        var sessionEndMinutes = (h * 60) + totalDuration;
+        if (sessionEndMinutes > endHour * 60) break;
 
-        var slot = createSlot(formatTime(h, 0));
+        var period = h >= 12 ? 'PM' : 'AM';
+        var displayHour = h > 12 ? h - 12 : h;
+
+        var slot = document.createElement('div');
+        slot.className = 'time-slot';
+        slot.textContent = displayHour + ':00 ' + period;
+
+        (function(timeStr) {
+          slot.addEventListener('click', function() {
+            document.querySelectorAll('.time-slot').forEach(function(s) {
+              s.classList.remove('selected');
+            });
+            slot.classList.add('selected');
+            selectedTime = timeStr;
+            validateForm();
+          });
+        })(displayHour + ':00 ' + period);
+
         timeGrid.appendChild(slot);
 
-        if (duration <= 30 && (h + 0.5 + duration / 60) <= endHour) {
-          var halfSlot = createSlot(formatTime(h, 30));
-          timeGrid.appendChild(halfSlot);
+        // Half-hour slots for shorter sessions
+        if (totalDuration <= 30) {
+          var halfEnd = (h * 60) + 30 + totalDuration;
+          if (halfEnd <= endHour * 60) {
+            var halfSlot = document.createElement('div');
+            halfSlot.className = 'time-slot';
+            halfSlot.textContent = displayHour + ':30 ' + period;
+
+            (function(timeStr) {
+              halfSlot.addEventListener('click', function() {
+                document.querySelectorAll('.time-slot').forEach(function(s) {
+                  s.classList.remove('selected');
+                });
+                halfSlot.classList.add('selected');
+                selectedTime = timeStr;
+                validateForm();
+              });
+            })(displayHour + ':30 ' + period);
+
+            timeGrid.appendChild(halfSlot);
+          }
         }
       }
     }
 
-    function createSlot(timeStr) {
-      var div = document.createElement('div');
-      div.className = 'time-slot';
-      div.textContent = timeStr;
-      div.addEventListener('click', function() {
-        document.querySelectorAll('.time-slot').forEach(function(s) {
-          s.classList.remove('selected');
-        });
-        div.classList.add('selected');
-        selectedTime = timeStr;
-        validateForm();
-      });
-      return div;
-    }
-
-    function formatTime(hour, minutes) {
-      var period = hour >= 12 ? 'PM' : 'AM';
-      var displayHour = hour > 12 ? hour - 12 : hour;
-      var displayMin = minutes === 0 ? '00' : '30';
-      return displayHour + ':' + displayMin + ' ' + period;
-    }
-
+    // ── VALIDATION ──
     function validateForm() {
-      var name = document.getElementById('booking-name');
-      var email = document.getElementById('booking-email');
-      var date = document.getElementById('booking-date');
+      var firstName = document.getElementById('ip-first');
+      var lastName = document.getElementById('ip-last');
+      var email = document.getElementById('ip-email');
+      var phone = document.getElementById('ip-phone');
 
-      var isValid = selectedSession &&
+      var isValid = selectedDate &&
                     selectedTime &&
-                    name && name.value.trim() !== '' &&
+                    firstName && firstName.value.trim() !== '' &&
+                    lastName && lastName.value.trim() !== '' &&
                     email && email.value.trim() !== '' &&
-                    date && date.value !== '';
+                    phone && phone.value.trim() !== '';
 
-      if (submitBtn) submitBtn.disabled = !isValid;
+      bookBtn.disabled = !isValid;
     }
 
-    ['booking-name', 'booking-email', 'booking-date'].forEach(function(id) {
+    ['ip-first', 'ip-last', 'ip-email', 'ip-phone'].forEach(function(id) {
       var el = document.getElementById(id);
-      if (el) {
-        el.addEventListener('input', validateForm);
-        el.addEventListener('change', validateForm);
-      }
+      if (el) el.addEventListener('input', validateForm);
     });
 
-    if (submitBtn) {
-      submitBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-
-        var name = document.getElementById('booking-name').value;
-        var email = document.getElementById('booking-email').value;
-        var phone = document.getElementById('booking-phone').value;
-        var date = document.getElementById('booking-date').value;
-        var notes = document.getElementById('booking-notes').value;
-
-        submitBtn.textContent = 'RESERVATION REQUESTED ✓';
-        submitBtn.disabled = true;
-        submitBtn.style.background = '#5A5549';
-
-        console.log('Booking request:', {
-          session: selectedSession,
-          date: date,
-          time: selectedTime,
-          name: name,
-          email: email,
-          phone: phone,
-          notes: notes
-        });
+    // ── BOOK BUTTON ──
+    bookBtn.addEventListener('click', function() {
+      var addons = [];
+      document.querySelectorAll('input[name="inperson-addon"]:checked').forEach(function(input) {
+        var opt = input.closest('.config-option');
+        addons.push(opt.getAttribute('data-name'));
       });
-    }
+
+      var dateStr = selectedDate.toLocaleDateString('en-US', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+      });
+
+      bookBtn.textContent = 'BOOKING REQUESTED ✓';
+      bookBtn.disabled = true;
+      bookBtn.style.background = '#5A5549';
+
+      console.log('Booking:', {
+        date: dateStr,
+        time: selectedTime,
+        duration: totalDuration + ' min',
+        total: '$' + totalPrice,
+        addons: addons,
+        contact: {
+          firstName: document.getElementById('ip-first').value,
+          lastName: document.getElementById('ip-last').value,
+          email: document.getElementById('ip-email').value,
+          phone: document.getElementById('ip-phone').value,
+          notes: document.getElementById('ip-notes').value
+        }
+      });
+    });
+
+    // ── INITIALIZE ──
+    renderCalendar();
+    recalculate();
   })();
   </script>
 </body>
