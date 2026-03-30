@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=16">
   <style>
     /* ============================================
        CSS VARIABLES
@@ -905,254 +906,6 @@
     }
 
     /* ============================================
-       SITE HEADER
-       ============================================ */
-    .site-header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 40px;
-      z-index: 1000;
-      transition: background 0.4s, box-shadow 0.4s, border-color 0.4s;
-      border-bottom: 1px solid transparent;
-    }
-    .site-header.scrolled {
-      background: var(--bg-deep);
-      border-bottom-color: var(--border);
-      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
-    }
-    .header-logo {
-      font-family: 'Sora', sans-serif;
-      font-weight: 700;
-      font-size: 16px;
-      letter-spacing: 2px;
-      color: var(--text-primary);
-      text-decoration: none;
-    }
-    .header-logo img {
-      height: 18px;
-      display: block;
-    }
-    .header-center {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-    }
-    .header-nav-link {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 400;
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      text-decoration: none;
-      letter-spacing: 0.03em;
-      transition: color 0.3s;
-    }
-    .header-nav-link:hover { color: var(--text-primary); }
-    .header-nav-link.active { color: var(--accent-teal); }
-    .header-order-btn {
-      display: inline-block;
-      padding: 8px 20px;
-      background: var(--accent-warm);
-      color: #0d0f0e;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: transform 0.3s var(--ease), opacity 0.3s;
-    }
-    .header-order-btn:hover { transform: translateY(-1px); opacity: 0.9; }
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 4px;
-    }
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 1.5px;
-      background: var(--text-primary);
-      transition: transform 0.3s, opacity 0.3s;
-    }
-
-    /* ── Mobile Menu Overlay ── */
-    .menu-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(13, 15, 14, 0.98);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      z-index: 2000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.4s var(--ease);
-    }
-    .menu-overlay.open {
-      opacity: 1;
-      pointer-events: all;
-    }
-    .menu-close {
-      position: absolute;
-      top: 18px;
-      right: 20px;
-      background: none;
-      border: none;
-      color: var(--text-primary);
-      font-size: 1.8rem;
-      cursor: pointer;
-      padding: 8px;
-      line-height: 1;
-    }
-    .menu-links {
-      list-style: none;
-      text-align: center;
-    }
-    .menu-links li { margin-bottom: 12px; }
-    .menu-links a {
-      font-family: 'Sora', sans-serif;
-      font-weight: 600;
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .menu-links a:hover { color: var(--text-primary); }
-    .menu-tagline {
-      margin-top: 48px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      letter-spacing: 0.08em;
-    }
-
-    /* ============================================
-       SITE FOOTER
-       ============================================ */
-    .site-footer {
-      background: var(--bg-card);
-      border-top: 1px solid var(--border);
-      padding: 100px 60px 50px;
-    }
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .footer-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 60px;
-      margin-bottom: 40px;
-    }
-    .footer-nav-cols {
-      display: flex;
-      gap: 60px;
-    }
-    .footer-nav-col {
-      display: flex;
-      flex-direction: column;
-    }
-    .footer-nav-col a {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 400;
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      text-decoration: none;
-      line-height: 2.2;
-      letter-spacing: 0.02em;
-      transition: color 0.3s;
-    }
-    .footer-nav-col a:hover { color: var(--text-primary); }
-    .footer-subscribe-text {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: 12px;
-    }
-    .footer-join-link {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 600;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent-teal);
-      text-decoration: none;
-      transition: opacity 0.3s;
-    }
-    .footer-join-link:hover { opacity: 0.8; }
-    .footer-divider {
-      height: 1px;
-      background: var(--border);
-      margin: 40px 0;
-    }
-    .footer-brand {
-      font-family: 'Instrument Serif', serif;
-      font-style: italic;
-      font-size: 2rem;
-      color: var(--text-muted);
-      opacity: 0.5;
-      margin-bottom: 40px;
-    }
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-    .footer-legal a {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .footer-legal a:hover { color: var(--text-secondary); }
-    .footer-legal .dot {
-      color: var(--text-muted);
-      margin: 0 8px;
-      font-size: 0.65rem;
-    }
-    .footer-copyright {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.65rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-    }
-    .footer-socials a {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .footer-socials a:hover { color: var(--text-primary); }
-    .footer-socials .dot {
-      color: var(--text-muted);
-      margin: 0 6px;
-      font-size: 0.65rem;
-    }
-
-    /* ============================================
        RESPONSIVE
        ============================================ */
     @media (max-width: 900px) {
@@ -1162,9 +915,6 @@
       .modalities-grid { grid-template-columns: 1fr 1fr; }
       .phone-frame:nth-child(3),
       .phone-frame:nth-child(4) { display: none; }
-      .header-center .header-nav-link { display: none; }
-      .hamburger { display: flex; }
-      .site-header { padding: 0 20px; }
     }
     @media (max-width: 600px) {
       .library-grid { grid-template-columns: 1fr; }
@@ -1178,9 +928,6 @@
       .container { padding: 0 20px; }
       .phones-row { gap: 12px; }
       .phone-frame { width: 220px; }
-      .site-footer { padding: 80px 24px 40px; }
-      .footer-top { flex-direction: column; gap: 40px; }
-      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
     }
   </style>
 </head>
@@ -1192,38 +939,43 @@
   </div>
 
   <!-- ============================================
-       HEADER
+       NAVIGATION
        ============================================ -->
-  <header class="site-header" id="site-header">
-    <a href="index.html" class="header-logo">
-      <img src="logo.svg" alt="QUANTASANA">
-    </a>
-    <div class="header-center">
-      <a href="index.html#science" class="header-nav-link">Science</a>
-      <a href="index.html#system" class="header-nav-link">Experience</a>
-      <a href="index.html#community" class="header-nav-link">Community</a>
-      <a href="in-person.html" class="header-nav-link">In Person</a>
-      <a href="app.html" class="header-nav-link active">App</a>
-      <button class="hamburger" id="hamburger-btn" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </button>
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="QUANTASANA home">
+        <img src="logo.svg" class="nav__logo-svg" alt="QUANTASANA" aria-hidden="true">
+      </a>
+      <div class="nav__right">
+        <div class="nav__flyout" id="navFlyout" aria-hidden="true">
+          <a href="index.html#science" class="nav__flyout-link" style="--i:0"><span>Science</span></a>
+          <a href="index.html#system" class="nav__flyout-link" style="--i:1"><span>Experience</span></a>
+          <a href="index.html#community" class="nav__flyout-link" style="--i:2"><span>Community</span></a>
+          <a href="in-person.html" class="nav__flyout-link" style="--i:3"><span>In Person</span></a>
+          <a href="app.html" class="nav__flyout-link" style="--i:4"><span>App</span></a>
+        </div>
+        <div class="nav__pill" id="navPill">
+          <div class="nav__actions">
+            <button class="nav__hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
+              <span class="nav__hamburger-line nav__hamburger-line--top"></span>
+              <span class="nav__hamburger-line nav__hamburger-line--mid"></span>
+              <span class="nav__hamburger-line nav__hamburger-line--bot"></span>
+              <span class="nav__x-line nav__x-line--1"></span>
+              <span class="nav__x-line nav__x-line--2"></span>
+            </button>
+            <a href="order.html" class="nav__order-btn">Order</a>
+          </div>
+          <div class="nav__dropdown" id="navDropdown">
+            <a href="index.html#science" class="nav__dropdown-link" style="--i:0">Science</a>
+            <a href="index.html#system" class="nav__dropdown-link" style="--i:1">Experience</a>
+            <a href="index.html#community" class="nav__dropdown-link" style="--i:2">Community</a>
+            <a href="in-person.html" class="nav__dropdown-link" style="--i:3">In Person</a>
+            <a href="app.html" class="nav__dropdown-link" style="--i:4">App</a>
+          </div>
+        </div>
+      </div>
     </div>
-    <a href="order.html" class="header-order-btn">Order</a>
-  </header>
-
-  <!-- Mobile Menu Overlay -->
-  <div class="menu-overlay" id="menu-overlay">
-    <button class="menu-close" id="menu-close" aria-label="Close menu">✕</button>
-    <ul class="menu-links">
-      <li><a href="index.html#science" class="menu-link-item">Science</a></li>
-      <li><a href="index.html#system" class="menu-link-item">Experience</a></li>
-      <li><a href="index.html#community" class="menu-link-item">Community</a></li>
-      <li><a href="in-person.html" class="menu-link-item">In Person</a></li>
-      <li><a href="app.html" class="menu-link-item">App</a></li>
-      <li><a href="order.html" class="menu-link-item">Order</a></li>
-    </ul>
-    <p class="menu-tagline">QUANTASANA · EST. 2026 · PLANO, TX</p>
-  </div>
+  </nav>
 
   <!-- ============================================
        HERO
@@ -1608,58 +1360,57 @@
     </div>
   </section>
 
-  <!-- ============================================
-       FOOTER
-       ============================================ -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-nav-cols">
-          <div class="footer-nav-col">
-            <a href="index.html#science">science</a>
-            <a href="index.html#system">experience</a>
-            <a href="index.html#community">community</a>
-            <a href="order.html">order</a>
-            <a href="in-person.html">in person</a>
+  <!-- FOOTER -->
+  <div class="footer-wrapper">
+    <footer id="footer" class="site-footer">
+      <div class="footer-content">
+        <div class="footer-top">
+          <div class="footer-tagline">
+            <p class="footer-tagline-text">Built to resonate.</p>
           </div>
-          <div class="footer-nav-col">
-            <a href="app.html">app</a>
-            <a href="contact.html">contact</a>
-            <a href="press.html">press</a>
-            <a href="faq.html">faq</a>
+          <nav class="footer-nav">
+            <a href="index.html#science" class="footer-link">science</a>
+            <a href="index.html#system" class="footer-link">experience</a>
+            <a href="index.html#community" class="footer-link">community</a>
+            <a href="order.html" class="footer-link">order</a>
+            <a href="in-person.html" class="footer-link">in person</a>
+            <a href="app.html" class="footer-link">app</a>
+            <a href="contact.html" class="footer-link">contact</a>
+            <a href="press.html" class="footer-link">press</a>
+            <a href="faq.html" class="footer-link">faq</a>
+          </nav>
+          <div class="footer-subscribe">
+            <p class="footer-subscribe-text">Subscribe for the latest<br>Quantasana updates.</p>
+            <a href="index.html#community" class="footer-join">
+              <span class="footer-join-arrow">→</span>
+              JOIN US
+            </a>
           </div>
         </div>
-        <div class="footer-subscribe">
-          <p class="footer-subscribe-text">Subscribe for the latest<br>Quantasana updates.</p>
-          <a href="index.html#community" class="footer-join-link">→ JOIN US</a>
+        <div class="footer-divider"><span>+</span></div>
+        <div class="footer-bottom">
+          <div class="footer-logo">quantasana</div>
+          <div class="footer-legal">
+            <a href="privacy.html" class="footer-legal-link">PRIVACY POLICY</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="terms.html" class="footer-legal-link">TERMS OF SERVICE</a>
+          </div>
+          <div class="footer-copyright">© 2026 NOVUS BROKER TECHNOLOGY, INC. ALL RIGHTS RESERVED.</div>
+          <div class="footer-socials">
+            <a href="https://instagram.com/quantasana" class="footer-social-link" target="_blank">INSTAGRAM</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="https://x.com/quantasana" class="footer-social-link" target="_blank">X</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="https://youtube.com/@quantasana" class="footer-social-link" target="_blank">YOUTUBE</a>
+          </div>
         </div>
       </div>
-      <div class="footer-divider"></div>
-      <div class="footer-brand">quantasana</div>
-      <div class="footer-bottom">
-        <div class="footer-legal">
-          <a href="privacy.html">PRIVACY POLICY</a>
-          <span class="dot">·</span>
-          <a href="terms.html">TERMS OF SERVICE</a>
-        </div>
-        <div class="footer-copyright">© 2026 NOVUS BROKER TECHNOLOGY, INC. ALL RIGHTS RESERVED.</div>
-        <div class="footer-socials">
-          <a href="https://instagram.com/quantasana" target="_blank">INSTAGRAM</a>
-          <span class="dot">·</span>
-          <a href="https://x.com/quantasana" target="_blank">X</a>
-          <span class="dot">·</span>
-          <a href="https://youtube.com/@quantasana" target="_blank">YOUTUBE</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+    </footer>
+  </div>
 
-  <!-- ============================================
-       JAVASCRIPT
-       ============================================ -->
+  <script src="main.js?v=16"></script>
   <script>
   (function() {
-    // Intersection Observer for scroll reveals
     var reveals = document.querySelectorAll('.reveal');
     if (reveals.length) {
       var observer = new IntersectionObserver(function(entries) {
@@ -1672,38 +1423,6 @@
       }, { threshold: 0.1 });
       reveals.forEach(function(el) { observer.observe(el); });
     }
-
-    // Header scroll transparency
-    var header = document.getElementById('site-header');
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 80) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    });
-
-    // Mobile menu toggle
-    var hamburgerBtn = document.getElementById('hamburger-btn');
-    var menuOverlay = document.getElementById('menu-overlay');
-    var menuClose = document.getElementById('menu-close');
-
-    hamburgerBtn.addEventListener('click', function() {
-      menuOverlay.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    });
-    menuClose.addEventListener('click', function() {
-      menuOverlay.classList.remove('open');
-      document.body.style.overflow = '';
-    });
-    // Close on link click
-    var menuLinks = document.querySelectorAll('.menu-link-item');
-    menuLinks.forEach(function(link) {
-      link.addEventListener('click', function() {
-        menuOverlay.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    });
   })();
   </script>
 
