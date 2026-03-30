@@ -4,47 +4,231 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QUANTASANA — Contact</title>
-  <meta name="description" content="Contact Quantasana.">
+  <meta name="description" content="Get in touch with Quantasana. Questions about the system, demo bookings, partnerships, and more.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;700;800&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=Sora:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=16">
   <style>
-    .placeholder-body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: #D6D0C4;
-      text-align: center;
-      padding: 40px 24px;
+    :root {
+      --bg-deep: #0d0f0e;
+      --bg-card: #161a18;
+      --bg-card-hover: #1c211e;
+      --bg-elevated: #1e2422;
+      --text-primary: #e8e4df;
+      --text-secondary: #8a8780;
+      --text-muted: #5a5854;
+      --accent-teal: #4ecdc4;
+      --accent-warm: #c4956a;
+      --accent-green: #6bcb77;
+      --accent-red: #e07a5f;
+      --accent-purple: #9b8ec4;
+      --border: rgba(255,255,255,0.06);
+      --ease: cubic-bezier(0.25, 1, 0.5, 1);
     }
-    .placeholder-title {
-      font-family: 'Josefin Sans', sans-serif;
-      font-weight: 300;
-      font-size: 2.5rem;
+    body {
+      margin: 0;
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.025;
+    }
+
+    /* Page */
+    .contact-page {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 140px 24px 80px;
+    }
+
+    /* Hero */
+    .contact-label {
+      font-size: 0.7rem;
+      font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: #2C2C2A;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
       margin-bottom: 16px;
     }
-    .placeholder-subtitle {
-      font-family: 'JetBrains Mono', monospace;
+    .contact-heading {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 400;
+      color: var(--text-primary);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .contact-subtext {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 560px;
+      margin-bottom: 60px;
+    }
+
+    /* Two column layout */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 55% 45%;
+      gap: 48px;
+    }
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Form */
+    .form-group { margin-bottom: 20px; }
+    .form-label {
+      display: block;
       font-size: 0.7rem;
+      font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: rgba(10, 10, 10, 0.35);
+      color: var(--text-muted);
+      margin-bottom: 6px;
     }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 14px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      box-sizing: border-box;
+      -webkit-appearance: none;
+    }
+    .form-input::placeholder, .form-textarea::placeholder {
+      color: var(--text-muted);
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--accent-teal);
+      box-shadow: 0 0 0 3px rgba(78,205,196,0.1);
+    }
+    .form-select {
+      cursor: pointer;
+      color: var(--text-secondary);
+    }
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    .form-btn {
+      width: 100%;
+      padding: 16px;
+      background: var(--accent-teal);
+      color: #0d0f0e;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.85rem;
+      border: none;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: transform 0.3s var(--ease), opacity 0.3s;
+    }
+    .form-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+
+    /* Thank you state */
+    .form-thankyou {
+      display: none;
+      text-align: center;
+      padding: 60px 0;
+    }
+    .form-thankyou.visible { display: block; animation: fadeUp 0.6s var(--ease); }
+    .form-thankyou h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.8rem;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .form-thankyou p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Info cards */
+    .info-cards { display: flex; flex-direction: column; gap: 1rem; }
+    .info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+    .info-card-icon {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    .info-card-title {
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .info-card-body {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+    .info-card-link {
+      font-size: 0.82rem;
+      color: var(--accent-teal);
+      text-decoration: none;
+      font-weight: 400;
+      transition: opacity 0.3s;
+    }
+    .info-card-link:hover { opacity: 0.8; }
+    .info-card-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    /* Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
+  <div class="noise-overlay">
+    <svg width="100%" height="100%"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#noise)"/></svg>
+  </div>
+
+  <!-- NAVIGATION -->
   <nav class="nav" id="nav">
     <div class="nav__inner">
       <a href="index.html" class="nav__logo" aria-label="QUANTASANA home">
-        <img src="logo.png" class="nav__logo.png" alt="QUANTASANA" aria-hidden="true">
+        <img src="logo.png" class="nav__logo-svg" alt="QUANTASANA" aria-hidden="true">
       </a>
       <div class="nav__right">
         <div class="nav__flyout" id="navFlyout" aria-hidden="true">
@@ -77,11 +261,87 @@
     </div>
   </nav>
 
-  <div class="placeholder-body">
-    <h1 class="placeholder-title">Contact</h1>
-    <p class="placeholder-subtitle">Coming soon.</p>
+  <!-- PAGE CONTENT -->
+  <div class="contact-page">
+
+    <!-- Hero -->
+    <div class="reveal">
+      <p class="contact-label">Get in Touch</p>
+      <h1 class="contact-heading">We'd love to hear from you.</h1>
+      <p class="contact-subtext">Whether you have questions about the system, want to book a demo, or are interested in partnership — reach out.</p>
+    </div>
+
+    <!-- Two-column grid -->
+    <div class="contact-grid">
+
+      <!-- Left: Form -->
+      <div class="reveal" id="form-wrapper">
+        <form id="contact-form">
+          <div class="form-group">
+            <label class="form-label" for="name">Name</label>
+            <input type="text" class="form-input" id="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <input type="email" class="form-input" id="email" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="subject">Subject</label>
+            <select class="form-select" id="subject" required>
+              <option value="" disabled selected>Select a topic</option>
+              <option value="general">General Inquiry</option>
+              <option value="demo">Demo Booking</option>
+              <option value="order">Order Question</option>
+              <option value="partnership">Partnership / Press</option>
+              <option value="support">Technical Support</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="message">Message</label>
+            <textarea class="form-textarea" id="message" placeholder="Tell us what's on your mind..." rows="5" required></textarea>
+          </div>
+          <button type="submit" class="form-btn">Send Message</button>
+        </form>
+
+        <div class="form-thankyou" id="thankyou">
+          <h3>Thank you.</h3>
+          <p>We've received your message and will get back to you within 24 hours.</p>
+        </div>
+      </div>
+
+      <!-- Right: Info cards -->
+      <div class="info-cards reveal">
+
+        <div class="info-card">
+          <div class="info-card-icon">📍</div>
+          <div class="info-card-title">The QUANTASANA Studio</div>
+          <div class="info-card-body">Plano, TX · By appointment only</div>
+          <a href="in-person.html" class="info-card-link">Book a demo →</a>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-icon">✉️</div>
+          <div class="info-card-title">Email</div>
+          <a href="mailto:hello@quantasana.com" class="info-card-link" style="font-size:0.88rem;">hello@quantasana.com</a>
+          <div class="info-card-sub">We typically respond within 24 hours.</div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-icon">📱</div>
+          <div class="info-card-title">Social</div>
+          <div class="social-links" style="margin-top:8px;">
+            <a href="https://instagram.com/quantasana" class="info-card-link" target="_blank">Instagram →</a>
+            <a href="https://x.com/quantasana" class="info-card-link" target="_blank">X →</a>
+            <a href="https://youtube.com/@quantasana" class="info-card-link" target="_blank">YouTube →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 
+  <!-- FOOTER -->
   <div class="footer-wrapper">
     <footer id="footer" class="site-footer">
       <div class="footer-content">
@@ -130,5 +390,38 @@
   </div>
 
   <script src="main.js?v=16"></script>
+  <script>
+  (function() {
+    // Scroll reveal
+    var reveals = document.querySelectorAll('.reveal');
+    if (reveals.length) {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      reveals.forEach(function(el) { observer.observe(el); });
+    }
+
+    // Form submit handler
+    var form = document.getElementById('contact-form');
+    var thankyou = document.getElementById('thankyou');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      form.style.display = 'none';
+      thankyou.classList.add('visible');
+      console.log('Contact form submitted:', {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        subject: document.getElementById('subject').value,
+        message: document.getElementById('message').value
+      });
+    });
+  })();
+  </script>
+
 </body>
 </html>

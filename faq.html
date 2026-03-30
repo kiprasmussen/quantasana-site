@@ -4,31 +4,539 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QUANTASANA — FAQ</title>
-  <meta name="description" content="Frequently asked questions about Quantasana.">
+  <meta name="description" content="Frequently asked questions about the Quantasana wellness system, chair, app, and science.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;700;800&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=Sora:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=16">
   <style>
-    .placeholder-body { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#D6D0C4; text-align:center; padding:40px 24px; }
-    .placeholder-title { font-family:'Josefin Sans',sans-serif; font-weight:300; font-size:2.5rem; text-transform:uppercase; letter-spacing:0.15em; color:#2C2C2A; margin-bottom:16px; }
-    .placeholder-subtitle { font-family:'JetBrains Mono',monospace; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; color:rgba(10,10,10,0.35); }
+    :root {
+      --bg-deep: #0d0f0e;
+      --bg-card: #161a18;
+      --bg-card-hover: #1c211e;
+      --bg-elevated: #1e2422;
+      --text-primary: #e8e4df;
+      --text-secondary: #8a8780;
+      --text-muted: #5a5854;
+      --accent-teal: #4ecdc4;
+      --accent-warm: #c4956a;
+      --accent-green: #6bcb77;
+      --accent-red: #e07a5f;
+      --accent-purple: #9b8ec4;
+      --border: rgba(255,255,255,0.06);
+      --ease: cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    body {
+      margin: 0;
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Noise overlay */
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.025;
+    }
+
+    /* Page container */
+    .faq-page {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 140px 24px 80px;
+    }
+
+    /* Hero */
+    .faq-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .faq-heading {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 400;
+      color: var(--text-primary);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .faq-subtext {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 60px;
+    }
+    .faq-subtext a {
+      color: var(--accent-teal);
+      text-decoration: none;
+    }
+    .faq-subtext a:hover { text-decoration: underline; }
+
+    /* Category */
+    .faq-category {
+      margin-bottom: 3rem;
+    }
+    .faq-category:first-of-type { margin-top: 0; }
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+    .category-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .category-dot.teal { background: var(--accent-teal); }
+    .category-dot.warm { background: var(--accent-warm); }
+    .category-dot.green { background: var(--accent-green); }
+    .category-dot.purple { background: var(--accent-purple); }
+    .category-dot.red { background: var(--accent-red); }
+
+    .category-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--text-primary);
+    }
+
+    /* Q&A item */
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+      cursor: pointer;
+      gap: 16px;
+    }
+    .faq-question span {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+    .faq-icon {
+      flex-shrink: 0;
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      transition: transform 0.3s var(--ease);
+      width: 20px;
+      text-align: center;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s var(--ease);
+    }
+    .faq-answer-inner {
+      padding: 0 0 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* CTA section */
+    .faq-cta {
+      text-align: center;
+      padding: 60px 0 40px;
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+    }
+    .faq-cta h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .faq-cta p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+    }
+    .faq-cta-btns {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 14px 30px;
+      background: var(--accent-teal);
+      color: #0d0f0e;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.85rem;
+      text-decoration: none;
+      border-radius: 60px;
+      transition: transform 0.3s var(--ease), opacity 0.3s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); opacity: 0.9; }
+    .btn-ghost {
+      display: inline-block;
+      padding: 14px 30px;
+      background: transparent;
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.85rem;
+      text-decoration: none;
+      border-radius: 60px;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s, transform 0.3s var(--ease);
+    }
+    .btn-ghost:hover { border-color: var(--text-muted); transform: translateY(-2px); }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
-  <nav class="nav" id="nav"><div class="nav__inner"><a href="index.html" class="nav__logo" aria-label="QUANTASANA home"><img src="logo.png" class="nav__logo.png" alt="QUANTASANA" aria-hidden="true"></a><div class="nav__right"><div class="nav__flyout" id="navFlyout" aria-hidden="true"><a href="index.html#science" class="nav__flyout-link" style="--i:0"><span>Science</span></a><a href="index.html#system" class="nav__flyout-link" style="--i:1"><span>Experience</span></a><a href="index.html#community" class="nav__flyout-link" style="--i:2"><span>Community</span></a><a href="in-person.html" class="nav__flyout-link" style="--i:3"><span>In Person</span></a>
-          <a href="app.html" class="nav__flyout-link" style="--i:4"><span>App</span></a></div><div class="nav__pill" id="navPill"><div class="nav__actions"><button class="nav__hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false"><span class="nav__hamburger-line nav__hamburger-line--top"></span><span class="nav__hamburger-line nav__hamburger-line--mid"></span><span class="nav__hamburger-line nav__hamburger-line--bot"></span><span class="nav__x-line nav__x-line--1"></span><span class="nav__x-line nav__x-line--2"></span></button><a href="order.html" class="nav__order-btn">Order</a></div><div class="nav__dropdown" id="navDropdown"><a href="index.html#science" class="nav__dropdown-link" style="--i:0">Science</a><a href="index.html#system" class="nav__dropdown-link" style="--i:1">Experience</a><a href="index.html#community" class="nav__dropdown-link" style="--i:2">Community</a><a href="in-person.html" class="nav__dropdown-link" style="--i:3">In Person</a>
-            <a href="app.html" class="nav__dropdown-link" style="--i:4">App</a></div></div></div></div></nav>
 
-  <div class="placeholder-body">
-    <h1 class="placeholder-title">FAQ</h1>
-    <p class="placeholder-subtitle">Coming soon.</p>
+  <!-- Noise texture overlay -->
+  <div class="noise-overlay">
+    <svg width="100%" height="100%"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#noise)"/></svg>
   </div>
 
-  <div class="footer-wrapper"><footer id="footer" class="site-footer"><div class="footer-content"><div class="footer-top"><div class="footer-tagline"><p class="footer-tagline-text">Built to resonate.</p></div><nav class="footer-nav"><a href="index.html#science" class="footer-link">science</a><a href="index.html#system" class="footer-link">experience</a><a href="index.html#community" class="footer-link">community</a><a href="order.html" class="footer-link">order</a>
-            <a href="in-person.html" class="footer-link">in person</a><a href="app.html" class="footer-link">app</a><a href="contact.html" class="footer-link">contact</a><a href="press.html" class="footer-link">press</a><a href="faq.html" class="footer-link">faq</a></nav><div class="footer-subscribe"><p class="footer-subscribe-text">Subscribe for the latest<br>Quantasana updates.</p><a href="index.html#community" class="footer-join"><span class="footer-join-arrow">→</span> JOIN US</a></div></div><div class="footer-divider"><span>+</span></div><div class="footer-bottom"><div class="footer-logo">quantasana</div><div class="footer-legal"><a href="privacy.html" class="footer-legal-link">PRIVACY POLICY</a><span class="footer-legal-dot">·</span><a href="terms.html" class="footer-legal-link">TERMS OF SERVICE</a></div><div class="footer-copyright">© 2026 NOVUS BROKER TECHNOLOGY, INC. ALL RIGHTS RESERVED.</div><div class="footer-socials"><a href="https://instagram.com/quantasana" class="footer-social-link" target="_blank">INSTAGRAM</a><span class="footer-legal-dot">·</span><a href="https://x.com/quantasana" class="footer-social-link" target="_blank">X</a><span class="footer-legal-dot">·</span><a href="https://youtube.com/@quantasana" class="footer-social-link" target="_blank">YOUTUBE</a></div></div></div></footer></div>
+  <!-- NAVIGATION -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="QUANTASANA home">
+        <img src="logo.png" class="nav__logo-svg" alt="QUANTASANA" aria-hidden="true">
+      </a>
+      <div class="nav__right">
+        <div class="nav__flyout" id="navFlyout" aria-hidden="true">
+          <a href="index.html#science" class="nav__flyout-link" style="--i:0"><span>Science</span></a>
+          <a href="index.html#system" class="nav__flyout-link" style="--i:1"><span>Experience</span></a>
+          <a href="index.html#community" class="nav__flyout-link" style="--i:2"><span>Community</span></a>
+          <a href="in-person.html" class="nav__flyout-link" style="--i:3"><span>In Person</span></a>
+          <a href="app.html" class="nav__flyout-link" style="--i:4"><span>App</span></a>
+        </div>
+        <div class="nav__pill" id="navPill">
+          <div class="nav__actions">
+            <button class="nav__hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
+              <span class="nav__hamburger-line nav__hamburger-line--top"></span>
+              <span class="nav__hamburger-line nav__hamburger-line--mid"></span>
+              <span class="nav__hamburger-line nav__hamburger-line--bot"></span>
+              <span class="nav__x-line nav__x-line--1"></span>
+              <span class="nav__x-line nav__x-line--2"></span>
+            </button>
+            <a href="order.html" class="nav__order-btn">Order</a>
+          </div>
+          <div class="nav__dropdown" id="navDropdown">
+            <a href="index.html#science" class="nav__dropdown-link" style="--i:0">Science</a>
+            <a href="index.html#system" class="nav__dropdown-link" style="--i:1">Experience</a>
+            <a href="index.html#community" class="nav__dropdown-link" style="--i:2">Community</a>
+            <a href="in-person.html" class="nav__dropdown-link" style="--i:3">In Person</a>
+            <a href="app.html" class="nav__dropdown-link" style="--i:4">App</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE CONTENT -->
+  <div class="faq-page">
+
+    <!-- Hero -->
+    <div class="reveal">
+      <p class="faq-label">Frequently Asked Questions</p>
+      <h1 class="faq-heading">Everything you need to know.</h1>
+      <p class="faq-subtext">Can't find your answer? Email us at <a href="mailto:hello@quantasana.com">hello@quantasana.com</a></p>
+    </div>
+
+    <!-- CATEGORY 1: THE PRODUCT -->
+    <div class="faq-category reveal" data-category="product">
+      <div class="category-header">
+        <span class="category-dot teal"></span>
+        <h2 class="category-title">The Product</h2>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>What is QUANTASANA?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">QUANTASANA is a wellness system that combines four modalities — guided breathwork, precision sound frequencies, vibroacoustic vibration, and 40 Hz gamma light — into a single, sequenced protocol delivered through a handcrafted lounge chair and companion app. Every session follows a three-phase arc (Arrival → Immersion → Integration) calibrated to your nervous system's natural response curve.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>What does a session actually feel like?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Imagine settling into a zero-gravity recline. Guided breathing slows your pace to ~6 breaths per minute. Sound frequencies wrap around you through spatial audio headphones while matched vibrations pulse through four independent zones in the chair beneath you. Overhead, warm light flickers at 40 Hz — fast enough that you perceive it as a gentle shimmer, not a strobe. Twenty minutes later, everything gradually fades and you re-emerge with a clarity that's hard to describe until you've felt it.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>How long is a session?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Sessions come in three tiers: Reset (10 minutes), Session (20 minutes — the standard protocol), and Deep (30 minutes). The 20-minute session is the core product — it's long enough for the full three-phase arc but short enough for daily use.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>What are the session types?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Five types, each using the same three-phase arc but with different modality emphasis: CALM (stress & anxiety relief, extended exhale breathing), FOCUS (cognitive clarity, 40 Hz gamma entrainment), RECOVER (physical recovery, therapeutic vibration sweeps), SLEEP (pre-sleep wind-down, delta-adjacent frequencies), and RENEW (emotional processing, variable intensity waves).</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>Do I need the chair to use the app?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">The app works standalone for guided breathwork and sound-based sessions — no chair required. But the full QUANTASANA experience requires the chair for vibroacoustic vibration and the light canopy for 40 Hz visual entrainment. Think of the app as the conductor and the chair as the orchestra.</div></div>
+      </div>
+    </div>
+
+    <!-- CATEGORY 2: THE CHAIR -->
+    <div class="faq-category reveal" data-category="chair">
+      <div class="category-header">
+        <span class="category-dot warm"></span>
+        <h2 class="category-title">The Chair</h2>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>What is the chair made of?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">The Founders Edition features a walnut europly frame with angular geometry, handcrafted in small batches. The recline angle is set at 130° — the precise position where muscular tension releases and diaphragmatic breathing deepens naturally. Four independent vibration zones deliver targeted frequencies to different body regions.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>What trims and fabrics are available?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">The Founders Edition ($4,500) comes standard in Oatmeal Boucle. Upgrade options include Charcoal Boucle (+$200), Ivory Performance Leather (+$400), or Cognac Performance Leather (+$400). Two additional trims — the Signature ($6,500) and Studio ($5,500, commercial-grade) — are coming in 2027.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>What are the optional upgrades?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Premium Transducer Pack (+$350) for higher-fidelity vibration across 20–300 Hz, Dual-Zone Amplifier (+$250) for independent upper/lower body control, Heated Cushion Zones (+$300) with three temperature settings, and Premium Walnut Finish (+$200) with hand-rubbed tung oil.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>What is the QUANTASANA Light?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">A frequency-synced overhead light canopy that delivers 40 Hz flickering warm white light (~150 lux at eye level) via closed-eye-safe LEDs. It dynamically matches the session's brainwave target in real time. Designed and built in-house. Coming soon — pricing TBD.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>How big is the chair? Will it fit in my space?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">The chair footprint is approximately 30" wide × 60" long × 42" tall at full recline. It's designed to be a permanent fixture in a dedicated room or corner — not something you fold up and store. Think of it like a massage chair or reading nook, not a piece of portable equipment.</div></div>
+      </div>
+    </div>
+
+    <!-- CATEGORY 3: THE SCIENCE -->
+    <div class="faq-category reveal" data-category="science">
+      <div class="category-header">
+        <span class="category-dot green"></span>
+        <h2 class="category-title">The Science</h2>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>What is vibroacoustic therapy?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Vibroacoustic therapy (VAT) uses low-frequency sound vibrations between 30–120 Hz delivered directly to the body through transducers embedded in the chair. These vibrations activate mechanoreceptors called Pacinian corpuscles deep in your skin and joints, triggering parasympathetic nervous system shifts. The FDA classifies VAT devices as Class I therapeutic vibrators — exempt from premarket notification. The therapy was developed by Norwegian researcher Olav Skille in the 1980s and has been studied for pain management, Parkinson's, stress reduction, and muscle relaxation.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>What is 40 Hz gamma entrainment?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">When your brain receives sensory stimulation at precisely 40 Hz — through light, sound, or vibration — it synchronizes its own neural oscillations to that frequency. This is called "entrainment." MIT's Picower Institute has published extensively on this, showing that 40 Hz stimulation through light and sound activates neuroprotective responses, reduces Alzheimer's-related proteins, and preserves brain volume. Their research calls this GENUS (Gamma Entrainment Using Sensory Stimulation). A 2023 study extended this to tactile vibration, showing 40 Hz vibrotactile stimulation also reduces brain pathology in mouse models.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>What is the evidence for 40 Hz in humans?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Cognito Therapeutics (co-founded by MIT's Li-Huei Tsai) ran a Phase 2 clinical trial (OVERTURE) with 76 Alzheimer's patients using 40 Hz audiovisual stimulation. Results showed a 76% reduction in cognitive decline and 69% reduction in brain volume loss over 6 months. Their Phase 3 trial (HOPE) enrolled 670 participants — the largest medical device trial focused solely on Alzheimer's. Their device received FDA Breakthrough Device Designation. It's important to note that human trials used audiovisual delivery — human clinical evidence for vibroacoustic 40 Hz specifically is still being established.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>What is HRV and why does it matter?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Heart Rate Variability (HRV) measures the variation in time between heartbeats. Higher HRV indicates a healthier, more adaptable nervous system — your body can shift smoothly between activation and recovery. The specific metric we track is RMSSD, which directly reflects parasympathetic (vagal) tone. Research shows that slow-paced breathing at ~6 breaths per minute (resonance frequency) is the most efficient way to increase HRV, and that vibroacoustic therapy sessions measurably increase parasympathetic activity.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>Is QUANTASANA clinically proven?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">QUANTASANA is science-informed, not clinically proven. Our protocol design is informed by published research in HRV biofeedback, vibroacoustic therapy, and gamma brainwave entrainment — but we haven't run our own clinical trials on our specific device. We're transparent about this distinction. We don't say "treats" or "cures" anything. We say: the body's response to controlled breathing, low-frequency vibration, and sound frequency entrainment is well-documented, and we've sequenced those mechanisms into a protocol.</div></div>
+      </div>
+    </div>
+
+    <!-- CATEGORY 4: THE APP -->
+    <div class="faq-category reveal" data-category="app">
+      <div class="category-header">
+        <span class="category-dot purple"></span>
+        <h2 class="category-title">The App</h2>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>What does the app do?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">The app orchestrates every session — guiding your breath timing, adjusting sound frequencies, and (when connected to the chair) calibrating vibration intensity across all four body zones. It also tracks your sessions, monitors your HRV response before and after, shows your 96-hour recovery arc, and builds personalized insights over time (best session time, optimal session type, vagal tone trends).</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>What wearables does the app connect to?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">We integrate with Oura Ring (recommended for overnight HRV tracking), Polar H10 chest strap (recommended for real-time session-level HRV), Apple Watch, WHOOP, and Garmin devices. The app uses the Terra API to normalize data across all platforms.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>When will the app be available?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">The app is currently in development. Join the waitlist at quantasana.com/app.html for early access. Founders Edition chair purchasers will receive priority app access.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>Can I use the app without a wearable?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Yes — the breathwork and sound sessions work without any wearable. But to track your HRV response and see how your nervous system is changing over time, you'll need a compatible device. We recommend the Oura Ring Gen 4 for the best balance of accuracy and daily wearability.</div></div>
+      </div>
+    </div>
+
+    <!-- CATEGORY 5: ORDERING & EXPERIENCE -->
+    <div class="faq-category reveal" data-category="ordering">
+      <div class="category-header">
+        <span class="category-dot red"></span>
+        <h2 class="category-title">Ordering &amp; Experience</h2>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>How much does the system cost?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">The Founders Edition starts at $4,500 with a $500 non-refundable reservation deposit. Fabric upgrades range from +$200 to +$400. Hardware upgrades (transducers, amplifier, heating, finish) range from +$200 to +$350 each.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>Can I try it before I buy?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Yes. Book a 30-minute demo session at our Plano, TX location for $50. That $50 is applied as credit toward a system order. During your visit, you can also add deep tissue massage (+$75), hot tub soak (+$50), facial treatment (+$95), or guided breathwork (+$40).</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>How long does delivery take?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">We're building in small batches. Reservation holders receive build updates and shipping estimates via email. Current estimated lead time is communicated at the time of reservation.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>Do you ship internationally?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Not yet. Currently shipping within the continental United States only. International availability is planned for 2027.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span>What's your return policy?</span><span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Due to the handcrafted nature of each chair, we do not accept returns. The $500 reservation deposit is non-refundable. We strongly encourage booking an in-person demo before ordering.</div></div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="faq-cta reveal">
+      <h2>Still have questions?</h2>
+      <p>We're here to help.</p>
+      <div class="faq-cta-btns">
+        <a href="mailto:hello@quantasana.com" class="btn-primary">Email Us</a>
+        <a href="in-person.html" class="btn-ghost">Book a Demo</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-wrapper">
+    <footer id="footer" class="site-footer">
+      <div class="footer-content">
+        <div class="footer-top">
+          <div class="footer-tagline">
+            <p class="footer-tagline-text">Built to resonate.</p>
+          </div>
+          <nav class="footer-nav">
+            <a href="index.html#science" class="footer-link">science</a>
+            <a href="index.html#system" class="footer-link">experience</a>
+            <a href="index.html#community" class="footer-link">community</a>
+            <a href="order.html" class="footer-link">order</a>
+            <a href="in-person.html" class="footer-link">in person</a>
+            <a href="app.html" class="footer-link">app</a>
+            <a href="contact.html" class="footer-link">contact</a>
+            <a href="press.html" class="footer-link">press</a>
+            <a href="faq.html" class="footer-link">faq</a>
+          </nav>
+          <div class="footer-subscribe">
+            <p class="footer-subscribe-text">Subscribe for the latest<br>Quantasana updates.</p>
+            <a href="index.html#community" class="footer-join">
+              <span class="footer-join-arrow">→</span>
+              JOIN US
+            </a>
+          </div>
+        </div>
+        <div class="footer-divider"><span>+</span></div>
+        <div class="footer-bottom">
+          <div class="footer-logo">quantasana</div>
+          <div class="footer-legal">
+            <a href="privacy.html" class="footer-legal-link">PRIVACY POLICY</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="terms.html" class="footer-legal-link">TERMS OF SERVICE</a>
+          </div>
+          <div class="footer-copyright">© 2026 NOVUS BROKER TECHNOLOGY, INC. ALL RIGHTS RESERVED.</div>
+          <div class="footer-socials">
+            <a href="https://instagram.com/quantasana" class="footer-social-link" target="_blank">INSTAGRAM</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="https://x.com/quantasana" class="footer-social-link" target="_blank">X</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="https://youtube.com/@quantasana" class="footer-social-link" target="_blank">YOUTUBE</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
 
   <script src="main.js?v=16"></script>
+  <script>
+  (function() {
+    // Scroll reveal
+    var reveals = document.querySelectorAll('.reveal');
+    if (reveals.length) {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      reveals.forEach(function(el) { observer.observe(el); });
+    }
+
+    // FAQ accordion — one open per category
+    document.querySelectorAll('.faq-question').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = btn.closest('.faq-item');
+        var category = btn.closest('.faq-category');
+        var answer = item.querySelector('.faq-answer');
+        var inner = item.querySelector('.faq-answer-inner');
+        var isOpen = item.classList.contains('open');
+
+        // Close all in this category
+        category.querySelectorAll('.faq-item.open').forEach(function(openItem) {
+          openItem.classList.remove('open');
+          openItem.querySelector('.faq-answer').style.maxHeight = '0';
+        });
+
+        // Open clicked if it was closed
+        if (!isOpen) {
+          item.classList.add('open');
+          answer.style.maxHeight = inner.scrollHeight + 20 + 'px';
+        }
+      });
+    });
+  })();
+  </script>
+
 </body>
 </html>
