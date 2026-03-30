@@ -21,6 +21,131 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css?v=16">
+  <style>
+    /* ── App V2 page-specific overrides ── */
+
+    /* Prompt 5: Hero dark treatment */
+    .hero__overlay {
+      background:
+        linear-gradient(180deg,
+          rgba(13, 15, 14, 0.6) 0%,
+          rgba(13, 15, 14, 0.3) 40%,
+          rgba(13, 15, 14, 0.3) 60%,
+          rgba(13, 15, 14, 0.85) 100%),
+        radial-gradient(ellipse at center, transparent 40%, rgba(13, 15, 14, 0.4) 100%) !important;
+    }
+    .hero__headline em {
+      font-style: italic;
+      color: #4ecdc4;
+    }
+
+    /* Prompt 2: Science panel app-specific images */
+    .science-panel[data-pillar="breath"] {
+      background-image: url('images/app-session.jpg') !important;
+    }
+    .science-panel[data-pillar="sound"] {
+      background-image: url('images/app-recovery.jpg') !important;
+    }
+    .science-panel[data-pillar="vibration"] {
+      background-image: url('images/app-insights.jpg') !important;
+    }
+
+    /* Prompt 4: CTA background */
+    .final-cta {
+      background-image: url('images/app-cta.jpg') !important;
+    }
+
+    /* Prompt 1: Phone mockup in hero */
+    .hero-phone {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      animation: heroFloat 6s ease-in-out infinite;
+    }
+    @keyframes heroFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    .hero-phone-frame {
+      width: 220px;
+      background: rgba(22, 26, 24, 0.9);
+      border-radius: 28px;
+      padding: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 40px rgba(78,205,196,0.08);
+    }
+    .hero-phone-notch {
+      width: 70px;
+      height: 18px;
+      background: rgba(22, 26, 24, 1);
+      border-radius: 10px;
+      margin: 0 auto 12px;
+    }
+    .hero-phone-screen {
+      background: #0d0f0e;
+      border-radius: 20px;
+      padding: 16px;
+    }
+    .hero-phone-header { text-align: center; margin-bottom: 16px; }
+    .hero-phone-label {
+      display: block;
+      font-size: 0.55rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #5a5854;
+      margin-bottom: 4px;
+    }
+    .hero-phone-title {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: #e8e4df;
+    }
+    .hero-phone-score { text-align: center; margin: 16px 0; }
+    .hero-phone-number {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      color: #4ecdc4;
+      line-height: 1;
+    }
+    .hero-phone-score-label {
+      display: block;
+      font-size: 0.5rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #4ecdc4;
+      margin-top: 4px;
+    }
+    .hero-phone-metrics { display: flex; flex-direction: column; gap: 8px; }
+    .hero-phone-metric {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 10px;
+      background: rgba(22, 26, 24, 0.8);
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.65rem;
+      color: #8a8780;
+    }
+    .hero-metric-badge {
+      font-size: 0.55rem;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: rgba(107,203,119,0.15);
+      color: #6bcb77;
+      font-weight: 600;
+    }
+    .hero-metric-badge.teal {
+      background: rgba(78,205,196,0.15);
+      color: #4ecdc4;
+    }
+    @media (max-width: 768px) {
+      .hero-phone-frame { width: 180px; }
+      .hero-phone-number { font-size: 2.2rem; }
+    }
+  </style>
 </head>
 <body>
 
@@ -79,7 +204,7 @@
   <section class="section hero" id="hero">
     <!-- Background video: single autoplay, freezes on last frame -->
     <div class="hero__bg">
-      <video id="heroVideo" autoplay muted playsinline poster="images/hero.jpg" class="hero__video">
+      <video id="heroVideo" autoplay muted playsinline poster="images/app-hero.jpg" class="hero__video">
       </video>
     </div>
 
@@ -90,6 +215,32 @@
     <div class="hero__content">
       <span class="hero__eyebrow anim-fade-up" style="--delay:0.3s">the quantasana app</span>
       <h1 class="hero__headline anim-fade-up" style="--delay:0.5s">YOUR NERVOUS SYSTEM, <em>MEASURED.</em></h1>
+
+      <div class="hero-phone">
+        <div class="hero-phone-frame">
+          <div class="hero-phone-notch"></div>
+          <div class="hero-phone-screen">
+            <div class="hero-phone-header">
+              <span class="hero-phone-label">TODAY'S SESSION</span>
+              <span class="hero-phone-title">Deep Calm</span>
+            </div>
+            <div class="hero-phone-score">
+              <span class="hero-phone-number">87</span>
+              <span class="hero-phone-score-label">RESET SCORE</span>
+            </div>
+            <div class="hero-phone-metrics">
+              <div class="hero-phone-metric">
+                <span>HRV Response</span>
+                <span class="hero-metric-badge">+18%</span>
+              </div>
+              <div class="hero-phone-metric">
+                <span>Parasympathetic</span>
+                <span class="hero-metric-badge teal">Strong</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
