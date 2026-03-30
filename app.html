@@ -5,955 +5,172 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The App — QUANTASANA</title>
   <meta name="description" content="Track every session. Watch your HRV shift. See the science working in real time — from the first breath to the 96-hour response arc.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="The App — QUANTASANA">
+  <meta property="og:description" content="Track every session. Watch your HRV shift. See the science working in real time.">
+  <meta property="og:image" content="og-image.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css?v=16">
   <style>
-    /* ============================================
-       CSS VARIABLES
-       ============================================ */
-    :root {
-      --bg-deep: #0d0f0e;
-      --bg-card: #161a18;
-      --bg-card-hover: #1c211e;
-      --bg-elevated: #1e2422;
-      --text-primary: #e8e4df;
-      --text-secondary: #8a8780;
-      --text-muted: #5a5854;
-      --accent-teal: #4ecdc4;
-      --accent-warm: #c4956a;
-      --accent-green: #6bcb77;
-      --accent-red: #e07a5f;
-      --accent-purple: #9b8ec4;
-      --border: rgba(255,255,255,0.06);
-      --ease: cubic-bezier(0.16, 1, 0.3, 1);
-    }
+    /* ── App V2 page-specific overrides ── */
 
-    /* ============================================
-       RESET + BASE
-       ============================================ */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: var(--bg-deep);
-      color: var(--text-primary);
-      font-family: 'DM Sans', sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
+    /* Prompt 5: Hero dark treatment */
+    .hero__overlay {
+      background:
+        linear-gradient(180deg,
+          rgba(13, 15, 14, 0.6) 0%,
+          rgba(13, 15, 14, 0.3) 40%,
+          rgba(13, 15, 14, 0.3) 60%,
+          rgba(13, 15, 14, 0.85) 100%),
+        radial-gradient(ellipse at center, transparent 40%, rgba(13, 15, 14, 0.4) 100%) !important;
     }
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
-
-    /* ============================================
-       NOISE OVERLAY
-       ============================================ */
-    .noise-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.025;
-    }
-
-    /* ============================================
-       LAYOUT
-       ============================================ */
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 32px;
-    }
-
-    /* ============================================
-       SECTION LABELS
-       ============================================ */
-    .section-label {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-    }
-    .section-title {
-      font-family: 'Instrument Serif', serif;
-      font-weight: 400;
-      font-size: clamp(2rem, 4.5vw, 3.2rem);
-      line-height: 1.15;
-      color: var(--text-primary);
-      margin-bottom: 16px;
-    }
-    .section-title em {
-      font-family: 'Instrument Serif', serif;
+    .hero__headline em {
       font-style: italic;
-      color: var(--accent-teal);
-    }
-    .section-desc {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 1rem;
-      font-weight: 300;
-      line-height: 1.7;
-      color: var(--text-secondary);
-      max-width: 640px;
+      color: #4ecdc4;
     }
 
-    /* ============================================
-       DIVIDER
-       ============================================ */
-    .section-divider {
-      height: 1px;
-      max-width: 1100px;
-      margin: 0 auto;
-      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    /* Prompt 2: Science panel app-specific images */
+    .science-panel[data-pillar="breath"] {
+      background-image: url('images/app-session.jpg') !important;
+    }
+    .science-panel[data-pillar="sound"] {
+      background-image: url('images/app-recovery.jpg') !important;
+    }
+    .science-panel[data-pillar="vibration"] {
+      background-image: url('images/app-insights.jpg') !important;
     }
 
-    /* ============================================
-       SCROLL ANIMATIONS
-       ============================================ */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    /* Prompt 4: CTA background */
+    .final-cta {
+      background-image: url('images/app-cta.jpg') !important;
     }
 
-    /* ============================================
-       HERO
-       ============================================ */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-      padding: 80px 32px;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -200px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 900px;
-      height: 900px;
-      background: radial-gradient(circle, rgba(78, 205, 196, 0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: -100px;
-      right: -100px;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(196, 149, 106, 0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 780px;
-    }
-    .hero-label {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--text-muted);
-      margin-bottom: 24px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.8s var(--ease) 0.1s forwards;
-    }
-    .hero h1 {
-      font-family: 'Instrument Serif', serif;
-      font-weight: 400;
-      font-size: clamp(3rem, 8vw, 6.5rem);
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      color: var(--text-primary);
-      margin-bottom: 24px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.8s var(--ease) 0.25s forwards;
-    }
-    .hero h1 em {
-      font-style: italic;
-      color: var(--accent-teal);
-    }
-    .hero-sub {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 300;
-      line-height: 1.7;
-      color: var(--text-secondary);
-      max-width: 560px;
-      margin: 0 auto 40px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.8s var(--ease) 0.4s forwards;
-    }
-    .hero-ctas {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.8s var(--ease) 0.55s forwards;
-    }
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── Buttons ── */
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      padding: 14px 36px;
-      background: var(--accent-teal);
-      color: var(--bg-deep);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 600;
-      border-radius: 60px;
-      border: none;
-      cursor: pointer;
-      transition: transform 0.3s var(--ease), box-shadow 0.3s;
-      text-decoration: none;
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(78, 205, 196, 0.2);
-    }
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      padding: 14px 36px;
-      background: transparent;
-      color: var(--text-primary);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 500;
-      border-radius: 60px;
-      border: 1px solid var(--border);
-      cursor: pointer;
-      transition: transform 0.3s var(--ease), border-color 0.3s;
-      text-decoration: none;
-    }
-    .btn-ghost:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255,255,255,0.15);
-    }
-
-    /* ============================================
-       PHONE MOCKUPS
-       ============================================ */
-    .phones-section {
-      padding: 4rem 0 6rem;
-    }
-    .phones-row {
+    /* Prompt 1: Phone mockup in hero */
+    .hero-phone {
+      margin-top: 40px;
       display: flex;
       justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
+      animation: heroFloat 6s ease-in-out infinite;
     }
-    .phone-frame {
-      width: 260px;
-      background: var(--bg-card);
-      border-radius: 32px;
-      padding: 12px;
-      border: 1px solid var(--border);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-      transition: transform 0.5s var(--ease);
-      flex-shrink: 0;
+    @keyframes heroFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
     }
-    .phone-frame:nth-child(2),
-    .phone-frame:nth-child(4) {
-      margin-top: 2rem;
+    .hero-phone-frame {
+      width: 220px;
+      background: rgba(22, 26, 24, 0.9);
+      border-radius: 28px;
+      padding: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 40px rgba(78,205,196,0.08);
     }
-    .phone-frame:hover {
-      transform: translateY(-8px);
+    .hero-phone-notch {
+      width: 70px;
+      height: 18px;
+      background: rgba(22, 26, 24, 1);
+      border-radius: 10px;
+      margin: 0 auto 12px;
     }
-    .phone-screen {
-      background: var(--bg-deep);
-      border-radius: 22px;
+    .hero-phone-screen {
+      background: #0d0f0e;
+      border-radius: 20px;
       padding: 16px;
-      min-height: 460px;
-      position: relative;
     }
-    .phone-notch {
-      width: 80px;
-      height: 22px;
-      background: var(--bg-card);
-      border-radius: 12px;
-      margin: 0 auto 16px;
-    }
-    .phone-header-label {
+    .hero-phone-header { text-align: center; margin-bottom: 16px; }
+    .hero-phone-label {
+      display: block;
       font-size: 0.55rem;
-      font-weight: 500;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text-muted);
+      color: #5a5854;
       margin-bottom: 4px;
     }
-    .phone-header-title {
-      font-family: 'Instrument Serif', serif;
-      font-size: 1.15rem;
-      color: var(--text-primary);
-      margin-bottom: 16px;
+    .hero-phone-title {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: #e8e4df;
     }
-
-    /* Phone 1 — Session Dashboard */
-    .score-ring {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 4px solid rgba(255,255,255,0.06);
-      position: relative;
-      margin: 0 auto 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-    .score-ring::before {
-      content: '';
-      position: absolute;
-      inset: -4px;
-      border-radius: 50%;
-      border: 4px solid transparent;
-      border-top-color: var(--accent-teal);
-      border-right-color: var(--accent-teal);
-      border-bottom-color: var(--accent-teal);
-      transform: rotate(-45deg);
-    }
-    .score-ring .score-num {
-      font-family: 'Instrument Serif', serif;
-      font-size: 2.2rem;
-      color: var(--accent-teal);
+    .hero-phone-score { text-align: center; margin: 16px 0; }
+    .hero-phone-number {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      color: #4ecdc4;
       line-height: 1;
     }
-    .score-ring .score-label {
+    .hero-phone-score-label {
+      display: block;
       font-size: 0.5rem;
-      font-weight: 500;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-    .mini-card {
-      background: var(--bg-card);
-      border-radius: 10px;
-      padding: 10px 12px;
-      margin-bottom: 6px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border: 1px solid var(--border);
-    }
-    .mini-card-name {
-      font-size: 0.6rem;
-      font-weight: 400;
-      color: var(--text-secondary);
-    }
-    .mini-badge {
-      font-size: 0.55rem;
-      font-weight: 600;
-      padding: 2px 8px;
-      border-radius: 6px;
-    }
-    .mini-badge.green { background: rgba(107,203,119,0.12); color: var(--accent-green); }
-    .mini-badge.teal { background: rgba(78,205,196,0.12); color: var(--accent-teal); }
-    .mini-badge.warm { background: rgba(196,149,106,0.12); color: var(--accent-warm); }
-
-    /* Session arc bars */
-    .session-arc {
-      display: flex;
-      gap: 2px;
-      align-items: flex-end;
-      height: 20px;
-      margin-top: 6px;
-    }
-    .arc-bar {
-      width: 100%;
-      background: var(--accent-warm);
-      border-radius: 2px;
-      opacity: 0.7;
-    }
-
-    /* Phone 2 — Recovery Arc */
-    .metric-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .metric-row:last-of-type { border-bottom: none; }
-    .metric-label {
-      font-size: 0.55rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-    }
-    .metric-value {
-      font-family: 'Instrument Serif', serif;
-      font-size: 1rem;
-      color: var(--text-primary);
-      margin-right: 6px;
-    }
-    .metric-right {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .hrv-trend {
-      background: var(--bg-card);
-      border-radius: 10px;
-      padding: 12px;
-      margin-top: 12px;
-      border: 1px solid var(--border);
-    }
-    .hrv-trend-label {
-      font-size: 0.55rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-    .hrv-bars {
-      display: flex;
-      gap: 6px;
-      align-items: flex-end;
-      height: 50px;
-    }
-    .hrv-bar {
-      flex: 1;
-      background: var(--accent-teal);
-      border-radius: 3px;
-    }
-    .hrv-bar-labels {
-      display: flex;
-      justify-content: space-between;
+      color: #4ecdc4;
       margin-top: 4px;
     }
-    .hrv-bar-labels span {
-      font-size: 0.45rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-    .post-session-card {
-      background: var(--bg-card);
-      border-radius: 10px;
-      padding: 12px;
-      margin-top: 8px;
-      border: 1px solid var(--border);
-    }
-    .post-session-card p {
-      font-size: 0.6rem;
-      line-height: 1.5;
-      color: var(--text-secondary);
-    }
-
-    /* Phone 3 — Session Library */
-    .lib-card {
-      background: var(--bg-card);
-      border-radius: 8px;
-      padding: 10px 12px;
-      margin-bottom: 6px;
-      border: 1px solid var(--border);
-      border-left: 2px solid var(--accent-teal);
-    }
-    .lib-card-top {
+    .hero-phone-metrics { display: flex; flex-direction: column; gap: 8px; }
+    .hero-phone-metric {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 3px;
-    }
-    .lib-card-name {
-      font-family: 'DM Sans', sans-serif;
+      padding: 8px 10px;
+      background: rgba(22, 26, 24, 0.8);
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.04);
       font-size: 0.65rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+      color: #8a8780;
     }
-    .lib-badge {
-      font-size: 0.45rem;
-      font-weight: 600;
-      padding: 2px 6px;
-      border-radius: 4px;
-      background: rgba(78,205,196,0.12);
-      color: var(--accent-teal);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-    .lib-card-sub {
-      font-size: 0.5rem;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-    .lib-durations {
-      display: flex;
-      gap: 4px;
-    }
-    .lib-dur {
-      font-size: 0.45rem;
-      font-weight: 500;
-      padding: 2px 6px;
-      border-radius: 4px;
-      background: rgba(255,255,255,0.04);
-      color: var(--text-muted);
-    }
-
-    /* Phone 4 — Insights */
-    .insight-card {
-      background: var(--bg-card);
-      border-radius: 10px;
-      padding: 14px;
-      margin-bottom: 8px;
-      border: 1px solid var(--border);
-    }
-    .insight-big {
-      font-family: 'Instrument Serif', serif;
-      font-size: 0.9rem;
-      line-height: 1.4;
-      color: var(--text-primary);
-      margin-bottom: 6px;
-    }
-    .insight-sub {
-      font-size: 0.52rem;
-      color: var(--text-muted);
-      line-height: 1.4;
-    }
-    .insight-stat {
-      font-family: 'Instrument Serif', serif;
-      font-size: 1.5rem;
-      color: var(--accent-warm);
-      line-height: 1;
-    }
-    .insight-stat-lg {
-      font-family: 'Instrument Serif', serif;
-      font-size: 1.8rem;
-      color: var(--accent-warm);
-    }
-    .progress-bar {
-      height: 4px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 2px;
-      margin: 8px 0 4px;
-      overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%;
-      background: var(--accent-teal);
-      border-radius: 2px;
-      width: 70%;
-    }
-
-    /* ============================================
-       THREE-PHASE PROTOCOL
-       ============================================ */
-    .protocol-section {
-      padding: 6rem 0;
-    }
-    .protocol-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1.2rem;
-      margin-top: 48px;
-    }
-    .protocol-card {
-      background: var(--bg-card);
-      border-radius: 20px;
-      padding: 2rem;
-      border: 1px solid var(--border);
-      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
-      position: relative;
-      overflow: hidden;
-    }
-    .protocol-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-    }
-    .protocol-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-    }
-    .protocol-card.teal::before { background: linear-gradient(90deg, var(--accent-teal), transparent); }
-    .protocol-card.warm::before { background: linear-gradient(90deg, var(--accent-warm), transparent); }
-    .protocol-card.green::before { background: linear-gradient(90deg, var(--accent-green), transparent); }
-    .protocol-phase {
-      font-size: 0.6rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-    .protocol-name {
-      font-family: 'Instrument Serif', serif;
-      font-size: 1.6rem;
-      color: var(--text-primary);
-      margin-bottom: 12px;
-    }
-    .protocol-body {
-      font-size: 0.82rem;
-      font-weight: 300;
-      line-height: 1.65;
-      color: var(--text-secondary);
-      margin-bottom: 16px;
-    }
-    .protocol-timing {
-      font-size: 0.6rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding-top: 12px;
-      border-top: 1px solid var(--border);
-    }
-
-    /* ============================================
-       SCIENCE SECTION
-       ============================================ */
-    .science-section {
-      padding: 6rem 0;
-      position: relative;
-    }
-    .science-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, var(--bg-deep), #0a0e0c 50%, var(--bg-deep));
-      z-index: -1;
-    }
-    .science-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-      margin-top: 48px;
-    }
-    .science-card {
-      background: var(--bg-card);
-      border-radius: 20px;
-      padding: 2rem;
-      border: 1px solid var(--border);
-      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
-    }
-    .science-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-    }
-    .science-stat {
-      font-family: 'Instrument Serif', serif;
-      font-size: 2.8rem;
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-    .science-stat.teal { color: var(--accent-teal); }
-    .science-stat.warm { color: var(--accent-warm); }
-    .science-stat.green { color: var(--accent-green); }
-    .science-stat.purple { color: var(--accent-purple); }
-    .science-card-title {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 8px;
-    }
-    .science-card-body {
-      font-size: 0.82rem;
-      font-weight: 300;
-      line-height: 1.65;
-      color: var(--text-secondary);
-      margin-bottom: 12px;
-    }
-    .science-source {
-      font-size: 0.6rem;
-      color: var(--text-muted);
-      font-style: italic;
-      line-height: 1.4;
-    }
-
-    /* ============================================
-       SESSION LIBRARY
-       ============================================ */
-    .library-section {
-      padding: 6rem 0;
-    }
-    .library-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1rem;
-      margin-top: 48px;
-    }
-    .library-card {
-      background: var(--bg-card);
-      border-radius: 18px;
-      padding: 1.5rem;
-      border: 1px solid var(--border);
-      text-align: center;
-      transition: transform 0.4s var(--ease), border-color 0.4s, box-shadow 0.4s var(--ease);
-    }
-    .library-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent-teal);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-    }
-    .library-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      margin: 0 auto 14px;
-    }
-    .library-icon.teal { background: rgba(78,205,196,0.12); }
-    .library-icon.warm { background: rgba(196,149,106,0.12); }
-    .library-icon.green { background: rgba(107,203,119,0.12); }
-    .library-icon.purple { background: rgba(155,142,196,0.12); }
-    .library-icon.red { background: rgba(224,122,95,0.12); }
-    .library-card-name {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 6px;
-    }
-    .library-card-desc {
-      font-size: 0.72rem;
-      font-weight: 300;
-      line-height: 1.5;
-      color: var(--text-secondary);
-      margin-bottom: 12px;
-    }
-    .library-durs {
-      display: flex;
-      gap: 4px;
-      justify-content: center;
-    }
-    .library-dur {
+    .hero-metric-badge {
       font-size: 0.55rem;
-      font-weight: 500;
-      padding: 3px 8px;
-      border-radius: 6px;
-      background: rgba(255,255,255,0.04);
-      color: var(--text-muted);
-    }
-
-    /* ============================================
-       FOUR MODALITIES
-       ============================================ */
-    .modalities-section {
-      padding: 6rem 0;
-    }
-    .modalities-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.2rem;
-      margin-top: 48px;
-    }
-    .modality-card {
-      background: var(--bg-card);
-      border-radius: 20px;
-      padding: 2rem;
-      border: 1px solid var(--border);
-      text-align: center;
-      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
-    }
-    .modality-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-    }
-    .modality-icon {
-      font-size: 2rem;
-      margin-bottom: 16px;
-    }
-    .modality-name {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.85rem;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: rgba(107,203,119,0.15);
+      color: #6bcb77;
       font-weight: 600;
-      color: var(--text-primary);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 10px;
     }
-    .modality-body {
-      font-size: 0.78rem;
-      font-weight: 300;
-      line-height: 1.6;
-      color: var(--text-secondary);
-      margin-bottom: 16px;
+    .hero-metric-badge.teal {
+      background: rgba(78,205,196,0.15);
+      color: #4ecdc4;
     }
-    .modality-freq {
-      font-size: 0.6rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding-top: 12px;
-      border-top: 1px solid var(--border);
-    }
-
-    /* ============================================
-       WEARABLE INTEGRATION
-       ============================================ */
-    .wearable-section {
-      background: var(--bg-card);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 4rem 0;
-    }
-    .wearable-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
-    .wearable-text h3 {
-      font-family: 'Instrument Serif', serif;
-      font-size: 1.8rem;
-      color: var(--text-primary);
-      margin-bottom: 8px;
-    }
-    .wearable-text p {
-      font-size: 0.85rem;
-      font-weight: 300;
-      color: var(--text-secondary);
-      max-width: 400px;
-      line-height: 1.6;
-    }
-    .wearable-devices {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .wearable-tag {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 16px;
-      background: var(--bg-elevated);
-      border-radius: 60px;
-      border: 1px solid var(--border);
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-    }
-    .wearable-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-    }
-    .wearable-dot.teal { background: var(--accent-teal); }
-    .wearable-dot.red { background: var(--accent-red); }
-    .wearable-dot.green { background: var(--accent-green); }
-    .wearable-dot.warm { background: var(--accent-warm); }
-    .wearable-dot.purple { background: var(--accent-purple); }
-
-    /* ============================================
-       CTA SECTION
-       ============================================ */
-    .cta-section {
-      padding: 8rem 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      bottom: -200px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 900px;
-      height: 900px;
-      background: radial-gradient(circle, rgba(78, 205, 196, 0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .cta-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .cta-inner .section-desc {
-      margin: 0 auto 40px;
-    }
-
-    /* ============================================
-       RESPONSIVE
-       ============================================ */
-    @media (max-width: 900px) {
-      .protocol-grid { grid-template-columns: 1fr; }
-      .science-grid { grid-template-columns: 1fr; }
-      .library-grid { grid-template-columns: 1fr 1fr; }
-      .modalities-grid { grid-template-columns: 1fr 1fr; }
-      .phone-frame:nth-child(3),
-      .phone-frame:nth-child(4) { display: none; }
-    }
-    @media (max-width: 600px) {
-      .library-grid { grid-template-columns: 1fr; }
-      .modalities-grid { grid-template-columns: 1fr; }
-      .wearable-inner {
-        flex-direction: column;
-        text-align: center;
-      }
-      .wearable-text p { max-width: 100%; }
-      .wearable-devices { justify-content: center; }
-      .container { padding: 0 20px; }
-      .phones-row { gap: 12px; }
-      .phone-frame { width: 220px; }
+    @media (max-width: 768px) {
+      .hero-phone-frame { width: 180px; }
+      .hero-phone-number { font-size: 2.2rem; }
     }
   </style>
 </head>
 <body>
-
-  <!-- Noise texture overlay -->
-  <div class="noise-overlay">
-    <svg width="100%" height="100%"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#noise)"/></svg>
-  </div>
 
   <!-- ============================================
        NAVIGATION
        ============================================ -->
   <nav class="nav" id="nav">
     <div class="nav__inner">
-      <a href="index.html" class="nav__logo" aria-label="QUANTASANA home">
+      <!-- Logo Mark -->
+      <a href="#" class="nav__logo" aria-label="QUANTASANA home">
         <img src="logo.png" class="nav__logo.png" alt="QUANTASANA" aria-hidden="true">
       </a>
+
+      <!-- Right side: flyout + hamburger + ORDER -->
       <div class="nav__right">
+        <!-- Desktop flyout (slides left from hamburger) -->
         <div class="nav__flyout" id="navFlyout" aria-hidden="true">
-          <a href="index.html#science" class="nav__flyout-link" style="--i:0"><span>Science</span></a>
-          <a href="index.html#system" class="nav__flyout-link" style="--i:1"><span>Experience</span></a>
-          <a href="index.html#community" class="nav__flyout-link" style="--i:2"><span>Community</span></a>
+          <a href="#science" class="nav__flyout-link" style="--i:0"><span>Science</span></a>
+          <a href="#system" class="nav__flyout-link" style="--i:1"><span>Experience</span></a>
+          <a href="#community" class="nav__flyout-link" style="--i:2"><span>Community</span></a>
           <a href="in-person.html" class="nav__flyout-link" style="--i:3"><span>In Person</span></a>
           <a href="app.html" class="nav__flyout-link" style="--i:4"><span>App</span></a>
         </div>
+
+        <!-- Pill toggle: hamburger + ORDER + mobile dropdown -->
         <div class="nav__pill" id="navPill">
           <div class="nav__actions">
             <button class="nav__hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -965,10 +182,11 @@
             </button>
             <a href="order.html" class="nav__order-btn">Order</a>
           </div>
+          <!-- Mobile accordion dropdown (unfolds below pill) -->
           <div class="nav__dropdown" id="navDropdown">
-            <a href="index.html#science" class="nav__dropdown-link" style="--i:0">Science</a>
-            <a href="index.html#system" class="nav__dropdown-link" style="--i:1">Experience</a>
-            <a href="index.html#community" class="nav__dropdown-link" style="--i:2">Community</a>
+            <a href="#science" class="nav__dropdown-link" style="--i:0">Science</a>
+            <a href="#system" class="nav__dropdown-link" style="--i:1">Experience</a>
+            <a href="#community" class="nav__dropdown-link" style="--i:2">Community</a>
             <a href="in-person.html" class="nav__dropdown-link" style="--i:3">In Person</a>
             <a href="app.html" class="nav__dropdown-link" style="--i:4">App</a>
           </div>
@@ -977,401 +195,369 @@
     </div>
   </nav>
 
+  <!-- Menu overlay (dark blur behind menu card) -->
+  <div class="nav__overlay" id="navOverlay"></div>
+
   <!-- ============================================
-       HERO
+       SECTION 1: HERO — "The Portal"
        ============================================ -->
-  <section class="hero">
-    <div class="hero-inner">
-      <p class="hero-label">The QUANTASANA App</p>
-      <h1>Your nervous system, <em>measured.</em></h1>
-      <p class="hero-sub">Track every session. Watch your HRV shift. See the science working in real time — from the first breath to the 96-hour response arc.</p>
-      <div class="hero-ctas">
-        <a href="#cta" class="btn-primary">Join the Waitlist</a>
-        <a href="#science" class="btn-ghost">See the Science</a>
-      </div>
+  <section class="section hero" id="hero">
+    <!-- Background video: single autoplay, freezes on last frame -->
+    <div class="hero__bg">
+      <video id="heroVideo" autoplay muted playsinline poster="images/app-hero.jpg" class="hero__video">
+      </video>
     </div>
-  </section>
 
-  <!-- ============================================
-       PHONE MOCKUPS
-       ============================================ -->
-  <section class="phones-section reveal">
-    <div class="phones-row">
+    <!-- Gradient overlays -->
+    <div class="hero__overlay"></div>
 
-      <!-- Phone 1 — Session Dashboard -->
-      <div class="phone-frame">
-        <div class="phone-screen">
-          <div class="phone-notch"></div>
-          <p class="phone-header-label">Today's Session</p>
-          <p class="phone-header-title">Deep Calm</p>
-          <div class="score-ring">
-            <span class="score-num">87</span>
-            <span class="score-label">Reset Score</span>
-          </div>
-          <div class="mini-card">
-            <span class="mini-card-name">HRV Response</span>
-            <span class="mini-badge green">+18%</span>
-          </div>
-          <div class="mini-card">
-            <span class="mini-card-name">Parasympathetic Shift</span>
-            <span class="mini-badge teal">Strong</span>
-          </div>
-          <div class="mini-card">
-            <span class="mini-card-name">Session Duration</span>
-            <span class="mini-badge warm">20 min</span>
-          </div>
-          <div class="session-arc">
-            <div class="arc-bar" style="height:20%"></div>
-            <div class="arc-bar" style="height:30%"></div>
-            <div class="arc-bar" style="height:45%"></div>
-            <div class="arc-bar" style="height:60%"></div>
-            <div class="arc-bar" style="height:80%"></div>
-            <div class="arc-bar" style="height:95%"></div>
-            <div class="arc-bar" style="height:100%"></div>
-            <div class="arc-bar" style="height:95%"></div>
-            <div class="arc-bar" style="height:85%"></div>
-            <div class="arc-bar" style="height:70%"></div>
-            <div class="arc-bar" style="height:55%"></div>
-            <div class="arc-bar" style="height:40%"></div>
-            <div class="arc-bar" style="height:30%"></div>
-            <div class="arc-bar" style="height:22%"></div>
-            <div class="arc-bar" style="height:18%"></div>
-          </div>
-        </div>
-      </div>
+    <!-- Content -->
+    <div class="hero__content">
+      <span class="hero__eyebrow anim-fade-up" style="--delay:0.3s">the quantasana app</span>
+      <h1 class="hero__headline anim-fade-up" style="--delay:0.5s">YOUR NERVOUS SYSTEM, <em>MEASURED.</em></h1>
 
-      <!-- Phone 2 — Recovery Arc -->
-      <div class="phone-frame">
-        <div class="phone-screen">
-          <div class="phone-notch"></div>
-          <p class="phone-header-label">Vitals</p>
-          <p class="phone-header-title">Recovery Arc</p>
-          <div class="metric-row">
-            <span class="metric-label">RMSSD (HRV)</span>
-            <div class="metric-right">
-              <span class="metric-value">62 ms</span>
-              <span class="mini-badge green">+14%</span>
+      <div class="hero-phone">
+        <div class="hero-phone-frame">
+          <div class="hero-phone-notch"></div>
+          <div class="hero-phone-screen">
+            <div class="hero-phone-header">
+              <span class="hero-phone-label">TODAY'S SESSION</span>
+              <span class="hero-phone-title">Deep Calm</span>
+            </div>
+            <div class="hero-phone-score">
+              <span class="hero-phone-number">87</span>
+              <span class="hero-phone-score-label">RESET SCORE</span>
+            </div>
+            <div class="hero-phone-metrics">
+              <div class="hero-phone-metric">
+                <span>HRV Response</span>
+                <span class="hero-metric-badge">+18%</span>
+              </div>
+              <div class="hero-phone-metric">
+                <span>Parasympathetic</span>
+                <span class="hero-metric-badge teal">Strong</span>
+              </div>
             </div>
           </div>
-          <div class="metric-row">
-            <span class="metric-label">Resting HR</span>
-            <div class="metric-right">
-              <span class="metric-value">58 bpm</span>
-              <span class="mini-badge teal">Optimal</span>
-            </div>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Sleep Score</span>
-            <div class="metric-right">
-              <span class="metric-value">84</span>
-              <span class="mini-badge green">Good</span>
-            </div>
-          </div>
-          <div class="hrv-trend">
-            <p class="hrv-trend-label">7-Day HRV Trend</p>
-            <div class="hrv-bars">
-              <div class="hrv-bar" style="height:40%;opacity:0.4"></div>
-              <div class="hrv-bar" style="height:48%;opacity:0.5"></div>
-              <div class="hrv-bar" style="height:55%;opacity:0.6"></div>
-              <div class="hrv-bar" style="height:60%;opacity:0.7"></div>
-              <div class="hrv-bar" style="height:70%;opacity:0.8"></div>
-              <div class="hrv-bar" style="height:80%;opacity:0.9"></div>
-              <div class="hrv-bar" style="height:92%;opacity:1"></div>
-            </div>
-            <div class="hrv-bar-labels">
-              <span>Mon</span>
-              <span>Today</span>
-            </div>
-          </div>
-          <div class="post-session-card">
-            <p>Hour 6 of recovery arc. Cortisol clearing. Next optimal session window: tomorrow AM.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Phone 3 — Session Library -->
-      <div class="phone-frame">
-        <div class="phone-screen">
-          <div class="phone-notch"></div>
-          <p class="phone-header-label">Session Library</p>
-          <p class="phone-header-title">Choose Your Protocol</p>
-          <div class="lib-card" style="border-left-color:var(--accent-teal)">
-            <div class="lib-card-top">
-              <span class="lib-card-name">Calm</span>
-              <span class="lib-badge">Popular</span>
-            </div>
-            <p class="lib-card-sub">Anxiety relief · Extended exhale</p>
-            <div class="lib-durations"><span class="lib-dur">10</span><span class="lib-dur">20</span><span class="lib-dur">30</span></div>
-          </div>
-          <div class="lib-card" style="border-left-color:var(--accent-warm)">
-            <div class="lib-card-top">
-              <span class="lib-card-name">Focus</span>
-              <span class="lib-badge" style="background:rgba(196,149,106,0.12);color:var(--accent-warm)">40 Hz γ</span>
-            </div>
-            <p class="lib-card-sub">Cognitive clarity · Gamma entrainment</p>
-            <div class="lib-durations"><span class="lib-dur">10</span><span class="lib-dur">20</span><span class="lib-dur">30</span></div>
-          </div>
-          <div class="lib-card" style="border-left-color:var(--accent-green)">
-            <div class="lib-card-top">
-              <span class="lib-card-name">Recover</span>
-            </div>
-            <p class="lib-card-sub">Physical recovery · Therapeutic vibration</p>
-            <div class="lib-durations"><span class="lib-dur">10</span><span class="lib-dur">20</span><span class="lib-dur">30</span></div>
-          </div>
-          <div class="lib-card" style="border-left-color:var(--accent-purple)">
-            <div class="lib-card-top">
-              <span class="lib-card-name">Sleep</span>
-            </div>
-            <p class="lib-card-sub">Pre-sleep wind-down · Delta drift</p>
-            <div class="lib-durations"><span class="lib-dur">10</span><span class="lib-dur">20</span><span class="lib-dur">30</span></div>
-          </div>
-          <div class="lib-card" style="border-left-color:var(--accent-red)">
-            <div class="lib-card-top">
-              <span class="lib-card-name">Renew</span>
-            </div>
-            <p class="lib-card-sub">Emotional processing · Wave release</p>
-            <div class="lib-durations"><span class="lib-dur">20</span><span class="lib-dur">30</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Phone 4 — Insights -->
-      <div class="phone-frame">
-        <div class="phone-screen">
-          <div class="phone-notch"></div>
-          <p class="phone-header-label">Insights</p>
-          <p class="phone-header-title">Your Pattern</p>
-          <div class="insight-card">
-            <p class="insight-big">Your vagal tone has increased 23% over 14 sessions.</p>
-            <p class="insight-sub">Consistent morning sessions show the strongest parasympathetic response. Keep this rhythm.</p>
-          </div>
-          <div class="insight-card">
-            <p class="mini-card-name" style="margin-bottom:6px">Sessions This Month</p>
-            <span class="insight-stat">14</span>
-            <div class="progress-bar"><div class="progress-fill"></div></div>
-            <p class="insight-sub">14 of 20 goal sessions</p>
-          </div>
-          <div class="insight-card">
-            <p class="mini-card-name" style="margin-bottom:6px">Best Time for You</p>
-            <span class="insight-stat-lg">7:15 AM</span>
-            <p class="insight-sub" style="margin-top:6px">Morning sessions yield 31% higher HRV response for your profile.</p>
-          </div>
-          <div class="insight-card">
-            <p class="mini-card-name" style="margin-bottom:4px">Streak</p>
-            <span class="insight-stat">🔥 7 days</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <!-- ============================================
-       THREE-PHASE PROTOCOL
-       ============================================ -->
-  <section class="protocol-section">
-    <div class="container reveal">
-      <p class="section-label">The Three-Phase Arc</p>
-      <h2 class="section-title">Every session follows your body's <em>neurological sequence.</em></h2>
-      <p class="section-desc">Not random relaxation. A calibrated protocol that moves through three distinct phases — timed to your nervous system's natural response curve.</p>
-      <div class="protocol-grid">
-        <div class="protocol-card teal">
-          <p class="protocol-phase">Phase 01</p>
-          <h3 class="protocol-name">Arrival</h3>
-          <p class="protocol-body">Breath slows to 6 cycles per minute — the resonance frequency where heart rate variability naturally peaks. The nervous system begins its downshift from sympathetic overdrive.</p>
-          <p class="protocol-timing">~25% of session · Nervous system downshift</p>
-        </div>
-        <div class="protocol-card warm">
-          <p class="protocol-phase">Phase 02</p>
-          <h3 class="protocol-name">Immersion</h3>
-          <p class="protocol-body">40 Hz gamma entrainment activates. Precision vibroacoustic frequencies delivered through transducers at 40, 52, 68, and 86 Hz. The brain enters its peak therapeutic window.</p>
-          <p class="protocol-timing">~50% of session · Peak therapeutic window</p>
-        </div>
-        <div class="protocol-card green">
-          <p class="protocol-phase">Phase 03</p>
-          <h3 class="protocol-name">Integration</h3>
-          <p class="protocol-body">Gradual return. Frequencies ease. Breath cues lengthen. The cognitive system re-engages while the parasympathetic gains lock into your baseline. The reset holds.</p>
-          <p class="protocol-timing">~25% of session · The reset locks in</p>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="section-divider"></div>
 
   <!-- ============================================
-       SCIENCE SECTION
+       TRANSITION 1: Recalibration
        ============================================ -->
-  <section class="science-section" id="science">
-    <div class="container reveal">
-      <p class="section-label">The Science</p>
-      <h2 class="section-title">Built on real physiology, not <em>wellness vibe.</em></h2>
-      <p class="section-desc">Every design decision in the QUANTASANA protocol is informed by established research in HRV biofeedback, vibroacoustic therapy, and gamma brainwave entrainment.</p>
-      <div class="science-grid">
-        <div class="science-card">
-          <p class="science-stat teal">6</p>
-          <h3 class="science-card-title">Breaths per minute</h3>
-          <p class="science-card-body">The resonance frequency for maximum heart rate variability. At ~0.1 Hz, baroreflex sensitivity peaks and the autonomic nervous system achieves coherence between cardiac, respiratory, and vascular rhythms.</p>
-          <p class="science-source">Lehrer et al., Applied Psychophysiology &amp; Biofeedback</p>
-        </div>
-        <div class="science-card">
-          <p class="science-stat warm">40 Hz</p>
-          <h3 class="science-card-title">Gamma entrainment frequency</h3>
-          <p class="science-card-body">Non-invasive 40 Hz sensory stimulation activates microglia to clear amyloid plaques, enhances gamma oscillation power, and improves cognitive function across multiple cortical regions.</p>
-          <p class="science-source">Tsai Lab, MIT Picower Institute · Nature, Cell, Neuron</p>
-        </div>
-        <div class="science-card">
-          <p class="science-stat green">76%</p>
-          <h3 class="science-card-title">Reduction in cognitive decline</h3>
-          <p class="science-card-body">In the Phase 2 OVERTURE clinical trial, daily 40 Hz multi-sensory stimulation showed a 76% reduction in cognitive decline compared to sham control over 6 months in mild-to-moderate Alzheimer's patients.</p>
-          <p class="science-source">OVERTURE Trial · Frontiers in Neurology 2024</p>
-        </div>
-        <div class="science-card">
-          <p class="science-stat purple">30–120 Hz</p>
-          <h3 class="science-card-title">Vibroacoustic therapy range</h3>
-          <p class="science-card-body">Pacinian corpuscles and mechanoreceptors respond optimally in the 30–120 Hz range. Whole-body vibration at these frequencies reduces cortisol, increases blood flow, and activates deep tissue parasympathetic pathways.</p>
-          <p class="science-source">Skille (1989) · Sensors 2024 · FDA Class I 21 CFR 890.5975</p>
-        </div>
+  <div class="transition-wrapper" id="transition-1">
+    <div class="transition-section">
+      <div class="transition-text" data-line="0">
+        A session isn't something you listen to.
       </div>
+      <div class="transition-text" data-line="1">
+        It's something your body moves through.
+      </div>
+      <div class="transition-text" data-line="2">
+        The app is how you see what changed.
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================
+       SECTION 3: SCIENCE — Scroll-Driven Three Panels
+       ============================================ -->
+  <div class="science-wrapper">
+    <section id="science">
+      <div class="science-panels">
+
+        <!-- BREATH -->
+        <div class="science-panel active" data-pillar="breath">
+          <div class="panel-content">
+            <h2 class="panel-title">SESSION</h2>
+            <p class="panel-desc">Real-time biometric capture during every protocol.</p>
+            <div class="stat-cards">
+              <div class="stat-card">
+                <div class="stat-number">87</div>
+                <div class="stat-label">RESET SCORE</div>
+                <p class="stat-body">A composite of HRV response, parasympathetic shift, and session completion. Calculated the moment you finish.</p>
+                <div class="stat-source">Proprietary algorithm</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">+18%</div>
+                <div class="stat-label">HRV RESPONSE</div>
+                <p class="stat-body">Average heart rate variability improvement measured across the session via connected wearable.</p>
+                <div class="stat-source">RMSSD metric, validated against Polar H10</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">PHASE ARC</div>
+                <p class="stat-body">Every session maps your progression through Arrival, Immersion, and Integration — the three-phase neurological sequence.</p>
+                <div class="stat-source">Protocol framework</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SOUND -->
+        <div class="science-panel" data-pillar="sound">
+          <div class="panel-content">
+            <h2 class="panel-title">RECOVERY</h2>
+            <p class="panel-desc">Your 96-hour post-session response, tracked.</p>
+            <div class="stat-cards">
+              <div class="stat-card">
+                <div class="stat-number">96h</div>
+                <div class="stat-label">RESPONSE ARC</div>
+                <p class="stat-body">The app tracks your nervous system for 96 hours after each session — cortisol clearance, HRV rebound, sleep quality, and next-session timing.</p>
+                <div class="stat-source">Post-session monitoring</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">62ms</div>
+                <div class="stat-label">RMSSD BASELINE</div>
+                <p class="stat-body">Your running vagal tone metric. Watch it climb over weeks as your parasympathetic floor rises with consistent practice.</p>
+                <div class="stat-source">Oura Ring + Polar H10 validated</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">7:15 AM</div>
+                <div class="stat-label">OPTIMAL WINDOW</div>
+                <p class="stat-body">The app learns when your body responds best. Morning sessions yield 31% higher HRV response for most profiles.</p>
+                <div class="stat-source">Personalized insight engine</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIBRATION -->
+        <div class="science-panel" data-pillar="vibration">
+          <div class="panel-content">
+            <h2 class="panel-title">INSIGHTS</h2>
+            <p class="panel-desc">Your nervous system has a pattern. The app finds it.</p>
+            <div class="stat-cards">
+              <div class="stat-card">
+                <div class="stat-number">23%</div>
+                <div class="stat-label">VAGAL TONE INCREASE</div>
+                <p class="stat-body">Average improvement in parasympathetic baseline after 14 sessions. Your resting nervous system state gets measurably calmer.</p>
+                <div class="stat-source">14-session longitudinal data</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">14</div>
+                <div class="stat-label">SESSIONS THIS MONTH</div>
+                <p class="stat-body">Track your consistency. The app sets goals, counts streaks, and shows you exactly how practice correlates with results.</p>
+                <div class="stat-source">Habit tracking</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">5</div>
+                <div class="stat-label">SESSION TYPES</div>
+                <p class="stat-body">CALM for anxiety. FOCUS for gamma entrainment. RECOVER for pain. SLEEP for wind-down. RENEW for emotional processing.</p>
+                <div class="stat-source">Protocol library</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div><!-- /.science-wrapper -->
+
+
+  <!-- ============================================
+       TRANSITION 2: The Signal
+       ============================================ -->
+  <div class="transition-wrapper" id="transition-2">
+    <div class="transition-section">
+      <div class="transition-text" data-line="0">
+        Not a playlist. A prescription.
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================
+       SECTION 4: "The System" (Pebble-Style Product Showcase)
+       ============================================ -->
+  <div class="system-wrapper">
+    <section id="system" class="system-section">
+      <div class="system-layout">
+
+        <!-- Left column -->
+        <div class="system-left">
+
+          <!-- Tab content panels (stacked, only active one visible) -->
+          <div class="system-tab-content active" data-tab="0">
+            <div class="system-content-center">
+              <div class="system-divider"><span>+</span></div>
+              <h2 class="system-title">PROTOCOL</h2>
+              <div class="system-divider"><span>+</span></div>
+              <p class="system-desc">Every session follows a three-phase arc — Arrival, Immersion, Integration — calibrated to your nervous system’s natural response curve. The app sequences breath pacing, sound frequencies, vibration intensity, and light timing across all three phases. Twenty minutes, precisely structured.</p>
+              <p class="system-subtext">The conductor behind the experience.</p>
+              <div class="system-divider"><span>+</span></div>
+            </div>
+            <img src="images/app-tab-protocol.jpg" class="system-mobile-img" alt="Protocol">
+          </div>
+
+          <div class="system-tab-content" data-tab="1">
+            <div class="system-content-center">
+              <div class="system-divider"><span>+</span></div>
+              <h2 class="system-title">LIBRARY</h2>
+              <div class="system-divider"><span>+</span></div>
+              <p class="system-desc">Five session types, three durations each. CALM quiets the sympathetic drive with extended exhale breathing. FOCUS activates 40 Hz gamma entrainment. RECOVER sweeps therapeutic vibration through 35–86 Hz. SLEEP drifts you toward delta. RENEW moves through emotional processing waves. Choose your reset.</p>
+              <p class="system-subtext">Fifteen protocols. One three-phase arc.</p>
+              <div class="system-divider"><span>+</span></div>
+            </div>
+            <img src="images/app-tab-library.jpg" class="system-mobile-img" alt="Library">
+          </div>
+
+          <div class="system-tab-content" data-tab="2">
+            <div class="system-content-center">
+              <div class="system-divider"><span>+</span></div>
+              <h2 class="system-title">BIOMETRICS</h2>
+              <div class="system-divider"><span>+</span></div>
+              <p class="system-desc">The app connects to Oura Ring, Polar H10, Apple Watch, WHOOP, and Garmin via the Terra API. Before and after every session, your RMSSD, resting heart rate, and sleep data flow in automatically. The app maps your 96-hour recovery arc and tells you when your next session window opens.</p>
+              <p class="system-subtext">Your nervous system, quantified.</p>
+              <div class="system-divider"><span>+</span></div>
+            </div>
+            <img src="images/app-tab-biometrics.jpg" class="system-mobile-img" alt="Biometrics">
+          </div>
+
+          <div class="system-tab-content" data-tab="3">
+            <div class="system-content-center">
+              <div class="system-divider"><span>+</span></div>
+              <h2 class="system-title">INSIGHTS</h2>
+              <div class="system-divider"><span>+</span></div>
+              <p class="system-desc">After 14 sessions, your pattern emerges. The app identifies your optimal session time, tracks your vagal tone trend over weeks, correlates session types with HRV response, and adapts recommendations to your specific nervous system. It gets smarter the more you use it.</p>
+              <p class="system-subtext">The practice adapts to you.</p>
+              <div class="system-divider"><span>+</span></div>
+            </div>
+            <img src="images/app-tab-insights.jpg" class="system-mobile-img" alt="Insights">
+          </div>
+
+          <div class="system-tab-content" data-tab="4">
+            <div class="system-content-center">
+              <div class="system-divider"><span>+</span></div>
+              <h2 class="system-title">MODALITIES</h2>
+              <div class="system-divider"><span>+</span></div>
+              <p class="system-desc">Four channels, synchronized in real time. Breath pacing via haptic cues. Binaural beats and 40 Hz gamma click trains through headphones. Vibroacoustic vibration through four independent chair zones at 40, 52, 68, and 86 Hz. Overhead 40 Hz flickering warm white light via the canopy. The app controls all four simultaneously.</p>
+              <p class="system-subtext">Light. Sound. Vibration. Breath.</p>
+              <div class="system-divider"><span>+</span></div>
+            </div>
+            <img src="images/app-tab-modalities.jpg" class="system-mobile-img" alt="Modalities">
+          </div>
+
+          <div class="system-tab-content" data-tab="5">
+            <div class="system-content-center">
+              <div class="system-divider"><span>+</span></div>
+              <h2 class="system-title">COMMUNITY</h2>
+              <div class="system-divider"><span>+</span></div>
+              <p class="system-desc">Track your sessions alongside other practitioners. Share your streak. Watch your collective data contribute to a growing protocol that gets refined with every session across the network. This isn’t a solo practice — it’s a connected one.</p>
+              <p class="system-subtext">A growing protocol.</p>
+              <div class="system-divider"><span>+</span></div>
+            </div>
+            <img src="images/app-tab-community.jpg" class="system-mobile-img" alt="Community">
+          </div>
+
+          <!-- Tab navigation -->
+          <nav class="system-tabs">
+            <button class="system-tab active" data-index="0">1. PROTOCOL</button>
+            <button class="system-tab" data-index="1">2. LIBRARY</button>
+            <button class="system-tab" data-index="2">3. BIOMETRICS</button>
+            <button class="system-tab" data-index="3">4. INSIGHTS</button>
+            <button class="system-tab" data-index="4">5. MODALITIES</button>
+            <button class="system-tab" data-index="5">6. COMMUNITY</button>
+          </nav>
+
+          <a href="#community" class="system-cta">JOIN THE WAITLIST →</a>
+        </div>
+
+        <!-- Right column — images -->
+        <div class="system-right">
+          <div class="system-images">
+            <img src="images/app-tab-protocol.jpg" class="system-img active" data-tab="0" alt="Protocol">
+            <img src="images/app-tab-library.jpg" class="system-img" data-tab="1" alt="Library">
+            <img src="images/app-tab-biometrics.jpg" class="system-img" data-tab="2" alt="Biometrics">
+            <img src="images/app-tab-insights.jpg" class="system-img" data-tab="3" alt="Insights">
+            <img src="images/app-tab-modalities.jpg" class="system-img" data-tab="4" alt="Modalities">
+            <img src="images/app-tab-community.jpg" class="system-img" data-tab="5" alt="Community">
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+
+  <!-- ============================================
+       SECTION 5: "The Community" — Scroll-Driven Three Beats
+       ============================================ -->
+  <div class="community-wrapper">
+    <section id="community" class="community-section">
+      <div class="community-overlay"></div>
+      <div class="community-content">
+
+        <!-- Beat 1: Headline -->
+        <div class="community-beat" data-beat="0">
+          <span class="community-label">THE COMMUNITY</span>
+          <h2 class="community-headline">
+            Join the first wave.
+          </h2>
+        </div>
+
+        <!-- Beat 2: Story -->
+        <div class="community-beat" data-beat="1">
+          <div class="community-body">
+            <p>We’re opening access slowly and intentionally. Sign up for early app access, build updates, and invitations to in-person sessions in Plano, TX.</p>
+          </div>
+        </div>
+
+        <!-- Beat 3: CTA -->
+        <div class="community-beat" data-beat="2">
+          <div class="community-cta">
+            <form class="email-capture" id="community-form" action="#" method="post">
+              <input type="email" placeholder="your@email.com" class="email-input" required>
+              <button type="submit" class="email-submit">JOIN US</button>
+            </form>
+            <a href="/explore.html" style="display:inline-block;margin-top:24px;font-family:'DM Sans',sans-serif;font-size:0.85rem;color:#D4874D;text-decoration:none;letter-spacing:0.02em;">Explore the sound library →</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+
+  <!-- ============================================
+  <!-- ============================================
+       FINAL CTA — the curtain
+       ============================================ -->
+  <section id="order" class="final-cta">
+    <div class="final-cta-overlay"></div>
+    <div class="final-cta-content">
+      <p class="final-cta-label">NOT A PLAYLIST. A PRESCRIPTION.</p>
+      <h2 class="final-cta-headline">The protocol is <em>sequenced.</em> The results are <em>measured.</em></h2>
+      <div class="final-cta-buttons">
+        <a href="#community" class="final-btn final-btn-accent">JOIN THE WAITLIST</a>
+        <a href="index.html" class="final-btn final-btn-light">BACK TO HOME</a>
+      </div>
+      <p class="final-cta-edition">JOIN THE WAITLIST FOR EARLY ACCESS TO THE QUANTASANA APP</p>
     </div>
   </section>
 
-  <div class="section-divider"></div>
-
-  <!-- ============================================
-       SESSION LIBRARY
-       ============================================ -->
-  <section class="library-section">
-    <div class="container reveal">
-      <p class="section-label">Session Library</p>
-      <h2 class="section-title">Five session types. Three durations. One <em>protocol.</em></h2>
-      <div class="library-grid">
-        <div class="library-card">
-          <div class="library-icon teal">🌊</div>
-          <h3 class="library-card-name">Calm</h3>
-          <p class="library-card-desc">Anxiety relief. Extended exhale pacing quiets the sympathetic drive.</p>
-          <div class="library-durs"><span class="library-dur">10 min</span><span class="library-dur">20 min</span><span class="library-dur">30 min</span></div>
-        </div>
-        <div class="library-card">
-          <div class="library-icon warm">⚡</div>
-          <h3 class="library-card-name">Focus</h3>
-          <p class="library-card-desc">Cognitive clarity. 40 Hz gamma entrainment sharpens attention.</p>
-          <div class="library-durs"><span class="library-dur">10 min</span><span class="library-dur">20 min</span><span class="library-dur">30 min</span></div>
-        </div>
-        <div class="library-card">
-          <div class="library-icon green">🔄</div>
-          <h3 class="library-card-name">Recover</h3>
-          <p class="library-card-desc">Physical recovery. Therapeutic vibration at 40–86 Hz.</p>
-          <div class="library-durs"><span class="library-dur">10 min</span><span class="library-dur">20 min</span><span class="library-dur">30 min</span></div>
-        </div>
-        <div class="library-card">
-          <div class="library-icon purple">🌙</div>
-          <h3 class="library-card-name">Sleep</h3>
-          <p class="library-card-desc">Pre-sleep wind-down. Delta drift guides the brain toward deep rest.</p>
-          <div class="library-durs"><span class="library-dur">10 min</span><span class="library-dur">20 min</span><span class="library-dur">30 min</span></div>
-        </div>
-        <div class="library-card">
-          <div class="library-icon red">✦</div>
-          <h3 class="library-card-name">Renew</h3>
-          <p class="library-card-desc">Emotional processing. Wave release for accumulated tension.</p>
-          <div class="library-durs"><span class="library-dur">20 min</span><span class="library-dur">30 min</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <!-- ============================================
-       FOUR MODALITIES
-       ============================================ -->
-  <section class="modalities-section">
-    <div class="container reveal">
-      <p class="section-label">Four Modalities, Synchronized</p>
-      <h2 class="section-title">The first chair that delivers light, sound, vibration, and breath in a <em>single protocol.</em></h2>
-      <div class="modalities-grid">
-        <div class="modality-card">
-          <div class="modality-icon">💨</div>
-          <h3 class="modality-name">Breath</h3>
-          <p class="modality-body">Haptic-guided resonance frequency pacing. The chair breathes with you — gentle vibration cues pace your inhale and exhale without screens or audio instruction.</p>
-          <p class="modality-freq">~6 breaths/min · 4-in / 6-out</p>
-        </div>
-        <div class="modality-card">
-          <div class="modality-icon">🔊</div>
-          <h3 class="modality-name">Sound</h3>
-          <p class="modality-body">Binaural beats and 40 Hz gamma click trains delivered through headphones. Phase-locked to the vibration and light channels for cross-modal coherence.</p>
-          <p class="modality-freq">40 Hz γ · 4–8 Hz θ · 1–4 Hz δ</p>
-        </div>
-        <div class="modality-card">
-          <div class="modality-icon">〰️</div>
-          <h3 class="modality-name">Vibration</h3>
-          <p class="modality-body">Precision transducers verified to ±1 Hz accuracy. Four independent zones deliver therapeutic frequencies through the seat, back, legs, and headrest.</p>
-          <p class="modality-freq">40 · 52 · 68 · 86 Hz therapeutic</p>
-        </div>
-        <div class="modality-card">
-          <div class="modality-icon">💡</div>
-          <h3 class="modality-name">Light</h3>
-          <p class="modality-body">Overhead canopy with 40 Hz flickering warm white light. Non-invasive photic driving entrains gamma oscillations through the visual cortex.</p>
-          <p class="modality-freq">40 Hz · ~150 lux · Warm white</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <!-- ============================================
-       WEARABLE INTEGRATION
-       ============================================ -->
-  <section class="wearable-section reveal">
-    <div class="container">
-      <div class="wearable-inner">
-        <div class="wearable-text">
-          <h3>Connects to your wearables.</h3>
-          <p>Import HRV, resting heart rate, and sleep data from your existing devices. The app correlates your biometrics with session data to show your real recovery arc.</p>
-        </div>
-        <div class="wearable-devices">
-          <div class="wearable-tag"><span class="wearable-dot teal"></span>Oura Ring</div>
-          <div class="wearable-tag"><span class="wearable-dot red"></span>Polar H10</div>
-          <div class="wearable-tag"><span class="wearable-dot green"></span>Apple Watch</div>
-          <div class="wearable-tag"><span class="wearable-dot warm"></span>WHOOP</div>
-          <div class="wearable-tag"><span class="wearable-dot purple"></span>Garmin</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================
-       CTA
-       ============================================ -->
-  <section class="cta-section" id="cta">
-    <div class="container">
-      <div class="cta-inner reveal">
-        <p class="section-label">Not a playlist. A prescription.</p>
-        <h2 class="section-title">The protocol is <em>sequenced.</em> The results are <em>measured.</em></h2>
-        <p class="section-desc">Join the waitlist for early access to the QUANTASANA app. Track your sessions, monitor your HRV response, and watch your nervous system transform — one protocol at a time.</p>
-        <div class="hero-ctas">
-          <a href="#cta" class="btn-primary">Join the Waitlist</a>
-          <a href="index.html" class="btn-ghost">Back to Home</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
+  <!-- Footer wrapper — creates scroll room for the reveal -->
   <div class="footer-wrapper">
     <footer id="footer" class="site-footer">
       <div class="footer-content">
+
+        <!-- Top section: tagline + nav + subscribe -->
         <div class="footer-top">
+
+          <!-- Left: tagline -->
           <div class="footer-tagline">
             <p class="footer-tagline-text">Built to resonate.</p>
           </div>
+
+          <!-- Center: nav links -->
           <nav class="footer-nav">
-            <a href="index.html#science" class="footer-link">science</a>
-            <a href="index.html#system" class="footer-link">experience</a>
-            <a href="index.html#community" class="footer-link">community</a>
+            <a href="#science" class="footer-link">science</a>
+            <a href="#system" class="footer-link">experience</a>
+            <a href="#community" class="footer-link">community</a>
             <a href="order.html" class="footer-link">order</a>
             <a href="in-person.html" class="footer-link">in person</a>
             <a href="app.html" class="footer-link">app</a>
@@ -1379,23 +565,40 @@
             <a href="press.html" class="footer-link">press</a>
             <a href="faq.html" class="footer-link">faq</a>
           </nav>
+
+          <!-- Right: subscribe -->
           <div class="footer-subscribe">
             <p class="footer-subscribe-text">Subscribe for the latest<br>Quantasana updates.</p>
-            <a href="index.html#community" class="footer-join">
+            <a href="#community" class="footer-join">
               <span class="footer-join-arrow">→</span>
               JOIN US
             </a>
           </div>
+
         </div>
+
+        <!-- Divider with + -->
         <div class="footer-divider"><span>+</span></div>
+
+        <!-- Bottom section: logo + legal + socials -->
         <div class="footer-bottom">
+
+          <!-- Left: logo wordmark -->
           <div class="footer-logo">quantasana</div>
+
+          <!-- Center: legal -->
           <div class="footer-legal">
             <a href="privacy.html" class="footer-legal-link">PRIVACY POLICY</a>
             <span class="footer-legal-dot">·</span>
             <a href="terms.html" class="footer-legal-link">TERMS OF SERVICE</a>
           </div>
-          <div class="footer-copyright">© 2026 NOVUS BROKER TECHNOLOGY, INC. ALL RIGHTS RESERVED.</div>
+
+          <!-- Center: copyright -->
+          <div class="footer-copyright">
+            © 2026 NOVUS BROKER TECHNOLOGY, INC. ALL RIGHTS RESERVED.
+          </div>
+
+          <!-- Right: socials -->
           <div class="footer-socials">
             <a href="https://instagram.com/quantasana" class="footer-social-link" target="_blank">INSTAGRAM</a>
             <span class="footer-legal-dot">·</span>
@@ -1403,28 +606,23 @@
             <span class="footer-legal-dot">·</span>
             <a href="https://youtube.com/@quantasana" class="footer-social-link" target="_blank">YOUTUBE</a>
           </div>
+
         </div>
+
       </div>
     </footer>
   </div>
 
+
+
   <script src="main.js?v=16"></script>
   <script>
-  (function() {
-    var reveals = document.querySelectorAll('.reveal');
-    if (reveals.length) {
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-      reveals.forEach(function(el) { observer.observe(el); });
-    }
-  })();
+    var cf = document.getElementById('community-form');
+    if (cf) cf.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var email = this.querySelector('.email-input').value;
+      this.parentElement.innerHTML = '<p style="font-size:1.1rem;color:#D4874D;margin-top:20px;">You\u2019re in. We\u2019ll be in touch at ' + email + '.</p>';
+    });
   </script>
-
 </body>
 </html>
