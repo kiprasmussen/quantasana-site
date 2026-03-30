@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The App — QUANTASANA</title>
+  <meta name="description" content="Track every session. Watch your HRV shift. See the science working in real time — from the first breath to the 96-hour response arc.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="The App — QUANTASANA">
+  <meta property="og:description" content="Track every session. Watch your HRV shift. See the science working in real time.">
+  <meta property="og:image" content="og-image.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css?v=16">
+</head>
+<body>
+
+  <!-- ============================================
+       NAVIGATION
+       ============================================ -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <!-- Logo Mark -->
+      <a href="#" class="nav__logo" aria-label="QUANTASANA home">
+        <img src="logo.png" class="nav__logo.png" alt="QUANTASANA" aria-hidden="true">
+      </a>
+
+      <!-- Right side: flyout + hamburger + ORDER -->
+      <div class="nav__right">
+        <!-- Desktop flyout (slides left from hamburger) -->
+        <div class="nav__flyout" id="navFlyout" aria-hidden="true">
+          <a href="#science" class="nav__flyout-link" style="--i:0"><span>Science</span></a>
+          <a href="#system" class="nav__flyout-link" style="--i:1"><span>Experience</span></a>
+          <a href="#community" class="nav__flyout-link" style="--i:2"><span>Community</span></a>
+          <a href="in-person.html" class="nav__flyout-link" style="--i:3"><span>In Person</span></a>
+          <a href="app-v2.html" class="nav__flyout-link" style="--i:4"><span>App</span></a>
+        </div>
+
+        <!-- Pill toggle: hamburger + ORDER + mobile dropdown -->
+        <div class="nav__pill" id="navPill">
+          <div class="nav__actions">
+            <button class="nav__hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
+              <span class="nav__hamburger-line nav__hamburger-line--top"></span>
+              <span class="nav__hamburger-line nav__hamburger-line--mid"></span>
+              <span class="nav__hamburger-line nav__hamburger-line--bot"></span>
+              <span class="nav__x-line nav__x-line--1"></span>
+              <span class="nav__x-line nav__x-line--2"></span>
+            </button>
+            <a href="order.html" class="nav__order-btn">Order</a>
+          </div>
+          <!-- Mobile accordion dropdown (unfolds below pill) -->
+          <div class="nav__dropdown" id="navDropdown">
+            <a href="#science" class="nav__dropdown-link" style="--i:0">Science</a>
+            <a href="#system" class="nav__dropdown-link" style="--i:1">Experience</a>
+            <a href="#community" class="nav__dropdown-link" style="--i:2">Community</a>
+            <a href="in-person.html" class="nav__dropdown-link" style="--i:3">In Person</a>
+            <a href="app-v2.html" class="nav__dropdown-link" style="--i:4">App</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Menu overlay (dark blur behind menu card) -->
+  <div class="nav__overlay" id="navOverlay"></div>
+
+  <!-- ============================================
+       SECTION 1: HERO — "The Portal"
+       ============================================ -->
+  <section class="section hero" id="hero">
+    <!-- Background video: single autoplay, freezes on last frame -->
+    <div class="hero__bg">
+      <video id="heroVideo" autoplay muted playsinline poster="images/hero.jpg" class="hero__video">
+      </video>
+    </div>
+
+    <!-- Gradient overlays -->
+    <div class="hero__overlay"></div>
+
+    <!-- Content -->
+    <div class="hero__content">
+      <span class="hero__eyebrow anim-fade-up" style="--delay:0.3s">the quantasana app</span>
+      <h1 class="hero__headline anim-fade-up" style="--delay:0.5s">YOUR NERVOUS SYSTEM, <em>MEASURED.</em></h1>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       TRANSITION 1: Recalibration
+       ============================================ -->
+  <div class="transition-wrapper" id="transition-1">
+    <div class="transition-section">
+      <div class="transition-text" data-line="0">
+        A session isn't something you listen to.
+      </div>
+      <div class="transition-text" data-line="1">
+        It's something your body moves through.
+      </div>
+      <div class="transition-text" data-line="2">
+        The app is how you see what changed.
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================
+       SECTION 3: SCIENCE — Scroll-Driven Three Panels
+       ============================================ -->
+  <div class="science-wrapper">
+    <section id="science">
+      <div class="science-panels">
+
+        <!-- BREATH -->
+        <div class="science-panel active" data-pillar="breath">
+          <div class="panel-content">
+            <h2 class="panel-title">SESSION</h2>
+            <p class="panel-desc">Real-time biometric capture during every protocol.</p>
+            <div class="stat-cards">
+              <div class="stat-card">
+                <div class="stat-number">87</div>
+                <div class="stat-label">RESET SCORE</div>
+                <p class="stat-body">A composite of HRV response, parasympathetic shift, and session completion. Calculated the moment you finish.</p>
+                <div class="stat-source">Proprietary algorithm</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">+18%</div>
+                <div class="stat-label">HRV RESPONSE</div>
+                <p class="stat-body">Average heart rate variability improvement measured across the session via connected wearable.</p>
+                <div class="stat-source">RMSSD metric, validated against Polar H10</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">PHASE ARC</div>
+                <p class="stat-body">Every session maps your progression through Arrival, Immersion, and Integration — the three-phase neurological sequence.</p>
+                <div class="stat-source">Protocol framework</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SOUND -->
+        <div class="science-panel" data-pillar="sound">
+          <div class="panel-content">
+            <h2 class="panel-title">RECOVERY</h2>
+            <p class="panel-desc">Your 96-hour post-session response, tracked.</p>
+            <div class="stat-cards">
+              <div class="stat-card">
+                <div class="stat-number">96h</div>
+                <div class="stat-label">RESPONSE ARC</div>
+                <p class="stat-body">The app tracks your nervous system for 96 hours after each session — cortisol clearance, HRV rebound, sleep quality, and next-session timing.</p>
+                <div class="stat-source">Post-session monitoring</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">62ms</div>
+                <div class="stat-label">RMSSD BASELINE</div>
+                <p class="stat-body">Your running vagal tone metric. Watch it climb over weeks as your parasympathetic floor rises with consistent practice.</p>
+                <div class="stat-source">Oura Ring + Polar H10 validated</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">7:15 AM</div>
+                <div class="stat-label">OPTIMAL WINDOW</div>
+                <p class="stat-body">The app learns when your body responds best. Morning sessions yield 31% higher HRV response for most profiles.</p>
+                <div class="stat-source">Personalized insight engine</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIBRATION -->
+        <div class="science-panel" data-pillar="vibration">
+          <div class="panel-content">
+            <h2 class="panel-title">INSIGHTS</h2>
+            <p class="panel-desc">Your nervous system has a pattern. The app finds it.</p>
+            <div class="stat-cards">
+              <div class="stat-card">
+                <div class="stat-number">23%</div>
+                <div class="stat-label">VAGAL TONE INCREASE</div>
+                <p class="stat-body">Average improvement in parasympathetic baseline after 14 sessions. Your resting nervous system state gets measurably calmer.</p>
+                <div class="stat-source">14-session longitudinal data</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">14</div>
+                <div class="stat-label">SESSIONS THIS MONTH</div>
+                <p class="stat-body">Track your consistency. The app sets goals, counts streaks, and shows you exactly how practice correlates with results.</p>
+                <div class="stat-source">Habit tracking</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">5</div>
+                <div class="stat-label">SESSION TYPES</div>
+                <p class="stat-body">CALM for anxiety. FOCUS for gamma entrainment. RECOVER for pain. SLEEP for wind-down. RENEW for emotional processing.</p>
+                <div class="stat-source">Protocol library</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div><!-- /.science-wrapper -->
+
+
+  <!-- ============================================
+       TRANSITION 2: The Signal
+       ============================================ -->
+  <div class="transition-wrapper" id="transition-2">
+    <div class="transition-section">
+      <div class="transition-text" data-line="0">
+        Not a playlist. A prescription.
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================
+       SECTION 4: "The System" (Pebble-Style Product Showcase)
+       ============================================ -->
+  <div class="system-wrapper">
+    <section id="system" class="system-section">
+      <div class="system-layout">
+
+        <!-- Left column -->
+        <div class="system-left">
+
+          <!-- Tab content panels (stacked, only active one visible) -->
+          <div class="system-tab-content active" data-tab="0">
+            <div class="system-content-center">
+              <div class="system-divider"><span>+</span></div>
+              <h2 class="system-title">PROTOCOL</h2>
+              <div class="system-divider"><span>+</span></div>
+              <p class="system-desc">Every session follows a three-phase arc — Arrival, Immersion, Integration — calibrated to your nervous system’s natural response curve. The app sequences breath pacing, sound frequencies, vibration intensity, and light timing across all three phases. Twenty minutes, precisely structured.</p>
+              <p class="system-subtext">The conductor behind the experience.</p>
+              <div class="system-divider"><span>+</span></div>
+            </div>
+            <img src="images/system-quantum.jpg" class="system-mobile-img" alt="Protocol">
+          </div>
+
+          <div class="system-tab-content" data-tab="1">
+            <div class="system-content-center">
+              <div class="system-divider"><span>+</span></div>
+              <h2 class="system-title">LIBRARY</h2>
+              <div class="system-divider"><span>+</span></div>
+              <p class="system-desc">Five session types, three durations each. CALM quiets the sympathetic drive with extended exhale breathing. FOCUS activates 40 Hz gamma entrainment. RECOVER sweeps therapeutic vibration through 35–86 Hz. SLEEP drifts you toward delta. RENEW moves through emotional processing waves. Choose your reset.</p>
+              <p class="system-subtext">Fifteen protocols. One three-phase arc.</p>
+              <div class="system-divider"><span>+</span></div>
+            </div>
+            <img src="images/system-asana.jpg" class="system-mobile-img" alt="Library">
+          </div>
+
+          <div class="system-tab-content" data-tab="2">
+            <div class="system-content-center">
+              <div class="system-divider"><span>+</span></div>
+              <h2 class="system-title">BIOMETRICS</h2>
+              <div class="system-divider"><span>+</span></div>
+              <p class="system-desc">The app connects to Oura Ring, Polar H10, Apple Watch, WHOOP, and Garmin via the Terra API. Before and after every session, your RMSSD, resting heart rate, and sleep data flow in automatically. The app maps your 96-hour recovery arc and tells you when your next session window opens.</p>
+              <p class="system-subtext">Your nervous system, quantified.</p>
+              <div class="system-divider"><span>+</span></div>
+            </div>
+            <img src="images/system-sound.jpg" class="system-mobile-img" alt="Biometrics">
+          </div>
+
+          <div class="system-tab-content" data-tab="3">
+            <div class="system-content-center">
+              <div class="system-divider"><span>+</span></div>
+              <h2 class="system-title">INSIGHTS</h2>
+              <div class="system-divider"><span>+</span></div>
+              <p class="system-desc">After 14 sessions, your pattern emerges. The app identifies your optimal session time, tracks your vagal tone trend over weeks, correlates session types with HRV response, and adapts recommendations to your specific nervous system. It gets smarter the more you use it.</p>
+              <p class="system-subtext">The practice adapts to you.</p>
+              <div class="system-divider"><span>+</span></div>
+            </div>
+            <img src="images/system-vibe.jpg" class="system-mobile-img" alt="Insights">
+          </div>
+
+          <div class="system-tab-content" data-tab="4">
+            <div class="system-content-center">
+              <div class="system-divider"><span>+</span></div>
+              <h2 class="system-title">MODALITIES</h2>
+              <div class="system-divider"><span>+</span></div>
+              <p class="system-desc">Four channels, synchronized in real time. Breath pacing via haptic cues. Binaural beats and 40 Hz gamma click trains through headphones. Vibroacoustic vibration through four independent chair zones at 40, 52, 68, and 86 Hz. Overhead 40 Hz flickering warm white light via the canopy. The app controls all four simultaneously.</p>
+              <p class="system-subtext">Light. Sound. Vibration. Breath.</p>
+              <div class="system-divider"><span>+</span></div>
+            </div>
+            <img src="images/system-protocol.jpg" class="system-mobile-img" alt="Modalities">
+          </div>
+
+          <div class="system-tab-content" data-tab="5">
+            <div class="system-content-center">
+              <div class="system-divider"><span>+</span></div>
+              <h2 class="system-title">COMMUNITY</h2>
+              <div class="system-divider"><span>+</span></div>
+              <p class="system-desc">Track your sessions alongside other practitioners. Share your streak. Watch your collective data contribute to a growing protocol that gets refined with every session across the network. This isn’t a solo practice — it’s a connected one.</p>
+              <p class="system-subtext">A growing protocol.</p>
+              <div class="system-divider"><span>+</span></div>
+            </div>
+            <img src="images/system-app.jpg" class="system-mobile-img" alt="Community">
+          </div>
+
+          <!-- Tab navigation -->
+          <nav class="system-tabs">
+            <button class="system-tab active" data-index="0">1. PROTOCOL</button>
+            <button class="system-tab" data-index="1">2. LIBRARY</button>
+            <button class="system-tab" data-index="2">3. BIOMETRICS</button>
+            <button class="system-tab" data-index="3">4. INSIGHTS</button>
+            <button class="system-tab" data-index="4">5. MODALITIES</button>
+            <button class="system-tab" data-index="5">6. COMMUNITY</button>
+          </nav>
+
+          <a href="#community" class="system-cta">JOIN THE WAITLIST →</a>
+        </div>
+
+        <!-- Right column — images -->
+        <div class="system-right">
+          <div class="system-images">
+            <img src="images/system-quantum.jpg" class="system-img active" data-tab="0" alt="Quantum">
+            <img src="images/system-asana.jpg" class="system-img" data-tab="1" alt="Asana">
+            <img src="images/system-sound.jpg" class="system-img" data-tab="2" alt="Sound">
+            <img src="images/system-vibe.jpg" class="system-img" data-tab="3" alt="Vibe">
+            <img src="images/system-protocol.jpg" class="system-img" data-tab="4" alt="Protocol">
+            <img src="images/system-app.jpg" class="system-img" data-tab="5" alt="App">
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+
+  <!-- ============================================
+       SECTION 5: "The Community" — Scroll-Driven Three Beats
+       ============================================ -->
+  <div class="community-wrapper">
+    <section id="community" class="community-section">
+      <div class="community-overlay"></div>
+      <div class="community-content">
+
+        <!-- Beat 1: Headline -->
+        <div class="community-beat" data-beat="0">
+          <span class="community-label">THE COMMUNITY</span>
+          <h2 class="community-headline">
+            Join the first wave.
+          </h2>
+        </div>
+
+        <!-- Beat 2: Story -->
+        <div class="community-beat" data-beat="1">
+          <div class="community-body">
+            <p>We’re opening access slowly and intentionally. Sign up for early app access, build updates, and invitations to in-person sessions in Plano, TX.</p>
+          </div>
+        </div>
+
+        <!-- Beat 3: CTA -->
+        <div class="community-beat" data-beat="2">
+          <div class="community-cta">
+            <form class="email-capture" id="community-form" action="#" method="post">
+              <input type="email" placeholder="your@email.com" class="email-input" required>
+              <button type="submit" class="email-submit">JOIN US</button>
+            </form>
+            <a href="/explore.html" style="display:inline-block;margin-top:24px;font-family:'DM Sans',sans-serif;font-size:0.85rem;color:#D4874D;text-decoration:none;letter-spacing:0.02em;">Explore the sound library →</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+
+  <!-- ============================================
+  <!-- ============================================
+       FINAL CTA — the curtain
+       ============================================ -->
+  <section id="order" class="final-cta">
+    <div class="final-cta-overlay"></div>
+    <div class="final-cta-content">
+      <p class="final-cta-label">NOT A PLAYLIST. A PRESCRIPTION.</p>
+      <h2 class="final-cta-headline">The protocol is <em>sequenced.</em> The results are <em>measured.</em></h2>
+      <div class="final-cta-buttons">
+        <a href="#community" class="final-btn final-btn-accent">JOIN THE WAITLIST</a>
+        <a href="index.html" class="final-btn final-btn-light">BACK TO HOME</a>
+      </div>
+      <p class="final-cta-edition">JOIN THE WAITLIST FOR EARLY ACCESS TO THE QUANTASANA APP</p>
+    </div>
+  </section>
+
+  <!-- Footer wrapper — creates scroll room for the reveal -->
+  <div class="footer-wrapper">
+    <footer id="footer" class="site-footer">
+      <div class="footer-content">
+
+        <!-- Top section: tagline + nav + subscribe -->
+        <div class="footer-top">
+
+          <!-- Left: tagline -->
+          <div class="footer-tagline">
+            <p class="footer-tagline-text">Built to resonate.</p>
+          </div>
+
+          <!-- Center: nav links -->
+          <nav class="footer-nav">
+            <a href="#science" class="footer-link">science</a>
+            <a href="#system" class="footer-link">experience</a>
+            <a href="#community" class="footer-link">community</a>
+            <a href="order.html" class="footer-link">order</a>
+            <a href="in-person.html" class="footer-link">in person</a>
+            <a href="app.html" class="footer-link">app</a>
+            <a href="contact.html" class="footer-link">contact</a>
+            <a href="press.html" class="footer-link">press</a>
+            <a href="faq.html" class="footer-link">faq</a>
+          </nav>
+
+          <!-- Right: subscribe -->
+          <div class="footer-subscribe">
+            <p class="footer-subscribe-text">Subscribe for the latest<br>Quantasana updates.</p>
+            <a href="#community" class="footer-join">
+              <span class="footer-join-arrow">→</span>
+              JOIN US
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Divider with + -->
+        <div class="footer-divider"><span>+</span></div>
+
+        <!-- Bottom section: logo + legal + socials -->
+        <div class="footer-bottom">
+
+          <!-- Left: logo wordmark -->
+          <div class="footer-logo">quantasana</div>
+
+          <!-- Center: legal -->
+          <div class="footer-legal">
+            <a href="privacy.html" class="footer-legal-link">PRIVACY POLICY</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="terms.html" class="footer-legal-link">TERMS OF SERVICE</a>
+          </div>
+
+          <!-- Center: copyright -->
+          <div class="footer-copyright">
+            © 2026 NOVUS BROKER TECHNOLOGY, INC. ALL RIGHTS RESERVED.
+          </div>
+
+          <!-- Right: socials -->
+          <div class="footer-socials">
+            <a href="https://instagram.com/quantasana" class="footer-social-link" target="_blank">INSTAGRAM</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="https://x.com/quantasana" class="footer-social-link" target="_blank">X</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="https://youtube.com/@quantasana" class="footer-social-link" target="_blank">YOUTUBE</a>
+          </div>
+
+        </div>
+
+      </div>
+    </footer>
+  </div>
+
+
+
+  <script src="main.js?v=16"></script>
+  <script>
+    var cf = document.getElementById('community-form');
+    if (cf) cf.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var email = this.querySelector('.email-input').value;
+      this.parentElement.innerHTML = '<p style="font-size:1.1rem;color:#D4874D;margin-top:20px;">You\u2019re in. We\u2019ll be in touch at ' + email + '.</p>';
+    });
+  </script>
+</body>
+</html>
