@@ -1137,10 +1137,27 @@ button {
     flex-direction: column;
     opacity: 1 !important;
     transform: none !important;
+    overflow: visible !important;
+    max-height: none !important;
   }
 
   .science-panel .panel-content {
     padding-top: 100px !important;
+    overflow: visible !important;
+    min-height: auto !important;
+    height: auto !important;
+  }
+
+  /* Frosted glass backdrop for readability over bg images */
+  .science-panel .stat-card {
+    background: rgba(13, 15, 14, 0.75) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-top: 2px solid #D4874D !important;
+    border-radius: 16px !important;
+    padding: 20px !important;
+    margin-bottom: 12px !important;
   }
 }
 
