@@ -332,13 +332,13 @@
     }, 200);
   }, { passive: true });
 
-  // --- Hero Video: Single autoplay, freezes on last frame ---
+  // --- Hero Video: Autoplay loop, responsive source ---
   (function initHeroVideo() {
     var video = document.getElementById('heroVideo');
     if (!video) return;
 
-    var isMobile = window.innerWidth <= 768;
-    video.src = isMobile ? 'quantasana hero mobile 2.mp4' : 'quantasana hero desktop 2.mp4';
+    var isDesktop = window.innerWidth >= 768;
+    video.src = isDesktop ? 'videos/hero-1080.mp4' : 'videos/hero-720.mp4';
   })();
 
 
@@ -627,3 +627,63 @@
   // Initialize — show beat 1
   setActiveBeat(0);
 })();
+
+
+// ═══ SIGN IN MODAL ═══
+function openSignInModal(view) {
+  var overlay = document.getElementById('authOverlay');
+  if (!overlay) return;
+
+  // Show the correct view
+  switchAuthView(view || 'create');
+
+  // Open overlay
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeSignInModal() {
+  var overlay = document.getElementById('authOverlay');
+  if (!overlay) return;
+
+  overlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function switchAuthView(view) {
+  var createView = document.getElementById('authCreateView');
+  var signInView = document.getElementById('authSignInView');
+  if (!createView || !signInView) return;
+
+  if (view === 'signin') {
+    createView.style.display = 'none';
+    signInView.style.display = 'block';
+  } else {
+    signInView.style.display = 'none';
+    createView.style.display = 'block';
+  }
+}
+
+// Close modal on overlay click (not modal body)
+document.addEventListener('click', function(e) {
+  var overlay = document.getElementById('authOverlay');
+  if (e.target === overlay) {
+    closeSignInModal();
+  }
+});
+
+// Close modal on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeSignInModal();
+  }
+});
+
+// Placeholder auth handlers
+function handleAppleAuth(mode) {
+  console.log('Apple auth:', mode);
+}
+
+function handleEmailAuth(mode) {
+  console.log('Email auth:', mode);
+}

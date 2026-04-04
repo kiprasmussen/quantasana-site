@@ -38,11 +38,11 @@
       <div class="nav__right">
         <!-- Desktop flyout (slides left from hamburger) -->
         <div class="nav__flyout" id="navFlyout" aria-hidden="true">
-          <a href="#science" class="nav__flyout-link" style="--i:0"><span>Science</span></a>
+          <a href="about.html" class="nav__flyout-link" style="--i:0"><span>About</span></a>
           <a href="#system" class="nav__flyout-link" style="--i:1"><span>Experience</span></a>
           <a href="#community" class="nav__flyout-link" style="--i:2"><span>Community</span></a>
           <a href="in-person.html" class="nav__flyout-link" style="--i:3"><span>In Person</span></a>
-          <a href="app.html" class="nav__flyout-link" style="--i:4"><span>App</span></a>
+          <a href="app.html" class="nav__flyout-link" style="--i:4"><span>Digital</span></a>
         </div>
 
         <!-- Pill toggle: hamburger + ORDER + mobile dropdown -->
@@ -55,15 +55,15 @@
               <span class="nav__x-line nav__x-line--1"></span>
               <span class="nav__x-line nav__x-line--2"></span>
             </button>
-            <a href="order.html" class="nav__order-btn">Order</a>
+            <a href="javascript:void(0)" class="nav__order-btn" onclick="openSignInModal('create')">Sign In</a>
           </div>
           <!-- Mobile accordion dropdown (unfolds below pill) -->
           <div class="nav__dropdown" id="navDropdown">
-            <a href="#science" class="nav__dropdown-link" style="--i:0">Science</a>
+            <a href="about.html" class="nav__dropdown-link" style="--i:0">About</a>
             <a href="#system" class="nav__dropdown-link" style="--i:1">Experience</a>
             <a href="#community" class="nav__dropdown-link" style="--i:2">Community</a>
             <a href="in-person.html" class="nav__dropdown-link" style="--i:3">In Person</a>
-            <a href="app.html" class="nav__dropdown-link" style="--i:4">App</a>
+            <a href="app.html" class="nav__dropdown-link" style="--i:4">Digital</a>
           </div>
         </div>
       </div>
@@ -79,7 +79,7 @@
   <section class="section hero" id="hero">
     <!-- Background video: single autoplay, freezes on last frame -->
     <div class="hero__bg">
-      <video id="heroVideo" autoplay muted playsinline poster="images/hero.jpg" class="hero__video">
+      <video id="heroVideo" autoplay loop muted playsinline poster="images/hero.jpg" class="hero__video">
       </video>
     </div>
 
@@ -88,8 +88,15 @@
 
     <!-- Content -->
     <div class="hero__content">
-      <span class="hero__eyebrow anim-fade-up" style="--delay:0.3s">introducing the</span>
-      <h1 class="hero__headline anim-fade-up" style="--delay:0.5s">QUANTASANA POD</h1>
+      <span class="hero__eyebrow anim-fade-up" style="--delay:0.3s">introducing</span>
+      <h1 class="hero__headline anim-fade-up" style="--delay:0.5s">QUANTASANA</h1>
+      <p class="hero__tagline anim-fade-up" style="--delay:0.7s">built to resonate.</p>
+    </div>
+
+    <!-- Bottom nav links -->
+    <div class="hero__nav-bottom">
+      <a href="app.html" class="hero__nav-link">App →</a>
+      <a href="in-person.html" class="hero__nav-link">IRL →</a>
     </div>
   </section>
 
@@ -110,6 +117,7 @@
       </div>
     </div>
   </div>
+
 
 
   <!-- ============================================
@@ -481,6 +489,46 @@
   </div>
 
 
+
+  <!-- ============================================
+       SIGN IN MODAL OVERLAY
+       ============================================ -->
+  <div class="signin-overlay" id="authOverlay">
+    <div class="signin-modal">
+
+      <!-- Close button -->
+      <button class="signin-close" onclick="closeSignInModal()" aria-label="Close">&times;</button>
+
+      <!-- View 1: Create Account -->
+      <div class="signin-view" id="authCreateView">
+        <div class="signin-header">
+          <span class="signin-label">CREATE ACCOUNT</span>
+          <span class="signin-brand">QUANTASANA</span>
+        </div>
+        <div class="signin-body">
+          <h2 class="signin-heading">Find your frequency.</h2>
+          <button class="signin-btn signin-btn--apple" onclick="handleAppleAuth('create')"> Apple Sign Up →</button>
+          <button class="signin-btn signin-btn--email" onclick="handleEmailAuth('create')">✉ Email Sign Up →</button>
+          <p class="signin-toggle">Already have an account? <a href="javascript:void(0)" onclick="switchAuthView('signin')">Login →</a></p>
+        </div>
+      </div>
+
+      <!-- View 2: Login -->
+      <div class="signin-view" id="authSignInView" style="display:none">
+        <div class="signin-header">
+          <span class="signin-label">LOGIN</span>
+          <span class="signin-brand">QUANTASANA</span>
+        </div>
+        <div class="signin-body">
+          <h2 class="signin-heading">Welcome back.</h2>
+          <button class="signin-btn signin-btn--apple" onclick="handleAppleAuth('signin')"> Apple Login →</button>
+          <button class="signin-btn signin-btn--email" onclick="handleEmailAuth('signin')">✉ Email Login →</button>
+          <p class="signin-toggle"><a href="javascript:void(0)" onclick="switchAuthView('create')">Create Account →</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
   <script src="main.js?v=16"></script>
 </body>

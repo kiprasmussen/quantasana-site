@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QUANTASANA — About</title>
+  <meta name="description" content="The name is the practice. QUANTASANA — where quantum shifts meet conscious stillness.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css?v=16">
+  <style>
+    /* ── About page-specific styles ── */
+    body {
+      margin: 0;
+      background: #0a0a0a;
+      color: #e8e4df;
+    }
+
+    /* Hero */
+    .about-hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      box-sizing: border-box;
+    }
+
+    .about-hero__eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.35);
+      margin-bottom: 12px;
+    }
+
+    .about-hero__heading {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(28px, 4vw, 56px);
+      letter-spacing: 0.04em;
+      color: white;
+      line-height: 1.1;
+      margin: 0;
+    }
+
+    /* Content sections */
+    .about-section {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 120px 24px 160px;
+    }
+
+    .about-section__number {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      color: rgba(255, 255, 255, 0.25);
+      margin-bottom: 32px;
+      display: block;
+    }
+
+    .about-section__heading {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(36px, 5vw, 72px);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: white;
+      line-height: 0.9;
+      margin: 0 0 48px 0;
+    }
+
+    .about-section__body p {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, 0.55);
+      margin: 0 0 24px 0;
+    }
+
+    .about-section__body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-section__coda {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-style: italic;
+      font-size: 18px;
+      letter-spacing: 0.03em;
+      color: rgba(255, 255, 255, 0.4);
+      margin-top: 56px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* Scroll reveal */
+    .about-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+                  transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .about-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Closing CTA */
+    .about-closing {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px;
+      box-sizing: border-box;
+    }
+
+    .about-closing__heading {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(36px, 5.5vw, 80px);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: white;
+      line-height: 0.85;
+      margin: 0 0 24px 0;
+    }
+
+    .about-closing__sub {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, 0.45);
+      max-width: 480px;
+      margin: 0 auto 48px;
+    }
+
+    .about-closing__cta {
+      display: inline-block;
+      padding: 16px 48px;
+      border-radius: 40px;
+      background: #e8e4df;
+      color: #1a1a1a;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .about-closing__cta:hover {
+      opacity: 0.85;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================
+       NAVIGATION
+       ============================================ -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="QUANTASANA home">
+        <img src="logo.png" class="nav__logo-svg" alt="QUANTASANA" aria-hidden="true">
+      </a>
+      <div class="nav__right">
+        <div class="nav__flyout" id="navFlyout" aria-hidden="true">
+          <a href="about.html" class="nav__flyout-link" style="--i:0"><span>About</span></a>
+          <a href="index.html#system" class="nav__flyout-link" style="--i:1"><span>Experience</span></a>
+          <a href="index.html#community" class="nav__flyout-link" style="--i:2"><span>Community</span></a>
+          <a href="in-person.html" class="nav__flyout-link" style="--i:3"><span>In Person</span></a>
+          <a href="app.html" class="nav__flyout-link" style="--i:4"><span>Digital</span></a>
+        </div>
+        <div class="nav__pill" id="navPill">
+          <div class="nav__actions">
+            <button class="nav__hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
+              <span class="nav__hamburger-line nav__hamburger-line--top"></span>
+              <span class="nav__hamburger-line nav__hamburger-line--mid"></span>
+              <span class="nav__hamburger-line nav__hamburger-line--bot"></span>
+              <span class="nav__x-line nav__x-line--1"></span>
+              <span class="nav__x-line nav__x-line--2"></span>
+            </button>
+            <a href="javascript:void(0)" class="nav__order-btn" onclick="openSignInModal('create')">Sign In</a>
+          </div>
+          <div class="nav__dropdown" id="navDropdown">
+            <a href="about.html" class="nav__dropdown-link" style="--i:0">About</a>
+            <a href="index.html#system" class="nav__dropdown-link" style="--i:1">Experience</a>
+            <a href="index.html#community" class="nav__dropdown-link" style="--i:2">Community</a>
+            <a href="in-person.html" class="nav__dropdown-link" style="--i:3">In Person</a>
+            <a href="app.html" class="nav__dropdown-link" style="--i:4">Digital</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="nav__overlay" id="navOverlay"></div>
+
+
+  <!-- ============================================
+       HERO — ABOUT
+       ============================================ -->
+  <section class="about-hero">
+    <div class="about-reveal">
+      <p class="about-hero__eyebrow">ABOUT</p>
+      <h1 class="about-hero__heading">The name is the practice.</h1>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       SECTION 1 — QUANT
+       ============================================ -->
+  <section class="about-section about-reveal">
+    <span class="about-section__number">01</span>
+    <h2 class="about-section__heading">QUANT—</h2>
+    <div class="about-section__body">
+      <p>From <em>quantum</em> — the smallest unit of energy in physics. A quantum isn't gradual. It's a discrete shift. One state to another. No in-between.</p>
+      <p>Your nervous system works the same way. Clinical neuroscience confirms that specific meditative states produce measurable shifts in brainwave coherence — from scattered beta into synchronized alpha and theta. Not slowly. Not eventually. In a moment.</p>
+    </div>
+    <p class="about-section__coda">The first step isn't doing. It's arriving.</p>
+  </section>
+
+
+  <!-- ============================================
+       SECTION 2 — ASANA
+       ============================================ -->
+  <section class="about-section about-reveal">
+    <span class="about-section__number">02</span>
+    <h2 class="about-section__heading">—ASANA</h2>
+    <div class="about-section__body">
+      <p>In Sanskrit, <em>asana</em> means "seat." Not a pose. Not a position to perform. A place to arrive — the foundational posture where effort dissolves and the body can fully surrender.</p>
+      <p>Every element of the Quantasana system is engineered to that principle. A 130° recline that releases muscular tension. Sound frequencies your brain was built to follow. Vibration that meets your body at its own resonance. The seat isn't furniture. It's infrastructure for stillness.</p>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       SECTION 3 — QUANTASANA
+       ============================================ -->
+  <section class="about-section about-reveal">
+    <span class="about-section__number">03</span>
+    <h2 class="about-section__heading">QUANTASANA</h2>
+    <div class="about-section__body">
+      <p>The quantum shift into stillness. The measurable moment your nervous system crosses from noise into coherence.</p>
+      <p>Three modalities — breath, sound, vibration — synchronized into a single protocol. Not a playlist. Not an app with a timer. A sequenced, science-backed system that moves your body through arrival, immersion, and integration in twenty minutes.</p>
+    </div>
+    <p class="about-section__coda">We don't ask you to believe it. We measure it.</p>
+  </section>
+
+
+  <!-- ============================================
+       CLOSING CTA
+       ============================================ -->
+  <section class="about-closing about-reveal">
+    <div>
+      <h2 class="about-closing__heading">Built to resonate.</h2>
+      <p class="about-closing__sub">Your body already has everything it needs to heal. It just needs the right signal at the right time.</p>
+      <a href="app.html" class="about-closing__cta">Begin →</a>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <div class="footer-wrapper">
+    <footer id="footer" class="site-footer">
+      <div class="footer-content">
+        <div class="footer-top">
+          <div class="footer-tagline">
+            <p class="footer-tagline-text">Built to resonate.</p>
+          </div>
+          <nav class="footer-nav">
+            <a href="index.html#science" class="footer-link">science</a>
+            <a href="index.html#system" class="footer-link">experience</a>
+            <a href="index.html#community" class="footer-link">community</a>
+            <a href="order.html" class="footer-link">order</a>
+            <a href="in-person.html" class="footer-link">in person</a>
+            <a href="app.html" class="footer-link">app</a>
+            <a href="contact.html" class="footer-link">contact</a>
+            <a href="press.html" class="footer-link">press</a>
+            <a href="faq.html" class="footer-link">faq</a>
+          </nav>
+          <div class="footer-subscribe">
+            <p class="footer-subscribe-text">Subscribe for the latest<br>Quantasana updates.</p>
+            <a href="index.html#community" class="footer-join">
+              <span class="footer-join-arrow">→</span>
+              JOIN US
+            </a>
+          </div>
+        </div>
+        <div class="footer-divider"><span>+</span></div>
+        <div class="footer-bottom">
+          <div class="footer-logo">quantasana</div>
+          <div class="footer-legal">
+            <a href="privacy.html" class="footer-legal-link">PRIVACY POLICY</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="terms.html" class="footer-legal-link">TERMS OF SERVICE</a>
+          </div>
+          <div class="footer-copyright">© 2026 NOVUS BROKER TECHNOLOGY, INC. ALL RIGHTS RESERVED.</div>
+          <div class="footer-socials">
+            <a href="https://instagram.com/quantasana" class="footer-social-link" target="_blank">INSTAGRAM</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="https://x.com/quantasana" class="footer-social-link" target="_blank">X</a>
+            <span class="footer-legal-dot">·</span>
+            <a href="https://youtube.com/@quantasana" class="footer-social-link" target="_blank">YOUTUBE</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+
+  <!-- ============================================
+       SIGN IN MODAL OVERLAY
+       ============================================ -->
+  <div class="signin-overlay" id="authOverlay">
+    <div class="signin-modal">
+      <button class="signin-close" onclick="closeSignInModal()" aria-label="Close">&times;</button>
+      <div class="signin-view" id="authCreateView">
+        <div class="signin-header">
+          <span class="signin-label">CREATE ACCOUNT</span>
+          <span class="signin-brand">QUANTASANA</span>
+        </div>
+        <div class="signin-body">
+          <h2 class="signin-heading">Find your frequency.</h2>
+          <button class="signin-btn signin-btn--apple" onclick="handleAppleAuth('create')"> Apple Sign Up →</button>
+          <button class="signin-btn signin-btn--email" onclick="handleEmailAuth('create')">✉ Email Sign Up →</button>
+          <p class="signin-toggle">Already have an account? <a href="javascript:void(0)" onclick="switchAuthView('signin')">Login →</a></p>
+        </div>
+      </div>
+      <div class="signin-view" id="authSignInView" style="display:none">
+        <div class="signin-header">
+          <span class="signin-label">LOGIN</span>
+          <span class="signin-brand">QUANTASANA</span>
+        </div>
+        <div class="signin-body">
+          <h2 class="signin-heading">Welcome back.</h2>
+          <button class="signin-btn signin-btn--apple" onclick="handleAppleAuth('signin')"> Apple Login →</button>
+          <button class="signin-btn signin-btn--email" onclick="handleEmailAuth('signin')">✉ Email Login →</button>
+          <p class="signin-toggle"><a href="javascript:void(0)" onclick="switchAuthView('create')">Create Account →</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js?v=16"></script>
+  <script>
+  (function() {
+    // Scroll reveal for about sections
+    var reveals = document.querySelectorAll('.about-reveal');
+    if (reveals.length) {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      reveals.forEach(function(el) { observer.observe(el); });
+    }
+  })();
+  </script>
+
+</body>
+</html>

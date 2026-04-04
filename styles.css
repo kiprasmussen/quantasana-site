@@ -632,9 +632,12 @@ button {
     gap: 4px;
   }
 
-  /* ORDER button: all 4 corners rounded */
+  /* SIGN IN button: wider on mobile with more padding */
   .nav__order-btn {
     border-radius: var(--nav-radius);
+    width: auto;
+    padding: 12px 28px;
+    flex-shrink: 0;
   }
 
   /* Dropdown: bottom corners rounded */
@@ -745,9 +748,69 @@ button {
   text-transform: uppercase;
   color: white;
   text-shadow: 0 2px 40px rgba(0, 0, 0, 0.3);
-  line-height: 1.05;
+  line-height: 0.85;
+  margin: 0;
 }
 
+.hero__tagline {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 0.15em;
+  text-transform: lowercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 0;
+}
+
+.hero__nav-bottom {
+  position: absolute;
+  bottom: 32px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.hero__nav-link {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.hero__nav-link:hover {
+  opacity: 0.7;
+}
+
+@media (min-width: 768px) {
+  .hero__nav-bottom {
+    padding: 0 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero__nav-bottom {
+    padding: 0 48px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero__nav-bottom {
+    bottom: 24px;
+  }
+
+  .hero__nav-link {
+    font-size: 16px;
+  }
+}
 
 /* ============================================
    SECTION 2: RECALIBRATION
@@ -2128,5 +2191,178 @@ button {
 @media (min-width: 1024px) {
   .nav {
     padding: 20px 48px;
+  }
+}
+
+
+/* ============================================
+   SIGN IN MODAL OVERLAY
+   ============================================ */
+.signin-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.signin-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.signin-modal {
+  position: relative;
+  width: 480px;
+  max-width: 92vw;
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0;
+  padding: 48px;
+  box-sizing: border-box;
+}
+
+.signin-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 28px;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.signin-close:hover {
+  color: white;
+}
+
+/* Header row: label left, brand right */
+.signin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 48px;
+}
+
+.signin-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.signin-brand {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* Body */
+.signin-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.signin-heading {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 28px;
+  color: white;
+  letter-spacing: 0.02em;
+  margin-bottom: 36px;
+}
+
+/* Pill buttons */
+.signin-btn {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  padding: 15px 24px;
+  border-radius: 40px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  border: none;
+  text-align: center;
+}
+
+.signin-btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.signin-btn + .signin-btn {
+  margin-top: 12px;
+}
+
+.signin-btn--apple {
+  background: #e8e4df;
+  color: #1a1a1a;
+}
+
+.signin-btn--email {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: white;
+}
+
+/* Toggle link */
+.signin-toggle {
+  margin-top: 32px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.02em;
+}
+
+.signin-toggle a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.signin-toggle a:hover {
+  color: white;
+}
+
+/* View toggling */
+.signin-view--hidden {
+  display: none;
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .signin-modal {
+    padding: 36px 24px;
+  }
+
+  .signin-heading {
+    font-size: 24px;
+  }
+
+  .signin-btn {
+    font-size: 13px;
+    padding: 14px 20px;
   }
 }
