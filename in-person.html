@@ -145,7 +145,7 @@
       border-color: rgba(242, 238, 232, 0.15);
     }
     .config-option.selected {
-      border-color: #9C978F;
+      border-color: #F2EEE8;
       background: rgba(14, 14, 14, 0.5);
     }
     .config-option input { display: none; }
@@ -185,12 +185,12 @@
       transition: all 0.2s;
     }
     .config-option.selected .option-check {
-      background: #655F57;
-      border-color: #9C978F;
+      background: #EDE8E0;
+      border-color: #EDE8E0;
     }
     .config-option.selected .option-check::after {
       content: '✓';
-      color: #F2EEE8;
+      color: #000000;
       font-size: 12px;
       font-weight: 700;
     }
@@ -334,8 +334,9 @@
       background: rgba(242, 238, 232, 0.06);
     }
     .cal-day.cal-selected {
-      background: #655F57;
-      color: #F2EEE8;
+      background: #EDE8E0;
+      color: #000000;
+      font-weight: 600;
     }
     .cal-day.cal-today {
       font-weight: 600;
@@ -374,8 +375,9 @@
     }
     .time-slot.selected {
       background: #EDE8E0;
-      border-color: #F2EEE8;
-      color: #F2EEE8;
+      border-color: #EDE8E0;
+      color: #000000;
+      font-weight: 500;
     }
 
     /* ── Form fields ── */
@@ -513,6 +515,16 @@
         gap: 12px;
       }
     }
+  
+    /* Add-ons are a menu here; they're chosen at checkout in Seshy */
+    .config-option.menu-only { cursor: default; grid-template-columns: 1fr; }
+    .config-option.menu-only:hover { border-color: rgba(242, 238, 232, 0.08); background: rgba(14, 14, 14, 0.3); }
+    .config-sub { margin: -8px 0 16px; font-size: 0.8rem; color: #9C978F; }
+    .how-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+    .how-steps li { font-family: 'Geist', sans-serif; display: grid; grid-template-columns: 36px 1fr; gap: 12px; padding: 14px 0; border-top: 1px solid rgba(242, 238, 232, 0.1); font-size: 0.9rem; line-height: 1.5; color: #F2EEE8; }
+    .how-steps li:last-child { border-bottom: 1px solid rgba(242, 238, 232, 0.1); }
+    .how-steps span { font-family: 'Geist Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em; color: #9C978F; padding-top: 3px; }
+    a.order-footer-btn { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
   </style>
 </head>
 <body>
@@ -563,90 +575,56 @@
 
         <!-- SECTION 2: ADD-ONS -->
         <div class="config-section">
-          <h2 class="config-heading">Add to your session</h2>
+          <h2 class="config-heading">Add-ons</h2>
+          <p class="config-sub">Choose these when you book.</p>
 
-          <label class="config-option" data-add="10" data-duration="0" data-name="Aromatherapy">
-            <input type="checkbox" name="inperson-addon" value="aroma">
-            <div class="option-check"></div>
+          <div class="config-option menu-only" data-add="10" data-duration="0" data-name="Aromatherapy">
             <div class="option-info">
               <span class="option-name">Aromatherapy</span>
               <span class="option-price">+$10</span>
               <p class="option-desc">Essential oil blend diffused through the Pod for the length of your session.</p>
               <span class="option-duration-badge">During session</span>
             </div>
-          </label>
+          </div>
 
-          <label class="config-option" data-add="20" data-duration="10" data-name="Scalp Massage">
-            <input type="checkbox" name="inperson-addon" value="scalp">
-            <div class="option-check"></div>
+          <div class="config-option menu-only" data-add="20" data-duration="10" data-name="Scalp Massage">
             <div class="option-info">
               <span class="option-name">Scalp Massage</span>
               <span class="option-price">+$20</span>
               <p class="option-desc">10 minutes of hands-on scalp massage to settle you before the Pod begins.</p>
               <span class="option-duration-badge">+10 min</span>
             </div>
-          </label>
+          </div>
 
-          <label class="config-option" data-add="20" data-duration="10" data-name="Foot Massage">
-            <input type="checkbox" name="inperson-addon" value="foot">
-            <div class="option-check"></div>
+          <div class="config-option menu-only" data-add="20" data-duration="10" data-name="Foot Massage">
             <div class="option-info">
               <span class="option-name">Foot Massage</span>
               <span class="option-price">+$20</span>
               <p class="option-desc">10 minutes of foot massage to bring you back down to earth after your session.</p>
               <span class="option-duration-badge">+10 min</span>
             </div>
-          </label>
+          </div>
 
-          <label class="config-option" data-add="0" data-duration="45" data-name="IV Drip (consult)">
-            <input type="checkbox" name="inperson-addon" value="iv">
-            <div class="option-check"></div>
+          <div class="config-option menu-only" data-add="0" data-duration="45" data-name="IV Drip (consult)">
             <div class="option-info">
               <span class="option-name">IV Drip</span>
               <span class="option-price">Quoted separately</span>
               <p class="option-desc">Hydration and vitamin drips with our licensed medical partner. A short health intake is required before booking; your practitioner confirms the drip and price.</p>
               <span class="option-duration-badge">+45 min · licensed practitioner</span>
             </div>
-          </label>
+          </div>
 
         </div>
 
-        <!-- SECTION 3: DATE (inline calendar) -->
+        <!-- SECTION 3: HOW BOOKING WORKS (handled by Seshy) -->
         <div class="config-section">
-          <h2 class="config-heading">Pick your date</h2>
-
-          <div class="booking-calendar">
-            <div class="calendar-header">
-              <button class="calendar-nav" id="cal-prev">←</button>
-              <span class="calendar-month" id="cal-month-label"></span>
-              <button class="calendar-nav" id="cal-next">→</button>
-            </div>
-            <div class="calendar-weekdays">
-              <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
-            </div>
-            <div class="calendar-grid" id="cal-grid"></div>
-          </div>
-        </div>
-
-        <!-- SECTION 4: TIME SLOTS -->
-        <div class="config-section" id="time-section" style="display:none;">
-          <h2 class="config-heading">Pick your time</h2>
-          <p class="config-sub" id="duration-label">Total session: 20 min</p>
-          <div class="time-grid" id="inperson-time-grid"></div>
-        </div>
-
-        <!-- SECTION 5: CONTACT INFO -->
-        <div class="config-section" id="contact-section" style="display:none;">
-          <h2 class="config-heading">Your information</h2>
-          <div class="checkout-fields">
-            <div class="checkout-row">
-              <input type="text" placeholder="First name" class="checkout-input" id="ip-first" required>
-              <input type="text" placeholder="Last name" class="checkout-input" id="ip-last" required>
-            </div>
-            <input type="email" placeholder="Email" class="checkout-input" id="ip-email" required>
-            <input type="tel" placeholder="Phone" class="checkout-input" id="ip-phone" required>
-            <textarea class="booking-textarea" id="ip-notes" placeholder="First time? Any health considerations? Just say hi." rows="3"></textarea>
-          </div>
+          <h2 class="config-heading">How booking works</h2>
+          <ol class="how-steps">
+            <li><span>01</span>Pick a time that's actually open. Booking runs on Seshy, so the calendar is live.</li>
+            <li><span>02</span>Confirm your phone with a quick text code.</li>
+            <li><span>03</span>Add aromatherapy or massage at checkout. You'll get a confirmation and a reminder by text.</li>
+            <li><span>04</span>IV drips are by request: your licensed practitioner reaches out after your intake.</li>
+          </ol>
         </div>
 
       </div><!-- end order-config -->
@@ -657,262 +635,25 @@
       <div class="order-footer-info">
         <div class="order-footer-label">
           <span class="footer-info-icon">ⓘ</span>
-          <span id="ip-credit-note">Add-ons are paid with your session</span>
+          <span>Booked through Seshy</span>
         </div>
-        <div class="order-footer-due">Amount due today</div>
+        <div class="order-footer-due">Pod Session · 20 min</div>
       </div>
-      <div class="order-footer-price" id="ip-total-display">$30</div>
-      <button class="order-footer-btn" id="ip-book-btn" disabled>BOOK NOW</button>
+      <div class="order-footer-price">$30</div>
+      <a class="order-footer-btn" id="ip-book-btn" href="https://seshy.pro/novusbro">BOOK A SESSION →</a>
     </div>
 
   </div>
 
   <script>
+  /* Booking lives in Seshy (seshy.pro/novusbro): live availability, text verification,
+     payment and reminders. Once the Pod Session exists in Seshy, paste its service id
+     below and the button opens it already selected. */
   (function() {
-    var basePrice = 30;
-    var baseDuration = 20;
-    var totalPrice = basePrice;
-    var totalDuration = baseDuration;
-    var selectedDate = null;
-    var selectedTime = null;
-
-    var totalDisplay = document.getElementById('ip-total-display');
-    var bookBtn = document.getElementById('ip-book-btn');
-    var durationLabel = document.getElementById('duration-label');
-    var timeSection = document.getElementById('time-section');
-    var contactSection = document.getElementById('contact-section');
-    var timeGrid = document.getElementById('inperson-time-grid');
-
-    // ── ADD-ON SELECTION ──
-    var addonOptions = document.querySelectorAll('input[name="inperson-addon"]');
-    addonOptions.forEach(function(input) {
-      var option = input.closest('.config-option');
-      option.addEventListener('click', function(e) {
-        e.preventDefault();
-        input.checked = !input.checked;
-        option.classList.toggle('selected', input.checked);
-        recalculate();
-      });
-    });
-
-    function recalculate() {
-      totalPrice = basePrice;
-      totalDuration = baseDuration;
-
-      document.querySelectorAll('input[name="inperson-addon"]:checked').forEach(function(input) {
-        var opt = input.closest('.config-option');
-        totalPrice += parseInt(opt.getAttribute('data-add') || '0');
-        totalDuration += parseInt(opt.getAttribute('data-duration') || '0');
-      });
-
-      totalDisplay.textContent = '$' + totalPrice;
-      durationLabel.textContent = 'Total session: ' + totalDuration + ' min';
-
-      if (selectedDate) {
-        generateTimeSlots();
-      }
-
-      validateForm();
-    }
-
-    // ── CALENDAR ──
-    var currentMonth = new Date().getMonth();
-    var currentYear = new Date().getFullYear();
-    var calGrid = document.getElementById('cal-grid');
-    var calLabel = document.getElementById('cal-month-label');
-
-    var months = ['January', 'February', 'March', 'April', 'May', 'June',
-                  'July', 'August', 'September', 'October', 'November', 'December'];
-
-    function renderCalendar() {
-      calGrid.innerHTML = '';
-      calLabel.textContent = months[currentMonth] + ' ' + currentYear;
-
-      var firstDay = new Date(currentYear, currentMonth, 1).getDay();
-      var daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-      var today = new Date();
-      today.setHours(0, 0, 0, 0);
-
-      for (var e = 0; e < firstDay; e++) {
-        var empty = document.createElement('button');
-        empty.className = 'cal-day cal-empty';
-        calGrid.appendChild(empty);
-      }
-
-      for (var d = 1; d <= daysInMonth; d++) {
-        var dayBtn = document.createElement('button');
-        dayBtn.className = 'cal-day';
-        dayBtn.textContent = d;
-
-        var thisDate = new Date(currentYear, currentMonth, d);
-        thisDate.setHours(0, 0, 0, 0);
-
-        if (thisDate < today) {
-          dayBtn.classList.add('cal-disabled');
-        } else {
-          if (thisDate.getTime() === today.getTime()) {
-            dayBtn.classList.add('cal-today');
-          }
-
-          // Re-highlight if this date was previously selected
-          if (selectedDate && thisDate.getTime() === selectedDate.getTime()) {
-            dayBtn.classList.add('cal-selected');
-          }
-
-          (function(date, btn) {
-            btn.addEventListener('click', function() {
-              var prev = calGrid.querySelector('.cal-selected');
-              if (prev) prev.classList.remove('cal-selected');
-
-              btn.classList.add('cal-selected');
-              selectedDate = date;
-
-              timeSection.style.display = 'block';
-              generateTimeSlots();
-
-              contactSection.style.display = 'block';
-
-              setTimeout(function() {
-                timeSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }, 100);
-
-              validateForm();
-            });
-          })(thisDate, dayBtn);
-        }
-
-        calGrid.appendChild(dayBtn);
-      }
-    }
-
-    document.getElementById('cal-prev').addEventListener('click', function() {
-      var today = new Date();
-      if (currentYear === today.getFullYear() && currentMonth === today.getMonth()) return;
-      currentMonth--;
-      if (currentMonth < 0) { currentMonth = 11; currentYear--; }
-      renderCalendar();
-    });
-
-    document.getElementById('cal-next').addEventListener('click', function() {
-      currentMonth++;
-      if (currentMonth > 11) { currentMonth = 0; currentYear++; }
-      renderCalendar();
-    });
-
-    // ── TIME SLOTS ──
-    function generateTimeSlots() {
-      timeGrid.innerHTML = '';
-      selectedTime = null;
-
-      var startHour = 9;
-      var endHour = 20;
-
-      for (var h = startHour; h < endHour; h++) {
-        var sessionEndMinutes = (h * 60) + totalDuration;
-        if (sessionEndMinutes > endHour * 60) break;
-
-        var period = h >= 12 ? 'PM' : 'AM';
-        var displayHour = h > 12 ? h - 12 : h;
-
-        var slot = document.createElement('div');
-        slot.className = 'time-slot';
-        slot.textContent = displayHour + ':00 ' + period;
-
-        (function(timeStr) {
-          slot.addEventListener('click', function() {
-            document.querySelectorAll('.time-slot').forEach(function(s) {
-              s.classList.remove('selected');
-            });
-            slot.classList.add('selected');
-            selectedTime = timeStr;
-            validateForm();
-          });
-        })(displayHour + ':00 ' + period);
-
-        timeGrid.appendChild(slot);
-
-        // Half-hour slots for shorter sessions
-        if (totalDuration <= 30) {
-          var halfEnd = (h * 60) + 30 + totalDuration;
-          if (halfEnd <= endHour * 60) {
-            var halfSlot = document.createElement('div');
-            halfSlot.className = 'time-slot';
-            halfSlot.textContent = displayHour + ':30 ' + period;
-
-            (function(timeStr) {
-              halfSlot.addEventListener('click', function() {
-                document.querySelectorAll('.time-slot').forEach(function(s) {
-                  s.classList.remove('selected');
-                });
-                halfSlot.classList.add('selected');
-                selectedTime = timeStr;
-                validateForm();
-              });
-            })(displayHour + ':30 ' + period);
-
-            timeGrid.appendChild(halfSlot);
-          }
-        }
-      }
-    }
-
-    // ── VALIDATION ──
-    function validateForm() {
-      var firstName = document.getElementById('ip-first');
-      var lastName = document.getElementById('ip-last');
-      var email = document.getElementById('ip-email');
-      var phone = document.getElementById('ip-phone');
-
-      var isValid = selectedDate &&
-                    selectedTime &&
-                    firstName && firstName.value.trim() !== '' &&
-                    lastName && lastName.value.trim() !== '' &&
-                    email && email.value.trim() !== '' &&
-                    phone && phone.value.trim() !== '';
-
-      bookBtn.disabled = !isValid;
-    }
-
-    ['ip-first', 'ip-last', 'ip-email', 'ip-phone'].forEach(function(id) {
-      var el = document.getElementById(id);
-      if (el) el.addEventListener('input', validateForm);
-    });
-
-    // ── BOOK BUTTON ──
-    bookBtn.addEventListener('click', function() {
-      var addons = [];
-      document.querySelectorAll('input[name="inperson-addon"]:checked').forEach(function(input) {
-        var opt = input.closest('.config-option');
-        addons.push(opt.getAttribute('data-name'));
-      });
-
-      var dateStr = selectedDate.toLocaleDateString('en-US', {
-        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-      });
-
-      bookBtn.textContent = 'BOOKING REQUESTED ✓';
-      bookBtn.disabled = true;
-      bookBtn.style.background = '#655F57';
-
-      console.log('Booking:', {
-        date: dateStr,
-        time: selectedTime,
-        duration: totalDuration + ' min',
-        total: '$' + totalPrice,
-        addons: addons,
-        contact: {
-          firstName: document.getElementById('ip-first').value,
-          lastName: document.getElementById('ip-last').value,
-          email: document.getElementById('ip-email').value,
-          phone: document.getElementById('ip-phone').value,
-          notes: document.getElementById('ip-notes').value
-        }
-      });
-    });
-
-    // ── INITIALIZE ──
-    renderCalendar();
-    recalculate();
+    var SESHY_URL = 'https://seshy.pro/novusbro';
+    var POD_SERVICE_ID = ''; // e.g. '3f2c…' from the Pod Session's share link in Seshy
+    var btn = document.getElementById('ip-book-btn');
+    if (btn) btn.href = POD_SERVICE_ID ? SESHY_URL + '?service=' + encodeURIComponent(POD_SERVICE_ID) : SESHY_URL;
   })();
   </script>
 </body>
