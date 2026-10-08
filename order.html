@@ -10,13 +10,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=16">
-  <link rel="stylesheet" href="orbit.css?v=1">
+  <link rel="stylesheet" href="orbit.css?v=2">
   <style>
     /* ============================================
        ORDER PAGE — LAYOUT
        ============================================ */
     .order-page {
-      background: #F2EEE8;
+      background: #000000;
       min-height: 100vh;
       padding-bottom: 80px;
     }
@@ -32,7 +32,7 @@
       top: 0;
       height: 100vh;
       overflow: hidden;
-      background: #EAE5DD;
+      background: #141414;
     }
     .order-carousel {
       position: relative;
@@ -71,13 +71,13 @@
       height: 8px;
       border-radius: 50%;
       border: none;
-      background: rgba(255, 255, 255, 0.4);
+      background: rgba(14, 14, 14, 0.4);
       cursor: pointer;
       transition: background 0.3s;
       padding: 0;
     }
     .carousel-dot.active {
-      background: #fff;
+      background: #000000;
     }
 
     /* ── Right: Configurator ── */
@@ -85,7 +85,7 @@
       width: 40%;
       padding: 60px 48px 120px;
       overflow-y: auto;
-      background: #F2EEE8;
+      background: #000000;
     }
     .order-header {
       text-align: center;
@@ -101,7 +101,7 @@
       font-family: 'Geist', sans-serif;
       font-weight: 700;
       font-size: 1.8rem;
-      color: #141210;
+      color: #F2EEE8;
       margin-bottom: 12px;
     }
     .order-subtitle {
@@ -109,7 +109,7 @@
       font-weight: 300;
       font-size: 0.8rem;
       line-height: 1.6;
-      color: rgba(10, 10, 10, 0.45);
+      color: rgba(242, 238, 232, 0.45);
       max-width: 380px;
       margin: 0 auto;
     }
@@ -122,7 +122,7 @@
       font-family: 'Geist', sans-serif;
       font-weight: 700;
       font-size: 1.3rem;
-      color: #141210;
+      color: #F2EEE8;
       margin-bottom: 16px;
     }
 
@@ -132,21 +132,21 @@
       gap: 16px;
       align-items: flex-start;
       padding: 20px;
-      border: 1px solid rgba(10, 10, 10, 0.08);
+      border: 1px solid rgba(242, 238, 232, 0.08);
       border-radius: 12px;
       margin-bottom: 8px;
       cursor: pointer;
       transition: all 0.2s ease;
       position: relative;
-      background: rgba(255, 255, 255, 0.3);
+      background: rgba(14, 14, 14, 0.3);
     }
     .config-option:hover:not(.disabled) {
-      background: rgba(255, 255, 255, 0.5);
-      border-color: rgba(10, 10, 10, 0.15);
+      background: rgba(14, 14, 14, 0.5);
+      border-color: rgba(242, 238, 232, 0.15);
     }
     .config-option.selected {
-      border-color: #655F57;
-      background: rgba(255, 255, 255, 0.5);
+      border-color: #9C978F;
+      background: rgba(14, 14, 14, 0.5);
     }
     .config-option.disabled {
       opacity: 0.5;
@@ -161,7 +161,7 @@
       width: 22px;
       height: 22px;
       min-width: 22px;
-      border: 1.5px solid rgba(10, 10, 10, 0.2);
+      border: 1.5px solid rgba(242, 238, 232, 0.2);
       border-radius: 4px;
       margin-top: 2px;
       display: flex;
@@ -171,7 +171,7 @@
     }
     .config-option.selected .option-check {
       background: #655F57;
-      border-color: #655F57;
+      border-color: #9C978F;
     }
     .config-option.selected .option-check::after {
       content: '✓';
@@ -186,7 +186,7 @@
       font-family: 'Geist', sans-serif;
       font-weight: 600;
       font-size: 0.9rem;
-      color: #141210;
+      color: #F2EEE8;
       display: block;
       margin-bottom: 2px;
     }
@@ -194,7 +194,7 @@
       font-family: 'Geist', sans-serif;
       font-weight: 400;
       font-size: 0.85rem;
-      color: rgba(10, 10, 10, 0.5);
+      color: rgba(242, 238, 232, 0.5);
       float: right;
     }
     .option-desc {
@@ -202,12 +202,12 @@
       font-weight: 300;
       font-size: 0.78rem;
       line-height: 1.5;
-      color: rgba(10, 10, 10, 0.45);
+      color: rgba(242, 238, 232, 0.45);
       margin-top: 8px;
       clear: both;
     }
     .option-desc a {
-      color: #E8876A;
+      color: #F2EEE8;
       text-decoration: none;
     }
     .option-desc a:hover {
@@ -226,16 +226,16 @@
       justify-content: center;
       width: 48px;
       height: 48px;
-      background: rgba(255, 255, 255, 0.6);
-      border: 1px solid rgba(10, 10, 10, 0.08);
+      background: rgba(14, 14, 14, 0.6);
+      border: 1px solid rgba(242, 238, 232, 0.08);
       border-radius: 12px;
       text-decoration: none;
       font-size: 1.2rem;
-      color: #141210;
+      color: #F2EEE8;
       transition: background 0.3s;
     }
     .order-back:hover {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(14, 14, 14, 0.9);
     }
 
     .option-badge {
@@ -244,8 +244,8 @@
       font-size: 0.5rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      background: rgba(10, 10, 10, 0.06);
-      color: rgba(10, 10, 10, 0.4);
+      background: rgba(242, 238, 232, 0.06);
+      color: rgba(242, 238, 232, 0.4);
       padding: 3px 10px;
       border-radius: 4px;
       margin-top: 8px;
@@ -260,8 +260,8 @@
       left: 0;
       right: 0;
       height: 80px;
-      background: #F2EEE8;
-      border-top: 1px solid rgba(10, 10, 10, 0.08);
+      background: #000000;
+      border-top: 1px solid rgba(242, 238, 232, 0.08);
       display: flex;
       align-items: center;
       padding: 0 48px;
@@ -274,7 +274,7 @@
     .order-footer-label {
       font-family: 'Geist', sans-serif;
       font-size: 0.7rem;
-      color: rgba(10, 10, 10, 0.35);
+      color: rgba(242, 238, 232, 0.35);
       display: flex;
       align-items: center;
       gap: 6px;
@@ -287,13 +287,13 @@
       font-family: 'Geist', sans-serif;
       font-weight: 600;
       font-size: 0.85rem;
-      color: #141210;
+      color: #F2EEE8;
     }
     .order-footer-price {
       font-family: 'Geist', sans-serif;
       font-weight: 700;
       font-size: 2rem;
-      color: #141210;
+      color: #F2EEE8;
     }
     .order-footer-btn {
       padding: 16px 40px;
@@ -386,7 +386,7 @@
 
         <!-- Header -->
         <div class="order-header">
-          <img src="images/orbit/mark-ink.png" class="order-logo" alt="Quantasana">
+          <img src="images/orbit/mark-bone.png" class="order-logo" alt="Quantasana">
           <h1 class="order-title">Build your Quantasana</h1>
           <p class="order-subtitle">We're prioritizing Founders Edition builds. Reservation holders will receive build updates and shipping estimates via email.</p>
         </div>

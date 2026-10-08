@@ -69,11 +69,11 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   outline-offset: 3px;
 }
 
-/* Day panels (order + checkout): the solid action is ink on light */
+/* Order + checkout footer: the one bone action */
 .order-footer-btn {
-  background: #141210 !important;
-  color: #F4F1EC !important;
-  border-color: #141210 !important;
+  background: var(--q-bone) !important;
+  color: #000 !important;
+  border-color: var(--q-bone) !important;
 }
-.order-footer-btn:hover { background: #000 !important; }
+.order-footer-btn:hover { background: #FFFFFF !important; }
 .order-footer-btn[disabled], .order-footer-btn.disabled { opacity: .4; }
