@@ -1,0 +1,79 @@
+/* ============================================
+   QUANTASANA — Orbit layer
+   Loaded after styles.css on every page. Applies the Quantasana Design System
+   (Night theme, Geist, bone primary action, ember accent).
+   ============================================ */
+
+:root {
+  --q-ground: #000000;
+  --q-surface-1: #0E0E0E;
+  --q-surface-2: #1A1A1A;
+  --q-line: #2A2A2A;
+  --q-ink: #F2EEE8;
+  --q-ink-muted: #9C978F;
+  --q-bone: #EDE8E0;
+  --q-ember: #E8876A;
+}
+
+html, body { background-color: var(--q-ground); }
+body { color: var(--q-ink); }
+::selection { background: var(--q-ember); color: #000; }
+
+/* Logo: transparent wave mark, no tile */
+.nav__logo {
+  background: transparent;
+  border-color: transparent;
+}
+.nav__logo img,
+.nav__logo-svg {
+  width: 40px;
+  height: auto;
+  object-fit: contain;
+}
+@media (min-width: 768px) {
+  .nav__logo img, .nav__logo-svg { width: 46px; }
+}
+
+/* One solid action per screen: bone, never coral */
+.nav__order-btn,
+.btn-primary,
+.email-submit,
+.final-btn-accent,
+.form-btn {
+  background: var(--q-bone) !important;
+  color: #000 !important;
+  border-color: var(--q-bone) !important;
+}
+.nav__order-btn:hover,
+.btn-primary:hover,
+.email-submit:hover,
+.final-btn-accent:hover,
+.form-btn:hover {
+  background: #FFFFFF !important;
+}
+
+/* Secondary actions: outline pill */
+.final-btn-light,
+.btn-ghost {
+  background: transparent !important;
+  color: var(--q-ink) !important;
+  border: 1px solid var(--q-ink) !important;
+}
+
+/* Hairlines read on black */
+hr, .footer-divider::before, .footer-divider::after { border-color: var(--q-line); }
+
+/* Focus is always visible */
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 2px solid var(--q-ink);
+  outline-offset: 3px;
+}
+
+/* Day panels (order + checkout): the solid action is ink on light */
+.order-footer-btn {
+  background: #141210 !important;
+  color: #F4F1EC !important;
+  border-color: #141210 !important;
+}
+.order-footer-btn:hover { background: #000 !important; }
+.order-footer-btn[disabled], .order-footer-btn.disabled { opacity: .4; }

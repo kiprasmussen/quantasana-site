@@ -338,7 +338,7 @@
     if (!video) return;
 
     var isDesktop = window.innerWidth >= 768;
-    video.src = isDesktop ? 'videos/hero-1080.mp4' : 'videos/hero-720.mp4';
+    video.src = isDesktop ? 'videos/orbit-hero-1080.mp4' : 'videos/orbit-hero-720.mp4';
   })();
 
 

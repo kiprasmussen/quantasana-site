@@ -8,14 +8,15 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;600;700;800&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=16">
+  <link rel="stylesheet" href="orbit.css?v=1">
   <style>
     /* ============================================
        ORDER PAGE — LAYOUT
        ============================================ */
     .order-page {
-      background: #F5F0E8;
+      background: #F2EEE8;
       min-height: 100vh;
       padding-bottom: 80px;
     }
@@ -31,7 +32,7 @@
       top: 0;
       height: 100vh;
       overflow: hidden;
-      background: #EDEAE2;
+      background: #EAE5DD;
     }
     .order-carousel {
       position: relative;
@@ -84,7 +85,7 @@
       width: 40%;
       padding: 60px 48px 120px;
       overflow-y: auto;
-      background: #F5F0E8;
+      background: #F2EEE8;
     }
     .order-header {
       text-align: center;
@@ -97,14 +98,14 @@
       margin-bottom: 16px;
     }
     .order-title {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 700;
       font-size: 1.8rem;
-      color: #2C2C2A;
+      color: #141210;
       margin-bottom: 12px;
     }
     .order-subtitle {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 300;
       font-size: 0.8rem;
       line-height: 1.6;
@@ -118,10 +119,10 @@
       margin-bottom: 40px;
     }
     .config-heading {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 700;
       font-size: 1.3rem;
-      color: #2C2C2A;
+      color: #141210;
       margin-bottom: 16px;
     }
 
@@ -144,7 +145,7 @@
       border-color: rgba(10, 10, 10, 0.15);
     }
     .config-option.selected {
-      border-color: #5A5549;
+      border-color: #655F57;
       background: rgba(255, 255, 255, 0.5);
     }
     .config-option.disabled {
@@ -169,12 +170,12 @@
       transition: all 0.2s;
     }
     .config-option.selected .option-check {
-      background: #5A5549;
-      border-color: #5A5549;
+      background: #655F57;
+      border-color: #655F57;
     }
     .config-option.selected .option-check::after {
       content: '✓';
-      color: #F5F0E8;
+      color: #F2EEE8;
       font-size: 12px;
       font-weight: 700;
     }
@@ -182,22 +183,22 @@
       flex: 1;
     }
     .option-name {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 600;
       font-size: 0.9rem;
-      color: #2C2C2A;
+      color: #141210;
       display: block;
       margin-bottom: 2px;
     }
     .option-price {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 400;
       font-size: 0.85rem;
       color: rgba(10, 10, 10, 0.5);
       float: right;
     }
     .option-desc {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 300;
       font-size: 0.78rem;
       line-height: 1.5;
@@ -206,7 +207,7 @@
       clear: both;
     }
     .option-desc a {
-      color: #D4874D;
+      color: #E8876A;
       text-decoration: none;
     }
     .option-desc a:hover {
@@ -230,7 +231,7 @@
       border-radius: 12px;
       text-decoration: none;
       font-size: 1.2rem;
-      color: #2C2C2A;
+      color: #141210;
       transition: background 0.3s;
     }
     .order-back:hover {
@@ -239,7 +240,7 @@
 
     .option-badge {
       display: inline-block;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Geist Mono', monospace;
       font-size: 0.5rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -259,7 +260,7 @@
       left: 0;
       right: 0;
       height: 80px;
-      background: #F5F0E8;
+      background: #F2EEE8;
       border-top: 1px solid rgba(10, 10, 10, 0.08);
       display: flex;
       align-items: center;
@@ -271,7 +272,7 @@
       flex: 1;
     }
     .order-footer-label {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: 0.7rem;
       color: rgba(10, 10, 10, 0.35);
       display: flex;
@@ -283,33 +284,33 @@
       opacity: 0.5;
     }
     .order-footer-due {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 600;
       font-size: 0.85rem;
-      color: #2C2C2A;
+      color: #141210;
     }
     .order-footer-price {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 700;
       font-size: 2rem;
-      color: #2C2C2A;
+      color: #141210;
     }
     .order-footer-btn {
       padding: 16px 40px;
-      background: #8B8578;
+      background: #655F57;
       border: none;
       border-radius: 8px;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Geist Mono', monospace;
       font-size: 0.65rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: #F5F0E8;
+      color: #F2EEE8;
       cursor: pointer;
       transition: background 0.3s;
       white-space: nowrap;
     }
     .order-footer-btn:hover {
-      background: #706B61;
+      background: #655F57;
     }
 
     /* ============================================
@@ -385,7 +386,7 @@
 
         <!-- Header -->
         <div class="order-header">
-          <img src="logo.png" class="order-logo" alt="Quantasana">
+          <img src="images/orbit/mark-ink.png" class="order-logo" alt="Quantasana">
           <h1 class="order-title">Build your Quantasana</h1>
           <p class="order-subtitle">We're prioritizing Founders Edition builds. Reservation holders will receive build updates and shipping estimates via email.</p>
         </div>

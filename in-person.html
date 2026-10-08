@@ -8,7 +8,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;600;700;800&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -30,7 +30,7 @@
       border-radius: 12px;
       text-decoration: none;
       font-size: 1.2rem;
-      color: #2C2C2A;
+      color: #141210;
       transition: background 0.3s;
     }
     .order-back:hover {
@@ -39,7 +39,7 @@
 
     /* ── Page layout ── */
     .order-page {
-      background: #F5F0E8;
+      background: #F2EEE8;
       min-height: 100vh;
       padding-bottom: 80px;
     }
@@ -55,7 +55,7 @@
       top: 0;
       height: 100vh;
       overflow: hidden;
-      background: #EDEAE2;
+      background: #EAE5DD;
     }
     .order-carousel {
       position: relative;
@@ -86,7 +86,7 @@
       width: 40%;
       padding: 60px 48px 120px;
       overflow-y: auto;
-      background: #F5F0E8;
+      background: #F2EEE8;
     }
     .order-header {
       text-align: center;
@@ -99,14 +99,14 @@
       margin-bottom: 16px;
     }
     .order-title {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 700;
       font-size: 1.8rem;
-      color: #2C2C2A;
+      color: #141210;
       margin-bottom: 8px;
     }
     .order-subtitle {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 300;
       font-size: 0.8rem;
       line-height: 1.6;
@@ -118,10 +118,10 @@
       margin-bottom: 40px;
     }
     .config-heading {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 700;
       font-size: 1.3rem;
-      color: #2C2C2A;
+      color: #141210;
       margin-bottom: 16px;
     }
 
@@ -144,7 +144,7 @@
       border-color: rgba(10, 10, 10, 0.15);
     }
     .config-option.selected {
-      border-color: #5A5549;
+      border-color: #655F57;
       background: rgba(255, 255, 255, 0.5);
     }
     .config-option input { display: none; }
@@ -152,22 +152,22 @@
     /* ── Base experience (non-clickable) ── */
     .base-experience {
       cursor: default;
-      border-color: #5A5549;
+      border-color: #655F57;
       background: rgba(255, 255, 255, 0.5);
     }
     .base-experience .option-check {
-      background: #5A5549;
-      border-color: #5A5549;
+      background: #655F57;
+      border-color: #655F57;
     }
     .base-experience .option-check::after {
       content: '✓';
-      color: #F5F0E8;
+      color: #F2EEE8;
       font-size: 12px;
       font-weight: 700;
     }
     .included-badge {
       background: rgba(90, 85, 73, 0.1) !important;
-      color: #5A5549 !important;
+      color: #655F57 !important;
     }
 
     /* ── Custom check ── */
@@ -184,33 +184,33 @@
       transition: all 0.2s;
     }
     .config-option.selected .option-check {
-      background: #5A5549;
-      border-color: #5A5549;
+      background: #655F57;
+      border-color: #655F57;
     }
     .config-option.selected .option-check::after {
       content: '✓';
-      color: #F5F0E8;
+      color: #F2EEE8;
       font-size: 12px;
       font-weight: 700;
     }
     .option-info { flex: 1; }
     .option-name {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 600;
       font-size: 0.9rem;
-      color: #2C2C2A;
+      color: #141210;
       display: block;
       margin-bottom: 2px;
     }
     .option-price {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 400;
       font-size: 0.85rem;
       color: rgba(10, 10, 10, 0.5);
       float: right;
     }
     .option-desc {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 300;
       font-size: 0.78rem;
       line-height: 1.5;
@@ -220,7 +220,7 @@
     }
     .option-badge {
       display: inline-block;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Geist Mono', monospace;
       font-size: 0.5rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -234,12 +234,12 @@
     /* ── Duration badge ── */
     .option-duration-badge {
       display: inline-block;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Geist Mono', monospace;
       font-size: 0.5rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       background: rgba(212, 135, 77, 0.1);
-      color: #D4874D;
+      color: #E8876A;
       padding: 3px 10px;
       border-radius: 4px;
       margin-top: 8px;
@@ -248,10 +248,10 @@
 
     /* ── Config sub-label ── */
     .config-sub {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Geist Mono', monospace;
       font-size: 0.65rem;
       letter-spacing: 0.06em;
-      color: #D4874D;
+      color: #E8876A;
       text-transform: uppercase;
       margin-bottom: 16px;
     }
@@ -272,10 +272,10 @@
       margin-bottom: 20px;
     }
     .calendar-month {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 600;
       font-size: 1rem;
-      color: #2C2C2A;
+      color: #141210;
     }
     .calendar-nav {
       width: 36px;
@@ -284,7 +284,7 @@
       border-radius: 8px;
       background: transparent;
       font-size: 1rem;
-      color: #2C2C2A;
+      color: #141210;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -302,7 +302,7 @@
     }
     .calendar-weekdays span {
       text-align: center;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Geist Mono', monospace;
       font-size: 0.55rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -319,9 +319,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: 0.85rem;
-      color: #2C2C2A;
+      color: #141210;
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.2s;
@@ -333,8 +333,8 @@
       background: rgba(10, 10, 10, 0.06);
     }
     .cal-day.cal-selected {
-      background: #5A5549;
-      color: #F5F0E8;
+      background: #655F57;
+      color: #F2EEE8;
     }
     .cal-day.cal-today {
       font-weight: 600;
@@ -357,10 +357,10 @@
     .time-slot {
       padding: 12px 8px;
       text-align: center;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Geist Mono', monospace;
       font-size: 0.65rem;
       letter-spacing: 0.04em;
-      color: #2C2C2A;
+      color: #141210;
       background: rgba(255, 255, 255, 0.3);
       border: 1px solid rgba(10, 10, 10, 0.08);
       border-radius: 6px;
@@ -372,9 +372,9 @@
       border-color: rgba(10, 10, 10, 0.15);
     }
     .time-slot.selected {
-      background: #D4874D;
-      border-color: #D4874D;
-      color: #F5F0E8;
+      background: #E8876A;
+      border-color: #E8876A;
+      color: #F2EEE8;
     }
 
     /* ── Form fields ── */
@@ -390,12 +390,12 @@
     .checkout-row .checkout-input { flex: 1; }
     .checkout-input {
       padding: 16px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: 0.9rem;
       border: 1px solid rgba(10, 10, 10, 0.1);
       border-radius: 12px;
       background: rgba(255, 255, 255, 0.5);
-      color: #2C2C2A;
+      color: #141210;
       outline: none;
       transition: border-color 0.3s;
       box-sizing: border-box;
@@ -405,12 +405,12 @@
     .checkout-input::placeholder { color: rgba(10, 10, 10, 0.3); }
     .booking-textarea {
       padding: 16px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: 0.9rem;
       border: 1px solid rgba(10, 10, 10, 0.1);
       border-radius: 12px;
       background: rgba(255, 255, 255, 0.5);
-      color: #2C2C2A;
+      color: #141210;
       outline: none;
       transition: border-color 0.3s;
       box-sizing: border-box;
@@ -427,7 +427,7 @@
       left: 0;
       right: 0;
       height: 80px;
-      background: #F5F0E8;
+      background: #F2EEE8;
       border-top: 1px solid rgba(10, 10, 10, 0.08);
       display: flex;
       align-items: center;
@@ -437,7 +437,7 @@
     }
     .order-footer-info { flex: 1; }
     .order-footer-label {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: 0.7rem;
       color: rgba(10, 10, 10, 0.35);
       display: flex;
@@ -446,32 +446,32 @@
     }
     .footer-info-icon { font-size: 0.75rem; opacity: 0.5; }
     .order-footer-due {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 600;
       font-size: 0.85rem;
-      color: #2C2C2A;
+      color: #141210;
     }
     .order-footer-price {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 700;
       font-size: 2rem;
-      color: #2C2C2A;
+      color: #141210;
     }
     .order-footer-btn {
       padding: 16px 40px;
-      background: #8B8578;
+      background: #655F57;
       border: none;
       border-radius: 8px;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Geist Mono', monospace;
       font-size: 0.65rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: #F5F0E8;
+      color: #F2EEE8;
       cursor: pointer;
       transition: background 0.3s;
       white-space: nowrap;
     }
-    .order-footer-btn:hover:not(:disabled) { background: #706B61; }
+    .order-footer-btn:hover:not(:disabled) { background: #655F57; }
     .order-footer-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
     /* ── Mobile ── */
@@ -530,7 +530,7 @@
       <div class="order-images">
         <div class="order-carousel">
           <div class="carousel-slides">
-            <img src="images/quantasana_user.jpeg" class="carousel-slide active" alt="Quantasana experience">
+            <img src="images/orbit/pod-van.jpg" class="carousel-slide active" alt="Quantasana experience">
           </div>
         </div>
       </div>
@@ -540,7 +540,7 @@
 
         <!-- Header -->
         <div class="order-header">
-          <img src="logo.png" class="order-logo" alt="Quantasana">
+          <img src="images/orbit/mark-ink.png" class="order-logo" alt="Quantasana">
           <h1 class="order-title">Book your experience</h1>
           <p class="order-subtitle">Plano, TX · By appointment only</p>
         </div>
@@ -890,7 +890,7 @@
 
       bookBtn.textContent = 'BOOKING REQUESTED ✓';
       bookBtn.disabled = true;
-      bookBtn.style.background = '#5A5549';
+      bookBtn.style.background = '#655F57';
 
       console.log('Booking:', {
         date: dateStr,

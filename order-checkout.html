@@ -8,7 +8,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;600;700;800&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -29,7 +29,7 @@
       border-radius: 12px;
       text-decoration: none;
       font-size: 1.2rem;
-      color: #2C2C2A;
+      color: #141210;
       transition: background 0.3s;
     }
     .order-back:hover {
@@ -37,7 +37,7 @@
     }
 
     .checkout-page {
-      background: #F5F0E8;
+      background: #F2EEE8;
       min-height: 100vh;
       padding: 80px 24px 120px;
       max-width: 560px;
@@ -54,10 +54,10 @@
       margin-bottom: 16px;
     }
     .checkout-title {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 700;
       font-size: 2rem;
-      color: #2C2C2A;
+      color: #141210;
     }
 
     .checkout-card {
@@ -68,16 +68,16 @@
       margin-bottom: 12px;
     }
     .checkout-card-label {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: 0.78rem;
       color: rgba(10, 10, 10, 0.4);
       margin-bottom: 4px;
     }
     .checkout-card-value {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 600;
       font-size: 0.95rem;
-      color: #2C2C2A;
+      color: #141210;
     }
 
     /* Accordion */
@@ -86,10 +86,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 600;
       font-size: 0.95rem;
-      color: #2C2C2A;
+      color: #141210;
       list-style: none;
     }
     .checkout-summary-toggle::-webkit-details-marker { display: none; }
@@ -115,13 +115,13 @@
     }
     .summary-line:last-child { border-bottom: none; }
     .summary-line-name {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 400;
       font-size: 0.85rem;
-      color: #2C2C2A;
+      color: #141210;
     }
     .summary-line-price {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 400;
       font-size: 0.85rem;
       color: rgba(10, 10, 10, 0.5);
@@ -129,10 +129,10 @@
 
     /* Section titles */
     .checkout-section-title {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 700;
       font-size: 1.1rem;
-      color: #2C2C2A;
+      color: #141210;
       margin-top: 32px;
       margin-bottom: 16px;
     }
@@ -150,12 +150,12 @@
     .checkout-row .checkout-input { flex: 1; }
     .checkout-input {
       padding: 16px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: 0.9rem;
       border: 1px solid rgba(10, 10, 10, 0.1);
       border-radius: 12px;
       background: rgba(255, 255, 255, 0.5);
-      color: #2C2C2A;
+      color: #141210;
       outline: none;
       transition: border-color 0.3s;
       box-sizing: border-box;
@@ -171,7 +171,7 @@
       left: 0;
       right: 0;
       height: 80px;
-      background: #F5F0E8;
+      background: #F2EEE8;
       border-top: 1px solid rgba(10, 10, 10, 0.08);
       display: flex;
       align-items: center;
@@ -181,7 +181,7 @@
     }
     .order-footer-info { flex: 1; }
     .order-footer-label {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: 0.7rem;
       color: rgba(10, 10, 10, 0.35);
       display: flex;
@@ -190,32 +190,32 @@
     }
     .footer-info-icon { font-size: 0.75rem; opacity: 0.5; }
     .order-footer-due {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 600;
       font-size: 0.85rem;
-      color: #2C2C2A;
+      color: #141210;
     }
     .order-footer-price {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 700;
       font-size: 2rem;
-      color: #2C2C2A;
+      color: #141210;
     }
     .order-footer-btn {
       padding: 16px 40px;
-      background: #8B8578;
+      background: #655F57;
       border: none;
       border-radius: 8px;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Geist Mono', monospace;
       font-size: 0.65rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: #F5F0E8;
+      color: #F2EEE8;
       cursor: pointer;
       transition: background 0.3s;
       white-space: nowrap;
     }
-    .order-footer-btn:hover:not(:disabled) { background: #706B61; }
+    .order-footer-btn:hover:not(:disabled) { background: #655F57; }
     .order-footer-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
     @media (max-width: 768px) {
@@ -246,7 +246,7 @@
   <div class="checkout-page">
 
     <div class="checkout-header">
-      <img src="logo.png" class="checkout-logo" alt="Quantasana">
+      <img src="images/orbit/mark-ink.png" class="checkout-logo" alt="Quantasana">
       <h1 class="checkout-title">Checkout</h1>
     </div>
 
@@ -369,7 +369,7 @@
     payBtn.addEventListener('click', function() {
       payBtn.textContent = 'RESERVATION CONFIRMED ✓';
       payBtn.disabled = true;
-      payBtn.style.background = '#5A5549';
+      payBtn.style.background = '#655F57';
 
       var orderData = {
         config: Object.fromEntries(params),

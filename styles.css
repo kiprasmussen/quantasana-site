@@ -6,25 +6,25 @@
 /* --- CSS Custom Properties (Design Tokens) --- */
 :root {
   /* Backgrounds */
-  --sand: #D6D0C4;
-  --linen: #E8E3D9;
-  --cream: #F2EDE4;
-  --white: #FAF8F4;
+  --sand: #000000;
+  --linen: #0E0E0E;
+  --cream: #1A1A1A;
+  --white: #141414;
 
   /* Text & Dark */
-  --void: #0A0A0A;
-  --charcoal: #2A2726;
-  --warm-gray: #8A8378;
-  --stone: #B5AFA5;
+  --void: #F2EEE8;
+  --charcoal: #D8D3CB;
+  --warm-gray: #9C978F;
+  --stone: #6E6A64;
 
   /* Accent */
-  --accent: #E8844A;
-  --accent-hover: #F09A5E;
+  --accent: #E8876A;
+  --accent-hover: #F0A486;
 
   /* Typography */
-  --font-display: 'Josefin Sans', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Geist', 'Helvetica Neue', sans-serif;
+  --font-body: 'Geist', 'Helvetica Neue', sans-serif;
+  --font-mono: 'Geist Mono', 'SF Mono', monospace;
 
   /* Radii */
   --r-sm: 8px;
@@ -193,7 +193,7 @@ button {
   width: 44px;
   height: 44px;
   background: var(--white);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(242, 238, 232, 0.12);
   border-radius: var(--nav-radius);
   overflow: hidden;
   flex-shrink: 0;
@@ -227,7 +227,7 @@ button {
 @media (min-width: 768px) {
   .nav__right {
     background: var(--white);
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(242, 238, 232, 0.12);
     border-radius: var(--nav-radius);
     box-shadow:
       0 2px 12px rgba(0, 0, 0, 0.08),
@@ -246,7 +246,7 @@ button {
   position: relative;
   border-radius: var(--nav-radius);
   background: var(--white);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(242, 238, 232, 0.12);
   box-shadow:
     0 2px 12px rgba(0, 0, 0, 0.08),
     0 1px 3px rgba(0, 0, 0, 0.04);
@@ -906,7 +906,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #D6D0C4;
+  background: #000000;
   overflow: hidden;
 }
 
@@ -915,11 +915,11 @@ button {
   max-width: 700px;
   padding: 0 40px;
   text-align: center;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 300;
   font-size: 1.8rem;
   line-height: 1.5;
-  color: #2C2C2A;
+  color: #F2EEE8;
   opacity: 0;
 }
 
@@ -970,7 +970,7 @@ button {
   height: 100vh;
   width: 100%;
   overflow: hidden;
-  background: #D6D0C4;
+  background: #000000;
 }
 
 /* ── THREE PANEL LAYOUT ── */
@@ -995,13 +995,13 @@ button {
 
 /* Background images */
 .science-panel[data-pillar="breath"] {
-  background-image: url('images/science-breath.jpg');
+  background-image: url('images/orbit/art-breathe.jpg');
 }
 .science-panel[data-pillar="sound"] {
-  background-image: url('images/science-sound.jpg');
+  background-image: url('images/orbit/art-sound.jpg');
 }
 .science-panel[data-pillar="vibration"] {
-  background-image: url('images/science-vibration.jpg');
+  background-image: url('images/orbit/art-vibrate.jpg');
 }
 
 /* Dark overlay for text readability */
@@ -1045,12 +1045,12 @@ button {
 
 /* ── Title — always visible ── */
 .panel-title {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 300;
   font-size: 2rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #F5F0E8;
+  color: #F2EEE8;
   transition: all 0.4s ease;
 }
 
@@ -1069,11 +1069,11 @@ button {
 
 /* ── Description — only on active panel ── */
 .panel-desc {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 300;
   font-size: 0.95rem;
   line-height: 1.6;
-  color: rgba(245, 240, 232, 0.75);
+  color: rgba(242, 238, 232, 0.75);
   margin-top: 12px;
   opacity: 0;
   transition: opacity 0.4s ease 0.15s;
@@ -1103,41 +1103,41 @@ button {
   flex: 1;
   background: rgba(214, 208, 196, 0.1);
   border: 1px solid rgba(214, 208, 196, 0.15);
-  border-top: 2px solid #D4874D;
+  border-top: 2px solid #E8876A;
   border-radius: 12px;
   padding: 20px;
 }
 
 .stat-number {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 300;
   font-size: 1.8rem;
-  color: #D4874D;
+  color: #E8876A;
   margin-bottom: 4px;
 }
 
 .stat-label {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 0.55rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(245, 240, 232, 0.5);
+  color: rgba(242, 238, 232, 0.5);
   margin-bottom: 12px;
 }
 
 .stat-body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 300;
   font-size: 0.78rem;
   line-height: 1.5;
-  color: rgba(245, 240, 232, 0.65);
+  color: rgba(242, 238, 232, 0.65);
   margin-bottom: 12px;
 }
 
 .stat-source {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 0.48rem;
-  color: rgba(245, 240, 232, 0.3);
+  color: rgba(242, 238, 232, 0.3);
   letter-spacing: 0.06em;
 }
 
@@ -1218,7 +1218,7 @@ button {
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
     border: 1px solid rgba(255, 255, 255, 0.06) !important;
-    border-top: 2px solid #D4874D !important;
+    border-top: 2px solid #E8876A !important;
     border-radius: 16px !important;
     padding: 20px !important;
     margin-bottom: 12px !important;
@@ -1251,7 +1251,7 @@ button {
   height: 100vh;
   width: 100%;
   overflow: hidden;
-  background: #D6D0C4;
+  background: #000000;
 }
 
 /* ── Two-column layout ── */
@@ -1295,12 +1295,12 @@ button {
 }
 
 .system-title {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 300;
   font-size: 2.8rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #0A0A0A;
+  color: #F2EEE8;
   margin-bottom: 0;
   line-height: 1.1;
   text-align: center;
@@ -1321,33 +1321,33 @@ button {
   content: '';
   flex: 1;
   height: 1px;
-  background: rgba(10, 10, 10, 0.12);
+  background: rgba(242, 238, 232, 0.12);
 }
 
 .system-divider span {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 300;
   font-size: 0.75rem;
-  color: rgba(10, 10, 10, 0.25);
+  color: rgba(242, 238, 232, 0.25);
   line-height: 1;
 }
 
 .system-desc {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 300;
   font-size: 0.9rem;
   line-height: 1.7;
-  color: rgba(10, 10, 10, 0.7);
+  color: rgba(242, 238, 232, 0.7);
   margin-bottom: 16px;
   text-align: center;
   max-width: 380px;
 }
 
 .system-subtext {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 0.65rem;
   letter-spacing: 0.04em;
-  color: rgba(10, 10, 10, 0.35);
+  color: rgba(242, 238, 232, 0.35);
   margin-bottom: 0;
   text-align: center;
 }
@@ -1369,11 +1369,11 @@ button {
 }
 
 .system-tab {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 0.52rem; /* slightly smaller for 6 tabs */
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(10, 10, 10, 0.35);
+  color: rgba(242, 238, 232, 0.35);
   background: none;
   border: none;
   border-bottom: 2px solid transparent;
@@ -1384,12 +1384,12 @@ button {
 }
 
 .system-tab.active {
-  color: #0A0A0A;
-  border-bottom-color: #0A0A0A;
+  color: #F2EEE8;
+  border-bottom-color: #F2EEE8;
 }
 
 .system-tab:hover {
-  color: rgba(10, 10, 10, 0.6);
+  color: rgba(242, 238, 232, 0.6);
 }
 
 /* ── CTA button ── */
@@ -1397,19 +1397,19 @@ button {
   display: block;
   text-align: center;
   padding: 16px 32px;
-  background: rgba(10, 10, 10, 0.06);
+  background: rgba(242, 238, 232, 0.06);
   border-radius: 8px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #0A0A0A;
+  color: #F2EEE8;
   text-decoration: none;
   transition: background 0.3s ease;
 }
 
 .system-cta:hover {
-  background: rgba(10, 10, 10, 0.1);
+  background: rgba(242, 238, 232, 0.1);
 }
 
 /* ── Right column (2/3) — images ── */
@@ -1469,7 +1469,7 @@ button {
     display: block !important;
     margin-bottom: 0;
     padding-bottom: 24px;
-    border-bottom: 1px solid rgba(10, 10, 10, 0.1);
+    border-bottom: 1px solid rgba(242, 238, 232, 0.1);
     margin-bottom: 40px;
   }
 
@@ -1522,7 +1522,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('images/community-bg.jpg');
+  background-image: url('images/orbit/sky-lunar.jpg');
   background-size: cover;
   background-position: center;
   overflow: hidden;
@@ -1567,22 +1567,22 @@ button {
 
 /* ── Beat 1: Label + Headline ── */
 .community-label {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 0.6rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(245, 240, 232, 0.35);
+  color: rgba(242, 238, 232, 0.35);
   display: block;
   margin-bottom: 32px;
 }
 
 .community-headline {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 300;
   font-size: 2.6rem;
   letter-spacing: 0.1em;
   line-height: 1.3;
-  color: #F5F0E8;
+  color: #F2EEE8;
 }
 
 /* ── Beat 2: Body paragraphs ── */
@@ -1591,11 +1591,11 @@ button {
 }
 
 .community-body p {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.9;
-  color: rgba(245, 240, 232, 0.7);
+  color: rgba(242, 238, 232, 0.7);
   margin-bottom: 28px;
 }
 
@@ -1614,28 +1614,28 @@ button {
   gap: 20px;
   align-items: flex-start;
   padding: 24px 0;
-  border-top: 1px solid rgba(245, 240, 232, 0.1);
+  border-top: 1px solid rgba(242, 238, 232, 0.1);
 }
 
 .vision-item:last-child {
-  border-bottom: 1px solid rgba(245, 240, 232, 0.1);
+  border-bottom: 1px solid rgba(242, 238, 232, 0.1);
 }
 
 .vision-number {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 0.65rem;
-  color: #D4874D;
+  color: #E8876A;
   letter-spacing: 0.08em;
   flex-shrink: 0;
   padding-top: 4px;
 }
 
 .vision-item p {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 300;
   font-size: 0.88rem;
   line-height: 1.7;
-  color: rgba(245, 240, 232, 0.6);
+  color: rgba(242, 238, 232, 0.6);
   margin: 0;
 }
 
@@ -1645,10 +1645,10 @@ button {
 }
 
 .cta-text {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 300;
   font-size: 0.85rem;
-  color: rgba(245, 240, 232, 0.45);
+  color: rgba(242, 238, 232, 0.45);
   margin-bottom: 20px;
 }
 
@@ -1662,19 +1662,19 @@ button {
 .email-input {
   flex: 1;
   padding: 14px 20px;
-  background: rgba(245, 240, 232, 0.06);
-  border: 1px solid rgba(245, 240, 232, 0.12);
+  background: rgba(242, 238, 232, 0.06);
+  border: 1px solid rgba(242, 238, 232, 0.12);
   border-right: none;
   border-radius: 8px 0 0 8px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 0.85rem;
-  color: #F5F0E8;
+  color: #F2EEE8;
   outline: none;
   transition: border-color 0.3s ease;
 }
 
 .email-input::placeholder {
-  color: rgba(245, 240, 232, 0.25);
+  color: rgba(242, 238, 232, 0.25);
 }
 
 .email-input:focus {
@@ -1683,21 +1683,21 @@ button {
 
 .email-submit {
   padding: 14px 24px;
-  background: #D4874D;
-  border: 1px solid #D4874D;
+  background: #E8876A;
+  border: 1px solid #E8876A;
   border-radius: 0 8px 8px 0;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 0.58rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #F5F0E8;
+  color: #F2EEE8;
   cursor: pointer;
   transition: background 0.3s ease;
   white-space: nowrap;
 }
 
 .email-submit:hover {
-  background: #C07842;
+  background: #D9734F;
 }
 
 /* ── Mobile ── */
@@ -1726,7 +1726,7 @@ button {
   }
 
   .email-input {
-    border-right: 1px solid rgba(245, 240, 232, 0.12);
+    border-right: 1px solid rgba(242, 238, 232, 0.12);
     border-radius: 8px;
   }
 
@@ -1744,7 +1744,7 @@ button {
   position: relative;
   height: 100vh;
   width: 100%;
-  background-image: url('images/quantasana_user.jpeg');
+  background-image: url('images/orbit/sky-twilight.jpg');
   background-size: cover;
   background-position: center center;
   display: flex;
@@ -1767,20 +1767,20 @@ button {
 }
 
 .final-cta-label {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 0.6rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(245, 240, 232, 0.45);
+  color: rgba(242, 238, 232, 0.45);
   margin-bottom: 20px;
 }
 
 .final-cta-headline {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 300;
   font-size: 4.5rem;
   letter-spacing: 0.06em;
-  color: #F5F0E8;
+  color: #F2EEE8;
   margin-bottom: 40px;
   line-height: 1.1;
 }
@@ -1794,7 +1794,7 @@ button {
 
 .final-btn {
   padding: 16px 40px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 0.65rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1805,31 +1805,31 @@ button {
 }
 
 .final-btn-light {
-  background: rgba(245, 240, 232, 0.1);
-  border: 1px solid rgba(245, 240, 232, 0.25);
-  color: #F5F0E8;
+  background: rgba(242, 238, 232, 0.1);
+  border: 1px solid rgba(242, 238, 232, 0.25);
+  color: #F2EEE8;
 }
 
 .final-btn-light:hover {
-  background: rgba(245, 240, 232, 0.18);
+  background: rgba(242, 238, 232, 0.18);
 }
 
 .final-btn-accent {
-  background: #D4874D;
-  border: 1px solid #D4874D;
-  color: #F5F0E8;
+  background: #E8876A;
+  border: 1px solid #E8876A;
+  color: #F2EEE8;
 }
 
 .final-btn-accent:hover {
-  background: #C07842;
+  background: #D9734F;
 }
 
 .final-cta-edition {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 0.55rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(245, 240, 232, 0.3);
+  color: rgba(242, 238, 232, 0.3);
 }
 
 /* ============================================
@@ -1844,7 +1844,7 @@ button {
    FOOTER — Pebble-style
    ============================================ */
 .site-footer {
-  background: #D6D0C4;
+  background: #000000;
   padding: 100px 60px 50px 60px;
   position: sticky;
   bottom: 0;
@@ -1865,12 +1865,12 @@ button {
 
 /* Tagline */
 .footer-tagline-text {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 300;
   font-size: 1.8rem;
   letter-spacing: 0.04em;
   line-height: 1.4;
-  color: rgba(10, 10, 10, 0.3);
+  color: rgba(242, 238, 232, 0.3);
 }
 
 /* Nav links — stacked, bold, large */
@@ -1881,25 +1881,25 @@ button {
 }
 
 .footer-link {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 800;
   font-size: 1.6rem;
-  color: rgba(10, 10, 10, 0.6);
+  color: rgba(242, 238, 232, 0.6);
   text-decoration: none;
   line-height: 1.6;
   transition: color 0.3s ease;
 }
 
 .footer-link:hover {
-  color: #0A0A0A;
+  color: #F2EEE8;
 }
 
 /* Subscribe */
 .footer-subscribe-text {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 300;
   font-size: 0.95rem;
-  color: rgba(10, 10, 10, 0.5);
+  color: rgba(242, 238, 232, 0.5);
   line-height: 1.6;
   margin-bottom: 16px;
 }
@@ -1908,17 +1908,17 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 0.6rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(10, 10, 10, 0.5);
+  color: rgba(242, 238, 232, 0.5);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .footer-join:hover {
-  color: #0A0A0A;
+  color: #F2EEE8;
 }
 
 .footer-join-arrow {
@@ -1927,14 +1927,14 @@ button {
   justify-content: center;
   width: 32px;
   height: 32px;
-  border: 1px solid rgba(10, 10, 10, 0.2);
+  border: 1px solid rgba(242, 238, 232, 0.2);
   border-radius: 50%;
   font-size: 0.85rem;
   transition: border-color 0.3s ease;
 }
 
 .footer-join:hover .footer-join-arrow {
-  border-color: rgba(10, 10, 10, 0.5);
+  border-color: rgba(242, 238, 232, 0.5);
 }
 
 /* ── Divider with + ── */
@@ -1951,14 +1951,14 @@ button {
   content: '';
   flex: 1;
   height: 1px;
-  background: rgba(10, 10, 10, 0.12);
+  background: rgba(242, 238, 232, 0.12);
 }
 
 .footer-divider span {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 300;
   font-size: 0.85rem;
-  color: rgba(10, 10, 10, 0.2);
+  color: rgba(242, 238, 232, 0.2);
 }
 
 /* ── Footer bottom ── */
@@ -1972,11 +1972,11 @@ button {
 }
 
 .footer-logo {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 300;
   font-size: 1rem;
   letter-spacing: 0.15em;
-  color: rgba(10, 10, 10, 0.4);
+  color: rgba(242, 238, 232, 0.4);
   text-transform: lowercase;
 }
 
@@ -1987,29 +1987,29 @@ button {
 }
 
 .footer-legal-link {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 0.5rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(10, 10, 10, 0.35);
+  color: rgba(242, 238, 232, 0.35);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .footer-legal-link:hover {
-  color: rgba(10, 10, 10, 0.6);
+  color: rgba(242, 238, 232, 0.6);
 }
 
 .footer-legal-dot {
-  color: rgba(10, 10, 10, 0.2);
+  color: rgba(242, 238, 232, 0.2);
   font-size: 0.6rem;
 }
 
 .footer-copyright {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 0.48rem;
   letter-spacing: 0.06em;
-  color: rgba(10, 10, 10, 0.25);
+  color: rgba(242, 238, 232, 0.25);
   text-align: center;
 }
 
@@ -2020,17 +2020,17 @@ button {
 }
 
 .footer-social-link {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 0.5rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(10, 10, 10, 0.35);
+  color: rgba(242, 238, 232, 0.35);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .footer-social-link:hover {
-  color: rgba(10, 10, 10, 0.6);
+  color: rgba(242, 238, 232, 0.6);
 }
 
 /* ── CTA + Footer Mobile ── */
@@ -2078,7 +2078,7 @@ button {
   .footer-link {
     font-size: 1.3rem;
     font-weight: 800;
-    color: rgba(10, 10, 10, 0.45);
+    color: rgba(242, 238, 232, 0.45);
   }
 
   /* Subscribe goes full width below */
@@ -2317,7 +2317,7 @@ button {
 }
 
 .signin-btn--apple {
-  background: #e8e4df;
+  background: #F2EEE8;
   color: #1a1a1a;
 }
 
